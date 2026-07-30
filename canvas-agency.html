@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Canvas — Design · Branding · Websites · Marketing | Guernsey</title>
+<title>Canvas · Design · Branding · Websites · Marketing | Guernsey</title>
 <meta name="description" content="Canvas is a boutique creative agency in Guernsey helping businesses build memorable brands through strategy, design, websites, photography and marketing.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;450;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   CANVAS — design tokens
+   CANVAS - design tokens
    ============================================================ */
 :root{
   --paper:#F7F5F2;
@@ -57,7 +57,7 @@ button{font:inherit;background:none;border:0;cursor:pointer;color:inherit}
 
 .wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
 
-/* mono eyebrow label — encodes section index in a real document order */
+/* mono eyebrow label - encodes section index in a real document order */
 .tag{
   font-family:var(--font-mono);
   font-size:.6875rem;
@@ -80,7 +80,7 @@ button{font:inherit;background:none;border:0;cursor:pointer;color:inherit}
 .r-d3{transition-delay:.24s}
 .r-d4{transition-delay:.32s}
 
-/* image reveal — curtain wipe, not a fade */
+/* image reveal - curtain wipe, not a fade */
 .reveal-img{position:relative;overflow:hidden}
 .reveal-img::after{
   content:"";position:absolute;inset:0;background:var(--paper);
@@ -230,25 +230,8 @@ button{font:inherit;background:none;border:0;cursor:pointer;color:inherit}
 .btn--ghost::before{background:var(--ink)}
 .btn--ghost:hover{color:var(--paper)}
 
-.hero-foot{
-  border-top:1px solid var(--hairline);
-  display:flex;justify-content:space-between;align-items:center;
-  padding-block:1.15rem;
-  font-family:var(--font-mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--ink-soft);
-  gap:1rem;flex-wrap:wrap;
-}
-.hero-foot .coords{color:var(--forest)}
-.scroll-hint{display:flex;align-items:center;gap:.7rem}
-.scroll-hint .tick{width:1px;height:2.2rem;background:var(--ink-soft);position:relative;overflow:hidden}
-.scroll-hint .tick::after{
-  content:"";position:absolute;inset:0;background:var(--forest);
-  animation:tickDown 1.8s var(--ease-out) infinite;
-}
-@keyframes tickDown{0%{transform:translateY(-100%)}55%{transform:none}100%{transform:translateY(100%)}}
-
 /* ============================================================
-   Marquee strip — quiet, one row, pauses on hover
+   Marquee strip - quiet, one row, pauses on hover
    ============================================================ */
 .strip{
   border-block:1px solid var(--hairline);
@@ -289,7 +272,7 @@ button{font:inherit;background:none;border:0;cursor:pointer;color:inherit}
 </style>
 <style>
 /* ============================================================
-   Services — a ruled ledger, not cards
+   Services - a ruled ledger, not cards
    ============================================================ */
 .services-list{border-top:1px solid var(--hairline)}
 .service{
@@ -325,70 +308,7 @@ button{font:inherit;background:none;border:0;cursor:pointer;color:inherit}
 }
 
 /* ============================================================
-   Work — editorial, uneven grid
-   ============================================================ */
-.work{background:var(--forest-deep);color:var(--paper)}
-.work .section-head h2{color:var(--paper)}
-.work .section-head .lede{color:var(--sage)}
-
-.work-grid{
-  display:grid;
-  grid-template-columns:repeat(12,1fr);
-  gap:clamp(1.2rem,2.5vw,2.2rem);
-  row-gap:clamp(3rem,6vw,5rem);
-}
-.project{display:block;position:relative}
-.project:nth-child(1){grid-column:1/8}
-.project:nth-child(2){grid-column:8/13;margin-top:clamp(3rem,8vw,7rem)}
-.project:nth-child(3){grid-column:1/6;margin-top:clamp(-2rem,-3vw,-4rem)}
-.project:nth-child(4){grid-column:6/13}
-
-.project-media{
-  position:relative;overflow:hidden;
-  aspect-ratio:4/3;
-}
-.project:nth-child(2) .project-media{aspect-ratio:3/3.6}
-.project:nth-child(3) .project-media{aspect-ratio:1/1}
-.project:nth-child(4) .project-media{aspect-ratio:16/9}
-
-.project-media .art{
-  position:absolute;inset:0;width:100%;height:100%;
-  transition:transform 1s var(--ease-out);
-}
-.project:hover .project-media .art{transform:scale(1.045)}
-
-.project-veil{
-  position:absolute;inset:0;background:var(--forest-deep);
-  opacity:0;transition:opacity .5s var(--ease-out);
-  display:flex;align-items:flex-end;padding:1.6rem;
-}
-.project:hover .project-veil{opacity:.92}
-.project-veil span{
-  font-family:var(--font-mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--sage);display:flex;align-items:center;gap:.7rem;
-  transform:translateY(8px);opacity:0;
-  transition:transform .5s var(--ease-out) .06s,opacity .5s var(--ease-out) .06s;
-}
-.project:hover .project-veil span{transform:none;opacity:1}
-
-.project-meta{
-  display:flex;justify-content:space-between;align-items:baseline;
-  margin-top:1.1rem;gap:1rem;
-}
-.project-meta h3{
-  font-family:var(--font-display);font-weight:400;font-size:1.35rem;letter-spacing:-.01em;
-}
-.project-meta .cat{
-  font-family:var(--font-mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--sage);
-  white-space:nowrap;
-}
-.work-more{margin-top:clamp(3rem,6vw,5rem);display:flex;justify-content:center}
-.btn--paper{background:transparent;color:var(--paper);border:1px solid var(--sage)}
-.btn--paper::before{background:var(--paper)}
-.btn--paper:hover{color:var(--forest-deep)}
-
-/* ============================================================
-   Process — one drawn line down the page
+   Process - one drawn line down the page
    ============================================================ */
 .process-flow{position:relative;max-width:880px;margin-inline:auto}
 .process-spine{
@@ -424,12 +344,19 @@ button{font:inherit;background:none;border:0;cursor:pointer;color:inherit}
 .step:nth-child(even) .step-body{margin-left:clamp(0rem,6vw,5rem)}
 
 /* ============================================================
-   About — split editorial
+   About - split editorial
    ============================================================ */
 .about-grid{
-  display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
   gap:clamp(2.5rem,6vw,6.5rem);align-items:start;
 }
+.about-lead{position:sticky;top:7rem}
+.about-lead .big{
+  font-family:var(--font-display);font-weight:400;
+  font-size:clamp(1.8rem,3.6vw,3rem);line-height:1.18;letter-spacing:-.02em;
+  margin-top:1.6rem;max-width:16ch;
+}
+.about-lead .big em{font-style:italic;font-weight:300;color:var(--forest)}
 .about-copy .big{
   font-family:var(--font-display);font-weight:400;
   font-size:clamp(1.55rem,2.9vw,2.3rem);line-height:1.28;letter-spacing:-.015em;
@@ -448,44 +375,6 @@ button{font:inherit;background:none;border:0;cursor:pointer;color:inherit}
 }
 .fig .l{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
 
-.about-photos{
-  display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;position:relative;
-}
-.about-photo{background:var(--sage-tint);position:relative;overflow:hidden}
-.about-photo:nth-child(1){grid-column:1/3;aspect-ratio:16/10}
-.about-photo:nth-child(2){aspect-ratio:1/1;margin-top:0}
-.about-photo:nth-child(3){aspect-ratio:1/1;transform:translateY(1.6rem)}
-.about-photo .ph{
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  flex-direction:column;gap:.6rem;
-  font-family:var(--font-mono);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--forest);text-align:center;padding:1rem;
-}
-.about-photo .ph svg{width:34px;height:34px;opacity:.7}
-.about-photo .ph svg *{fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round}
-
-/* ============================================================
-   Testimonials — staggered editorial quotes
-   ============================================================ */
-.quotes{background:var(--paper-raised);border-block:1px solid var(--hairline)}
-.quote-stack{display:grid;gap:clamp(3rem,7vw,5.5rem)}
-.quote{max-width:38rem}
-.quote:nth-child(2){margin-left:auto;text-align:right}
-.quote:nth-child(2) .quote-who{justify-content:flex-end}
-.quote:nth-child(3){margin-inline:auto;text-align:center}
-.quote:nth-child(3) .quote-who{justify-content:center}
-.quote blockquote{
-  font-family:var(--font-display);font-weight:300;
-  font-size:clamp(1.35rem,2.7vw,2rem);line-height:1.35;letter-spacing:-.01em;
-}
-.quote blockquote::before{content:"“";color:var(--sage);margin-right:.05em}
-.quote blockquote::after{content:"”";color:var(--sage);margin-left:.05em}
-.quote-who{
-  display:flex;align-items:center;gap:.9rem;margin-top:1.4rem;
-  font-family:var(--font-mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);
-}
-.quote-who::before{content:"";width:2.4rem;height:1px;background:var(--forest);opacity:.5}
-.quote:nth-child(2) .quote-who::before{order:2}
 
 /* ============================================================
    Contact
@@ -574,8 +463,8 @@ button{font:inherit;background:none;border:0;cursor:pointer;color:inherit}
   .section-head .lede{grid-column:1;margin-top:0}
   .service{grid-template-columns:1fr auto;grid-template-rows:auto auto}
   .service p{grid-column:1/-1}
-  .work-grid .project{grid-column:1/-1 !important;margin-top:0 !important}
   .about-grid,.contact-grid{grid-template-columns:1fr}
+  .about-lead{position:static;top:auto}
   .footer-top{grid-template-columns:1fr 1fr}
   .footer-brand{grid-column:1/-1}
 }
@@ -590,12 +479,6 @@ button{font:inherit;background:none;border:0;cursor:pointer;color:inherit}
   .nav-links a{font-family:var(--font-display);font-size:1.9rem;font-weight:400}
   .nav-links .nav-cta{font-family:var(--font-mono);font-size:.8rem}
   .menu-btn{display:flex}
-  .about-photo:nth-child(3){transform:none}
-  .quote:nth-child(2){margin-left:0;text-align:left}
-  .quote:nth-child(2) .quote-who{justify-content:flex-start}
-  .quote:nth-child(2) .quote-who::before{order:0}
-  .quote:nth-child(3){margin-inline:0;text-align:left}
-  .quote:nth-child(3) .quote-who{justify-content:flex-start}
 }
 </style>
 </head>
@@ -603,7 +486,7 @@ button{font:inherit;background:none;border:0;cursor:pointer;color:inherit}
 
 <header class="site-header" id="top">
   <div class="wrap">
-    <a class="logo" href="#top" aria-label="Canvas — home">Canvas<span class="dot" aria-hidden="true"></span></a>
+    <a class="logo" href="#top" aria-label="Canvas, home">Canvas<span class="dot" aria-hidden="true"></span></a>
     <button class="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
@@ -611,7 +494,6 @@ button{font:inherit;background:none;border:0;cursor:pointer;color:inherit}
       <ul class="nav-links" id="nav">
         <li><a href="#top" data-nav>Home</a></li>
         <li><a href="#services" data-nav>Services</a></li>
-        <li><a href="#work" data-nav>Work</a></li>
         <li><a href="#about" data-nav>About</a></li>
         <li><a href="#contact" class="nav-cta">Start a project</a></li>
       </ul>
@@ -639,10 +521,6 @@ button{font:inherit;background:none;border:0;cursor:pointer;color:inherit}
       <a class="btn" href="#contact"><span>Start a project</span><span class="arr" aria-hidden="true">→</span></a>
     </div>
   </div>
-  <div class="wrap hero-foot">
-    <span class="coords">49.4482° N · 2.5895° W — St Peter Port, Guernsey</span>
-    <span class="scroll-hint"><span class="tick" aria-hidden="true"></span>Scroll</span>
-  </div>
 </section>
 
 <!-- ============ STRIP ============ -->
@@ -659,148 +537,52 @@ button{font:inherit;background:none;border:0;cursor:pointer;color:inherit}
     <div class="section-head">
       <p class="tag r">What we do</p>
       <h2 class="r r-d1">Everything a brand needs, under one roof.</h2>
-      <p class="lede r r-d2">Strategy first, always. Then design, build and content that carry it into the world — coherent from the logo on your door to the last frame of your campaign.</p>
+      <p class="lede r r-d2">Strategy first, always. Then design, build and content that carry it into the world, coherent from the logo on your door to the last frame of your campaign.</p>
     </div>
 
     <div class="services-list">
       <article class="service r">
         <h3>Brand Identity</h3>
-        <p>Naming, logotypes, colour, voice and guidelines — the foundations that make everything else easier and every touchpoint feel like you.</p>
+        <p>Logo design and brand colours, along with the simple visual rules that hold them together, so every part of your brand feels like you.</p>
         <div class="glyph" aria-hidden="true">
           <svg viewBox="0 0 52 52"><circle cx="20" cy="26" r="12"/><circle cx="32" cy="26" r="12"/></svg>
         </div>
       </article>
       <article class="service r">
         <h3>Graphic Design</h3>
-        <p>Print, packaging, publications and campaign artwork — crafted layouts with the detail obsessed over so you never have to.</p>
+        <p>Layouts and artwork for print, packaging and campaigns, crafted with the detail obsessed over so you never have to. We design the prints; the actual printing is left to your printer of choice.</p>
         <div class="glyph" aria-hidden="true">
           <svg viewBox="0 0 52 52"><rect x="10" y="10" width="32" height="32"/><line x1="10" y1="22" x2="42" y2="22"/><line x1="22" y1="22" x2="22" y2="42"/></svg>
         </div>
       </article>
       <article class="service r">
         <h3>Website Design</h3>
-        <p>Fast, elegant, easy-to-manage websites designed around your customers — and built to look after themselves long after launch.</p>
+        <p>Fast, elegant, easy-to-manage websites designed around your customers, and built to look after themselves long after launch.</p>
         <div class="glyph" aria-hidden="true">
           <svg viewBox="0 0 52 52"><path d="M10 18 C10 14 14 12 18 12 H34 C38 12 42 14 42 18 V34 C42 38 38 40 34 40 H18 C14 40 10 38 10 34 Z"/><polyline points="20 24 15 28 20 32"/><polyline points="32 24 37 28 32 32"/></svg>
         </div>
       </article>
       <article class="service r">
         <h3>Marketing Strategy</h3>
-        <p>Positioning, planning and campaigns grounded in what your audience actually cares about — measured, refined, repeated.</p>
+        <p>Positioning, planning and campaigns grounded in what your audience actually cares about, then measured, refined and repeated.</p>
         <div class="glyph" aria-hidden="true">
           <svg viewBox="0 0 52 52"><path d="M10 40 C18 40 16 16 26 16 C36 16 34 34 42 34"/><circle cx="42" cy="34" r="3.5"/></svg>
         </div>
       </article>
       <article class="service r">
         <h3>Social Media</h3>
-        <p>Content calendars, art direction and community management that build a following worth having — not just numbers.</p>
+        <p>We write, design and schedule your posts, then keep the page managed and the community engaged, so it stays active and looked after.</p>
         <div class="glyph" aria-hidden="true">
           <svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="4"/><circle cx="26" cy="26" r="12"/><circle cx="26" cy="26" r="19" stroke-dasharray="4 6"/></svg>
         </div>
       </article>
       <article class="service r">
         <h3>Photography</h3>
-        <p>Product, place and people — honest photography with an editorial eye, shot on-island or wherever your story takes us.</p>
+        <p>Product, place and people. Honest photography with an editorial eye, shot on-island.</p>
         <div class="glyph" aria-hidden="true">
           <svg viewBox="0 0 52 52"><rect x="8" y="16" width="36" height="26"/><circle cx="26" cy="29" r="8"/><line x1="14" y1="16" x2="18" y2="10"/><line x1="18" y1="10" x2="26" y2="10"/></svg>
         </div>
       </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============ WORK ============ -->
-<section class="section work" id="work">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="tag tag--light r">Selected work</p>
-      <h2 class="r r-d1">Work that earns its place.</h2>
-      <p class="lede r r-d2">A few recent partnerships — brands built, rebuilt, and sent out into the world.</p>
-    </div>
-
-    <div class="work-grid">
-
-      <a class="project r" href="#contact" aria-label="Rocquaine Cider Co. — brand identity and packaging">
-        <div class="project-media reveal-img reveal-img--dark">
-          <svg class="art" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <rect width="800" height="600" fill="#E8DFC9"/>
-            <circle cx="560" cy="220" r="190" fill="#B5622E"/>
-            <circle cx="560" cy="220" r="190" fill="none" stroke="#E8DFC9" stroke-width="3" stroke-dasharray="2 14"/>
-            <rect x="90" y="330" width="230" height="270" fill="#355E4B"/>
-            <rect x="120" y="365" width="170" height="120" fill="#E8DFC9"/>
-            <text x="205" y="418" text-anchor="middle" font-family="Georgia,serif" font-size="34" font-style="italic" fill="#355E4B">Rocquaine</text>
-            <text x="205" y="452" text-anchor="middle" font-family="monospace" font-size="13" letter-spacing="4" fill="#B5622E">CIDER CO.</text>
-            <path d="M370 600 C 400 480, 460 470, 520 600 Z" fill="#7A8F6C"/>
-          </svg>
-          <div class="project-veil"><span>View case study →</span></div>
-        </div>
-        <div class="project-meta">
-          <h3>Rocquaine Cider Co.</h3>
-          <span class="cat">Identity · Packaging</span>
-        </div>
-      </a>
-
-      <a class="project r" href="#contact" aria-label="The Hedgerow — boutique hotel website and photography">
-        <div class="project-media reveal-img reveal-img--dark">
-          <svg class="art" viewBox="0 0 600 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <rect width="600" height="720" fill="#37423A"/>
-            <path d="M0 520 Q 150 430 300 500 T 600 470 V 720 H 0 Z" fill="#A8B8A5"/>
-            <path d="M0 580 Q 180 500 340 570 T 600 550 V 720 H 0 Z" fill="#6E7F6B"/>
-            <circle cx="300" cy="240" r="120" fill="none" stroke="#EDE7DA" stroke-width="2"/>
-            <text x="300" y="230" text-anchor="middle" font-family="Georgia,serif" font-size="44" fill="#EDE7DA">The</text>
-            <text x="300" y="280" text-anchor="middle" font-family="Georgia,serif" font-size="44" font-style="italic" fill="#EDE7DA">Hedgerow</text>
-          </svg>
-          <div class="project-veil"><span>View case study →</span></div>
-        </div>
-        <div class="project-meta">
-          <h3>The Hedgerow</h3>
-          <span class="cat">Website · Photography</span>
-        </div>
-      </a>
-
-      <a class="project r" href="#contact" aria-label="Sarnia and Salt — restaurant identity">
-        <div class="project-media reveal-img reveal-img--dark">
-          <svg class="art" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <rect width="600" height="600" fill="#1E3440"/>
-            <g stroke="#F1EDE4" stroke-width="2" fill="none">
-              <path d="M60 470 q 40 -26 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0"/>
-              <path d="M60 505 q 40 -26 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0" opacity=".55"/>
-              <path d="M60 540 q 40 -26 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0" opacity=".3"/>
-            </g>
-            <text x="300" y="235" text-anchor="middle" font-family="Georgia,serif" font-size="72" fill="#F1EDE4">Sarnia</text>
-            <text x="300" y="320" text-anchor="middle" font-family="Georgia,serif" font-size="52" font-style="italic" fill="#C8A45C">&amp; Salt</text>
-          </svg>
-          <div class="project-veil"><span>View case study →</span></div>
-        </div>
-        <div class="project-meta">
-          <h3>Sarnia &amp; Salt</h3>
-          <span class="cat">Identity · Print</span>
-        </div>
-      </a>
-
-      <a class="project r" href="#contact" aria-label="Petit Port Studio — wellness brand campaign">
-        <div class="project-media reveal-img reveal-img--dark">
-          <svg class="art" viewBox="0 0 960 540" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <rect width="960" height="540" fill="#EFE9E1"/>
-            <circle cx="240" cy="270" r="160" fill="#D8C3B2"/>
-            <circle cx="400" cy="270" r="160" fill="#A8B8A5" opacity=".85"/>
-            <text x="640" y="250" font-family="Georgia,serif" font-size="58" fill="#37423A">Petit Port</text>
-            <text x="640" y="316" font-family="Georgia,serif" font-size="46" font-style="italic" fill="#B5622E">Studio</text>
-            <line x1="640" y1="350" x2="880" y2="350" stroke="#37423A" stroke-width="2"/>
-            <text x="640" y="386" font-family="monospace" font-size="16" letter-spacing="5" fill="#37423A">MOVE · BREATHE · REST</text>
-          </svg>
-          <div class="project-veil"><span>View case study →</span></div>
-        </div>
-        <div class="project-meta">
-          <h3>Petit Port Studio</h3>
-          <span class="cat">Campaign · Social</span>
-        </div>
-      </a>
-
-    </div>
-
-    <div class="work-more r">
-      <a class="btn btn--paper" href="#contact"><span>Your project here</span><span class="arr" aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
@@ -830,7 +612,7 @@ button{font:inherit;background:none;border:0;cursor:pointer;color:inherit}
         <div class="step-node">02</div>
         <div class="step-body">
           <h3>Design <span class="step-verb">make it yours</span></h3>
-          <p>Strategy becomes something you can see. Identity, layouts and prototypes, shared early and shaped together — no big reveals, no surprises.</p>
+          <p>Strategy becomes something you can see. Identity, layouts and prototypes, shared early and shaped together, with no big reveals and no surprises.</p>
         </div>
       </div>
       <div class="step r">
@@ -844,7 +626,7 @@ button{font:inherit;background:none;border:0;cursor:pointer;color:inherit}
         <div class="step-node">04</div>
         <div class="step-body">
           <h3>Launch <span class="step-verb">then keep going</span></h3>
-          <p>We stay close after go-live — measuring what matters, refining what doesn't, and helping your brand grow as your business does.</p>
+          <p>We stay close after go-live, measuring what matters, refining what doesn't, and helping your brand grow as your business does.</p>
         </div>
       </div>
     </div>
@@ -854,55 +636,19 @@ button{font:inherit;background:none;border:0;cursor:pointer;color:inherit}
 <!-- ============ ABOUT ============ -->
 <section class="section" id="about" style="padding-top:0">
   <div class="wrap about-grid">
-    <div class="about-copy">
+    <div class="about-lead">
       <p class="tag r">About Canvas</p>
-      <p class="big r r-d1">A small studio by the sea, doing <em>big-agency work</em> without the big-agency distance.</p>
-      <p class="r r-d2">Canvas began with a simple frustration: local businesses were being asked to choose between polished work from far away, or friendly work that fell short. We didn't think that was a fair choice.</p>
-      <p class="r r-d2">So we built a studio in Guernsey that holds itself to the standards of the best international agencies — strategy-led, detail-obsessed, allergic to templates — while staying close enough to know your name, your market and your customers.</p>
-      <p class="r r-d3">We keep our client list short on purpose. Fewer projects, done properly.</p>
+      <p class="big r r-d1">A new Guernsey studio, here to help <em>local businesses</em> look and sound their best.</p>
+    </div>
+    <div class="about-copy">
+      <p class="r r-d2">Canvas started with a simple idea. Any business on the island should be able to get thoughtful, well-made design and marketing without it feeling out of reach or overcomplicated.</p>
+      <p class="r r-d2">These are early days, and honestly that is part of the appeal. Canvas is a young studio built on a real love of design and a lot of care for the work, here to help Guernsey businesses grow through branding, websites and marketing that feel considered and personal.</p>
+      <p class="r r-d3">We take on a small number of projects at a time, so each one gets proper attention.</p>
       <div class="about-figures r r-d3">
-        <div class="fig"><div class="n">40+</div><div class="l">Brands launched</div></div>
-        <div class="fig"><div class="n">9yrs</div><div class="l">Studio practice</div></div>
+        <div class="fig"><div class="n">2026</div><div class="l">The year we started</div></div>
+        <div class="fig"><div class="n">100%</div><div class="l">Guernsey based</div></div>
         <div class="fig"><div class="n">1</div><div class="l">Island we call home</div></div>
       </div>
-    </div>
-    <div class="about-photos">
-      <div class="about-photo reveal-img"><div class="ph">
-        <svg viewBox="0 0 34 34" aria-hidden="true"><rect x="3" y="8" width="28" height="20"/><circle cx="17" cy="18" r="6"/></svg>
-        Studio photography
-      </div></div>
-      <div class="about-photo reveal-img"><div class="ph">
-        <svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="12" r="6"/><path d="M6 30 C6 22 28 22 28 30"/></svg>
-        The team
-      </div></div>
-      <div class="about-photo reveal-img"><div class="ph">
-        <svg viewBox="0 0 34 34" aria-hidden="true"><path d="M3 24 Q 12 14 17 20 T 31 18"/><circle cx="26" cy="9" r="4"/></svg>
-        The island
-      </div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ TESTIMONIALS ============ -->
-<section class="section quotes">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="tag r">Kind words</p>
-      <h2 class="r r-d1">Don't take ours for it.</h2>
-    </div>
-    <div class="quote-stack">
-      <figure class="quote r">
-        <blockquote>They didn't just design us a brand — they made us think harder about our whole business. The work paid for itself within the year.</blockquote>
-        <figcaption class="quote-who">Founder · Rocquaine Cider Co.</figcaption>
-      </figure>
-      <figure class="quote r">
-        <blockquote>Every detail considered, every deadline met. It's rare to find a studio this good that's also this easy to work with.</blockquote>
-        <figcaption class="quote-who">Director · The Hedgerow</figcaption>
-      </figure>
-      <figure class="quote r">
-        <blockquote>Bookings doubled in the first season after the rebrand. That's not luck — that's Canvas.</blockquote>
-        <figcaption class="quote-who">Owner · Sarnia &amp; Salt</figcaption>
-      </figure>
     </div>
   </div>
 </section>
@@ -916,8 +662,6 @@ button{font:inherit;background:none;border:0;cursor:pointer;color:inherit}
       <p class="r r-d2">Tell us where you are and where you'd like to be. We'll come back within two working days with honest thoughts and a way forward.</p>
       <div class="contact-details r r-d3">
         <div class="cd"><span class="k">Email</span><a href="mailto:hello@canvas.gg">hello@canvas.gg</a></div>
-        <div class="cd"><span class="k">Phone</span><a href="tel:+441481700000">+44 (0) 1481 700 000</a></div>
-        <div class="cd"><span class="k">Studio</span><a href="#contact">The Old Loft, St Peter Port, Guernsey</a></div>
       </div>
     </div>
 
@@ -943,8 +687,8 @@ button{font:inherit;background:none;border:0;cursor:pointer;color:inherit}
         <span class="bar"></span>
       </div>
       <button class="btn" type="submit"><span>Send message</span><span class="arr" aria-hidden="true">→</span></button>
-      <p class="form-note">We'll only use your details to reply — nothing else.</p>
-      <p class="form-sent" id="formSent" role="status">Thank you — your message is on its way. We'll be in touch within two working days.</p>
+      <p class="form-note">We'll only use your details to reply, nothing else.</p>
+      <p class="form-sent" id="formSent" role="status">Thank you. Your message is on its way. We'll be in touch within two working days.</p>
     </form>
   </div>
 </section>
@@ -962,7 +706,6 @@ button{font:inherit;background:none;border:0;cursor:pointer;color:inherit}
       <h4>Explore</h4>
       <ul>
         <li><a href="#services">Services</a></li>
-        <li><a href="#work">Work</a></li>
         <li><a href="#process">Process</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -985,7 +728,7 @@ button{font:inherit;background:none;border:0;cursor:pointer;color:inherit}
 
 <script>
 /* ============================================================
-   Canvas — site behaviour
+   Canvas - site behaviour
    Organised as small, single-purpose modules.
    ============================================================ */
 (function () {
@@ -1110,7 +853,7 @@ button{font:inherit;background:none;border:0;cursor:pointer;color:inherit}
       form.reportValidity();
       return;
     }
-    // demo site: no backend — show confirmation and reset
+    // demo site: no backend - show confirmation and reset
     sent.classList.add('show');
     form.reset();
     sent.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'nearest' });
