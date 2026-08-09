@@ -251,14 +251,32 @@ fieldset{border:0}
   font-family:var(--display);font-weight:400;font-size:.82rem;color:rgba(247,245,242,.6)
 }
 @media (max-width:760px){.ftr-grid{grid-template-columns:1fr 1fr}.ftr-brand{grid-column:1/-1}}
+
+/* ============ multi page additions ============ */
+.page-head{padding-block:clamp(2.4rem,5.5vw,4.2rem) 0}
+.page-head h1{font-size:clamp(2.2rem,5.6vw,4.2rem);font-weight:700;line-height:1;letter-spacing:-.038em;max-width:19ch}
+.page-head .lede{font-size:1.12rem;color:var(--ink-soft);max-width:48ch;align-self:end}
+
+/* onward directory on the home page */
+.dir{padding-bottom:clamp(2.4rem,6vw,4.5rem)}
+a.svc{color:inherit}
+.dir a.svc:last-of-type{border-bottom:1.5px solid var(--rule)}
+.svc .arrow{font-family:var(--display);font-weight:600;font-size:1.1rem;align-self:center;justify-self:end;transition:transform .3s var(--ease)}
+.svc:hover .arrow{transform:translateX(6px)}
+@media (max-width:820px){.svc .arrow{display:none}}
+
+/* closing call to action on the inner pages */
+.cta-band{background:var(--forest);color:var(--paper);padding-block:clamp(2.6rem,5.5vw,4rem)}
+.cta-band .in{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.4rem 2.5rem}
+.cta-band h2{color:var(--paper);font-size:clamp(1.5rem,3.4vw,2.4rem);max-width:22ch}
+.cta-band p{color:rgba(247,245,242,.78);max-width:42ch;margin-top:.7rem}
 </style>
 </head>
 <body>
 
-<!-- ============ HEADER ============ -->
 <header class="hdr" id="top">
   <div class="wrap">
-    <a class="logo" href="#top" aria-label="Canvas, home"><svg class="logo-mark" viewBox="33.29 67.78 93.46 24.46" role="img" aria-label="Canvas">
+    <a class="logo" href="index.html" aria-label="Canvas, home"><svg class="logo-mark" viewBox="33.29 67.78 93.46 24.46" role="img" aria-label="Canvas">
 <path class="l0" d="M 47.982 76.563 C 47.889 76.414 47.751 76.207 47.562 75.979 C 46.985 75.283 46.293 74.814 45.788 74.579 C 43.649 73.583 41.197 75.078 41.025 75.186 C 40.539 75.491 39.853 76.027 39.297 76.890 C 38.482 78.156 38.390 79.437 38.410 80.135 C 38.425 80.653 38.499 82.344 39.788 83.730 C 41.353 85.414 43.531 85.378 44.363 85.364 C 44.982 85.354 45.854 85.329 46.768 84.781 C 47.551 84.311 47.995 83.681 48.215 83.310 L 50.132 84.901 C 49.532 85.641 48.797 86.232 47.927 86.671 C 47.057 87.111 46.012 87.331 44.792 87.331 C 43.652 87.331 42.622 87.146 41.702 86.776 C 40.782 86.406 39.997 85.891 39.347 85.231 C 38.697 84.571 38.192 83.791 37.832 82.891 C 37.472 81.991 37.292 81.012 37.292 79.951 C 37.292 78.891 37.472 77.911 37.832 77.011 C 38.192 76.111 38.697 75.331 39.347 74.671 C 39.997 74.011 40.782 73.497 41.702 73.126 C 42.622 72.756 43.652 72.571 44.792 72.571 C 45.732 72.571 46.687 72.776 47.657 73.186 C 48.627 73.596 49.412 74.202 50.012 75.001 C 49.335 75.522 48.659 76.042 47.982 76.563 Z" fill="#F7F5F2"/>
 <path class="l1" d="M 62.412 79.175 C 61.300 79.191 60.398 79.331 59.770 79.460 C 58.914 79.636 58.327 79.762 57.624 80.155 C 57.127 80.433 56.384 80.861 55.966 81.730 C 55.706 82.269 55.682 82.741 55.682 82.860 C 55.682 83.360 55.777 83.780 55.967 84.120 C 56.157 84.460 56.412 84.735 56.732 84.945 C 57.052 85.155 57.407 85.305 57.798 85.395 C 58.187 85.485 58.582 85.530 58.982 85.530 C 59.702 85.530 60.342 85.405 60.902 85.155 C 61.060 85.084 61.720 84.779 62.312 84.135 C 63.454 82.892 63.487 81.317 63.482 80.880 L 63.482 79.101 C 63.125 79.125 62.769 79.150 62.412 79.175 M 63.482 77.763 C 63.482 76.552 63.162 75.649 62.522 75.053 C 61.882 74.458 60.952 74.160 59.732 74.160 C 58.892 74.160 58.112 74.310 57.392 74.610 C 56.673 74.910 56.062 75.310 55.562 75.810 L 54.423 74.460 C 55.003 73.880 55.767 73.400 56.717 73.020 C 57.667 72.640 58.742 72.450 59.942 72.450 C 60.702 72.450 61.413 72.555 62.072 72.765 C 62.732 72.975 63.312 73.290 63.812 73.710 C 64.312 74.130 64.702 74.660 64.982 75.300 C 65.262 75.940 65.402 76.690 65.402 77.550 L 65.402 83.700 C 65.402 84.240 65.422 84.800 65.463 85.380 C 65.503 85.960 65.562 86.450 65.642 86.850 L 63.812 86.850 C 63.753 86.510 63.702 86.140 63.663 85.740 C 63.622 85.340 63.602 84.950 63.602 84.570 L 63.543 84.570 C 63.090 85.014 62.392 85.614 61.433 86.152 C 60.649 86.592 59.737 87.103 58.442 87.210 C 57.948 87.250 56.692 87.337 55.367 86.636 C 54.823 86.348 53.250 85.515 52.895 83.711 C 52.597 82.192 53.316 80.763 54.209 79.981 C 54.748 79.509 55.369 79.322 56.612 78.947 C 57.900 78.559 58.922 78.410 59.777 78.345 C 60.967 78.255 62.202 78.210 63.482 78.210 Z" fill="#F7F5F2"/>
 <path class="l2" d="M 70.287 73.111 C 70.328 73.491 70.357 73.911 70.377 74.371 C 70.397 74.831 70.407 75.211 70.407 75.511 L 70.468 75.511 C 70.867 74.691 71.517 74.026 72.417 73.516 C 73.317 73.006 74.267 72.751 75.267 72.751 C 77.047 72.751 78.383 73.281 79.271 74.341 C 80.162 75.402 80.607 76.801 80.607 78.541 L 80.607 87.151 L 78.566 87.151 L 78.566 79.381 C 78.541 78.933 78.529 78.568 78.522 78.324 C 78.498 77.435 78.519 77.113 78.422 76.539 C 78.361 76.183 78.331 76.005 78.234 75.773 C 77.971 75.147 77.505 74.792 77.236 74.592 C 76.222 73.840 75.111 73.816 74.785 73.820 C 74.492 73.824 73.779 73.842 73.007 74.256 C 72.358 74.604 71.989 75.059 71.781 75.322 C 70.514 76.918 70.510 79.327 70.518 79.843 C 70.511 82.279 70.504 84.715 70.497 87.151 L 68.457 87.151 C 68.576 83.553 68.694 79.954 68.812 76.356 C 68.781 75.840 68.726 75.283 68.638 74.691 C 68.554 74.123 68.450 73.596 68.337 73.111 Z" fill="#F7F5F2"/>
@@ -272,16 +290,15 @@ fieldset{border:0}
 </svg></a>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav class="nav" id="nav">
-      <a href="#top" data-nav>Home</a>
-      <a href="#services" data-nav>Services</a>
-      <a href="#process" data-nav>How we work</a>
-      <a href="#about" data-nav>About</a>
-      <a href="#contact" class="cta">Let's have a chat</a>
+      <a href="index.html" data-nav class="current">Home</a>
+      <a href="services.html" data-nav>Services</a>
+      <a href="how-we-work.html" data-nav>How we work</a>
+      <a href="about.html" data-nav>About</a>
+      <a href="index.html#contact" class="cta">Let's have a chat</a>
     </nav>
   </div>
 </header>
 
-<!-- ============ BANNER ============ -->
 <section class="banner" aria-label="A glimpse of our work">
   <figure>
     <span class="veil" aria-hidden="true"></span>
@@ -289,7 +306,6 @@ fieldset{border:0}
   </figure>
 </section>
 
-<!-- ============ HERO ============ -->
 <section class="hero">
   <div class="wrap hero-in">
     <h1 class="r">Standout brands for <span class="l2"><span class="mark">small businesses.</span></span></h1>
@@ -305,7 +321,14 @@ fieldset{border:0}
   </div>
 </section>
 
-<!-- ============ CONTACT ============ -->
+<section class="sec dir">
+  <div class="wrap">
+    <a class="svc r" href="services.html"><span class="no">01</span><h3>Services</h3><p>Branding, websites, social media, photography, print and marketing strategy.</p><span class="arrow" aria-hidden="true">&rarr;</span></a>
+    <a class="svc r" href="how-we-work.html"><span class="no">02</span><h3>How we work</h3><p>Four clear steps from the first conversation through to launch day and beyond.</p><span class="arrow" aria-hidden="true">&rarr;</span></a>
+    <a class="svc r" href="about.html"><span class="no">03</span><h3>About</h3><p>A new Guernsey studio built to help small businesses look and sound their best.</p><span class="arrow" aria-hidden="true">&rarr;</span></a>
+  </div>
+</section>
+
 <section class="sec contact on-dark-sec" id="contact">
   <div class="wrap">
     <div class="sec-head">
@@ -359,61 +382,6 @@ fieldset{border:0}
   </div>
 </section>
 
-<!-- ============ SERVICES ============ -->
-<section class="sec" id="services">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="r"><span class="eyebrow">What we do</span>Everything a growing business needs, in one place.</h2>
-      <p class="lede r r-d1">Strategy first, then the design, build and content to carry it through. We use the best modern tools, including AI, to keep quality high and costs sensible.</p>
-    </div>
-
-    <div class="svc r"><span class="no">01</span><h3>Brand Identity</h3><p>A logo, colours and simple rules that make your business look established and consistent, wherever customers find you.</p></div>
-    <div class="svc r"><span class="no">02</span><h3>Graphic Design</h3><p>Layouts and artwork for print, packaging and campaigns, designed in full and handed over ready for the printer of your choice.</p></div>
-    <div class="svc r"><span class="no">03</span><h3>Website Design</h3><p>Fast, easy-to-manage websites designed around your customers. We build with modern tools and AI, so you get a professional site sooner and for less.</p></div>
-    <div class="svc r"><span class="no">04</span><h3>Marketing Strategy</h3><p>Clear, practical marketing built around what your customers actually care about, then measured and refined. Sized and priced for a small business.</p></div>
-    <div class="svc r"><span class="no">05</span><h3>Social Media</h3><p>We plan, write, design and schedule your posts, using AI to keep your feed active and on-brand without the agency price tag.</p></div>
-    <div class="svc r"><span class="no">06</span><h3>Photography</h3><p>Product, place and people. Honest, editorial photography shot on-island to bring your brand to life.</p></div>
-  </div>
-</section>
-
-<!-- ============ PROCESS ============ -->
-<section class="sec process" id="process">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="r"><span class="eyebrow">How we work</span>Four steps. No mystery.</h2>
-      <p class="lede r r-d1">Good work comes from a clear process, honest conversation and smart tools that let us move faster. Here's how a project runs, from first chat to launch day.</p>
-    </div>
-    <div class="steps">
-      <div class="step r"><div class="fig">01</div><h3>Discover<span class="verb">listen first</span></h3><p>We start with questions, not answers. A proper conversation about your business, your customers and what success looks like for you.</p></div>
-      <div class="step r r-d1"><div class="fig">02</div><h3>Design<span class="verb">make it yours</span></h3><p>Strategy becomes something you can see. Identity, layouts and prototypes, shared early and shaped with you, so the result always feels like your business.</p></div>
-      <div class="step r r-d2"><div class="fig">03</div><h3>Build<span class="verb">work smart</span></h3><p>Websites, artwork and campaigns produced to a high standard. We use modern tools and AI to build faster and pass the saving on to you.</p></div>
-      <div class="step r r-d3"><div class="fig">04</div><h3>Launch<span class="verb">then keep going</span></h3><p>We stay close after launch, tracking what matters and refining as we go, helping your business grow without a heavy monthly retainer.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ ABOUT ============ -->
-<section class="sec" id="about">
-  <div class="wrap about-grid">
-    <div class="about-lead">
-      <span class="eyebrow r">About Canvas</span>
-      <p class="big r r-d1">A new Guernsey studio, here to help <em>small businesses</em> look and sound their best.</p>
-    </div>
-    <div class="about-copy">
-      <p class="r r-d1">Canvas Media started with a simple idea. Every small business deserves thoughtful, well-made branding and marketing, without it feeling out of reach or overcomplicated.</p>
-      <p class="r r-d2">We keep that promise by pairing real design craft with the best modern tools, including AI. That means agency-quality branding, websites and social media at a price a growing business can actually justify.</p>
-      <p class="r r-d2">We take on a small number of projects at a time, so each one gets proper attention.</p>
-      <div class="about-rule r r-d3">
-        <svg class="about-mark" viewBox="0 0 210 46" role="img" aria-label="Hand drawn brush mark">
-          <path d="M4 30 C 30 12, 52 40, 78 22 S 126 8, 152 26" stroke="#A8B8A5" stroke-width="6"/>
-          <path d="M12 39 C 42 27, 70 45, 98 33 S 150 22, 176 34" stroke="#355E4B" stroke-width="2" opacity=".55"/>
-        </svg>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FOOTER ============ -->
 <footer class="ftr">
   <div class="wrap">
     <div class="ftr-grid">
@@ -435,10 +403,10 @@ fieldset{border:0}
       <div>
         <h4>Explore</h4>
         <ul>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#process">How we work</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="how-we-work.html">How we work</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
         </ul>
       </div>
       <div>
@@ -452,7 +420,7 @@ fieldset{border:0}
     </div>
     <div class="ftr-base">
       <span>&copy; <span id="yr">2026</span> Canvas. Guernsey, Channel Islands.</span>
-      <span>Branding · Websites · Social · Marketing</span>
+      <span>Branding &middot; Websites &middot; Social &middot; Marketing</span>
     </div>
   </div>
 </footer>
