@@ -124,11 +124,6 @@ h1,h2,h3,h4,.ui{font-family:var(--display);font-weight:600;letter-spacing:-.02em
 }
 .hero h1 .l2{display:block}
 .hero-aside p{font-size:1.12rem;color:var(--ink-soft);max-width:36ch;margin-bottom:1.9rem}
-.hero-foot{
-  display:flex;flex-wrap:wrap;gap:.8rem 2.4rem;align-items:center;
-  margin-top:clamp(2.4rem,5vw,3.6rem);padding-top:1.2rem;border-top:1.5px solid var(--ink);
-}
-.hero-foot span{font-family:var(--display);font-weight:500;font-size:.9rem;color:var(--ink-soft)}
 @media (max-width:900px){
   .hero-in{grid-template-columns:1fr;align-items:start;gap:2rem}
 }
@@ -258,7 +253,7 @@ fieldset{border:0}
 .page-head .lede{font-size:1.12rem;color:var(--ink-soft);max-width:48ch;align-self:end}
 
 /* onward directory on the home page */
-.dir{padding-bottom:clamp(2.4rem,6vw,4.5rem)}
+.dir{padding-top:0;padding-bottom:clamp(2.4rem,6vw,4.5rem)}
 a.svc{color:inherit}
 .dir a.svc:last-of-type{border-bottom:1.5px solid var(--rule)}
 .svc .arrow{font-family:var(--display);font-weight:600;font-size:1.1rem;align-self:center;justify-self:end;transition:transform .3s var(--ease)}
@@ -312,11 +307,6 @@ a.svc{color:inherit}
     <div class="hero-aside r r-d1">
       <p>Canvas is a Guernsey studio built for small and medium businesses. We pair considered design with modern tools, including AI, to deliver branding, websites and social media at a low price.</p>
       <a class="btn" href="#contact">Let's have a chat <span aria-hidden="true">&rarr;</span></a>
-    </div>
-  </div>
-  <div class="wrap">
-    <div class="hero-foot r r-d2">
-      <span>Branding</span><span>Websites</span><span>Social media</span><span>Photography</span><span>Guernsey</span>
     </div>
   </div>
 </section>
