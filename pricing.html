@@ -72,12 +72,20 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:-.02em;lin
 /* ---------- hero ---------- */
 .phero{position:relative;background:var(--mint);overflow:hidden;padding-block:clamp(2.6rem,6vw,4.6rem) clamp(2.2rem,5vw,3.6rem)}
 .phero .deco{position:absolute;inset:0;z-index:0;pointer-events:none}
-.phero .in{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:end}
+.phero .in{position:relative;z-index:1}
 .eyebrow{font-family:var(--display);font-weight:700;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--forest);display:block;margin-bottom:.85rem}
-.phero h1{font-size:clamp(2.2rem,6vw,4.3rem);font-weight:700;line-height:.98;letter-spacing:-.04em;max-width:16ch}
-.brush{position:relative;display:inline-block;white-space:nowrap}
-.brush svg{position:absolute;z-index:-1;left:-3%;right:-3%;bottom:-.02em;width:106%;height:.26em}
-.phero p{font-size:1.1rem;color:var(--ink-soft);max-width:44ch}
+.phero h1{font-size:clamp(2.1rem,6.6vw,4.6rem);font-weight:700;line-height:1.02;letter-spacing:-.042em;overflow-wrap:break-word}
+/* brush underline drawn as a background so it wraps with the text */
+.brush{
+  background-image:url("data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%2020'%20preserveAspectRatio='none'><path%20d='M5%2013%20C%2060%204,%20130%2018,%20190%209%20S%20285%205,%20296%2011'%20fill='none'%20stroke='%23A8B8A5'%20stroke-width='9'%20stroke-linecap='round'/></svg>");
+  background-repeat:no-repeat;
+  background-position:0 100%;
+  background-size:100% .26em;
+  padding-bottom:.05em;
+  -webkit-box-decoration-break:clone;
+  box-decoration-break:clone;
+}
+.phero .lead{font-size:1.1rem;color:var(--ink-soft);max-width:34rem;margin-top:clamp(1.3rem,3vw,2.1rem)}
 
 /* ---------- package bands ---------- */
 .band{padding-block:clamp(2.4rem,5.5vw,4.2rem);position:relative;overflow:hidden}
@@ -93,7 +101,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:-.02em;lin
   display:inline-block;margin-bottom:.7rem
 }
 .band h2{font-size:clamp(1.7rem,3.6vw,2.6rem);font-weight:700;letter-spacing:-.032em;margin-bottom:.5rem}
-.band .best{font-size:1.02rem;color:var(--ink-soft);font-style:italic;margin-bottom:1.5rem;max-width:44ch}
+.band .best{font-size:1.02rem;color:var(--ink-soft);font-style:italic;margin-bottom:1.5rem;max-width:32rem}
 .tiers{display:grid;gap:.2rem}
 .tier{
   background:var(--paper-raised);border:1.5px solid var(--ink);
@@ -109,7 +117,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:-.02em;lin
 .from{font-family:var(--display);font-weight:500;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--forest)}
 .amt{font-family:var(--display);font-weight:700;letter-spacing:-.03em;font-size:1.24rem;color:var(--forest);line-height:1}
 .amt small{font-weight:500;font-size:.5em;letter-spacing:0}
-.tier p{font-size:.96rem;color:var(--ink-soft);line-height:1.5;margin-top:.25rem;max-width:42ch}
+.tier p{font-size:.96rem;color:var(--ink-soft);line-height:1.5;margin-top:.25rem;max-width:30rem}
 
 /* ---------- add ons ---------- */
 .addons{background:var(--forest);color:var(--paper);padding-block:clamp(2.2rem,5vw,3.4rem)}
@@ -129,7 +137,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:-.02em;lin
 /* ---------- note ---------- */
 .note-bar{background:var(--sage-tint);padding-block:clamp(1.4rem,3vw,2rem)}
 .note-bar .in{display:flex;flex-wrap:wrap;gap:1rem 2.5rem;justify-content:space-between;align-items:center}
-.note-bar p{color:var(--forest-deep);font-size:1.04rem;max-width:60ch}
+.note-bar p{color:var(--forest-deep);font-size:1.04rem;max-width:44rem}
 .note-bar .tag{
   flex:0 0 auto;font-family:var(--display);font-weight:700;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
   color:var(--forest);border:1.5px solid var(--forest);padding:.55rem .9rem;border-radius:1rem 1rem 1rem .2rem
@@ -147,27 +155,27 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:-.02em;lin
 .btn.on-dark:hover{background:var(--paper);box-shadow:3px 3px 0 rgba(247,245,242,.32)}
 .cta-band{background:var(--forest);color:var(--paper);padding-block:clamp(2.6rem,5.5vw,4rem)}
 .cta-band .in{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.4rem 2.5rem}
-.cta-band h2{color:var(--paper);font-size:clamp(1.5rem,3.4vw,2.4rem);max-width:22ch}
-.cta-band p{color:rgba(247,245,242,.78);max-width:42ch;margin-top:.7rem}
+.cta-band h2{color:var(--paper);font-size:clamp(1.5rem,3.4vw,2.4rem);max-width:18rem}
+.cta-band p{color:rgba(247,245,242,.78);max-width:30rem;margin-top:.7rem}
 .ftr{background:var(--ink);color:var(--paper);padding-block:clamp(2.8rem,6vw,4.5rem) 1.6rem}
 .ftr-grid{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(2,minmax(0,.75fr));gap:clamp(1.8rem,4vw,3.5rem)}
 .ftr-brand .logo-mark{height:36px;margin-bottom:1.1rem}
-.ftr-brand p{color:rgba(247,245,242,.72);font-size:1rem;max-width:38ch}
+.ftr-brand p{color:rgba(247,245,242,.72);font-size:1rem;max-width:27rem}
 .ftr h4{font-family:var(--display);font-weight:700;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--sage);margin-bottom:1rem}
 .ftr ul{list-style:none;display:grid;gap:.55rem}
 .ftr ul a{font-family:var(--display);font-weight:400;font-size:.98rem;color:rgba(247,245,242,.78);transition:color .25s var(--ease)}
 .ftr ul a:hover{color:var(--paper)}
 .ftr-base{display:flex;flex-wrap:wrap;gap:.6rem 1.5rem;justify-content:space-between;margin-top:clamp(2.2rem,5vw,3.4rem);padding-top:1.3rem;border-top:1px solid var(--rule-light);font-family:var(--display);font-weight:400;font-size:.82rem;color:rgba(247,245,242,.6)}
 @media (max-width:900px){
-  .phero .in{grid-template-columns:1fr}
   .band .in{grid-template-columns:1fr}
   .band.flip .art{order:0}
   .art svg{max-width:290px}
 }
 @media (max-width:760px){.ftr-grid{grid-template-columns:1fr 1fr}.ftr-brand{grid-column:1/-1}}
 @media (max-width:620px){
-  .phero h1{font-size:clamp(2rem,9vw,2.9rem)}
-  .brush svg{height:.22em}
+  .phero h1{font-size:clamp(1.95rem,8.4vw,2.7rem)}
+  .phero .lead{max-width:none}
+  .brush{background-size:100% .22em}
   .art svg{max-width:230px}
   .band{padding-block:clamp(2rem,7vw,2.6rem)}
   .tier{padding:.85rem .95rem}
@@ -234,11 +242,9 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:-.02em;lin
   </g>
 </svg>
   <div class="wrap in">
-    <div>
-      <span class="eyebrow r">Pricing</span>
-      <h1 class="r r-d1">Clear prices, <span class="brush">tailored to you.<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M5 13 C 60 4, 130 18, 190 9 S 285 5, 296 11" fill="none" stroke="#A8B8A5" stroke-width="9" stroke-linecap="round"/></svg></span></h1>
-    </div>
-    <p class="r r-d2">Every business is different, so every quote is too. These are honest starting points, and we agree the final figure with you before any work begins.</p>
+    <span class="eyebrow r">Pricing</span>
+    <h1 class="r r-d1">Clear prices,<br><span class="brush">tailored to you.</span></h1>
+    <p class="lead r r-d2">Every business is different, so every quote is too. These are honest starting points, and we agree the final figure with you before any work begins.</p>
   </div>
 </section>
 
