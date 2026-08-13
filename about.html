@@ -96,10 +96,22 @@ h1,h2,h3,h4,.ui{font-family:var(--display);font-weight:600;letter-spacing:-.02em
 .nav a:hover,.nav a.current{color:var(--paper)}
 .nav a.current{text-decoration:underline;text-decoration-color:var(--sage);text-underline-offset:6px;text-decoration-thickness:2px}
 .nav .cta{
+  position:relative;
   font-family:var(--display);font-weight:600;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--ink);background:var(--sage);padding:.6rem 1rem;transition:background .25s var(--ease)
+  color:var(--ink);background:var(--sage);padding:.62rem 1.1rem;
+  border-radius:1.1rem 1.1rem 1.1rem .25rem;
+  transition:background .25s var(--ease),transform .25s var(--ease)
 }
-.nav .cta:hover{background:var(--paper);color:var(--ink)}
+/* speech bubble tail */
+.nav .cta::after{
+  content:"";position:absolute;left:.1rem;bottom:-.34rem;
+  width:0;height:0;
+  border-top:.42rem solid var(--sage);
+  border-right:.5rem solid transparent;
+  transition:border-top-color .25s var(--ease);
+}
+.nav .cta:hover{background:var(--paper);transform:translateY(-1px)}
+.nav .cta:hover::after{border-top-color:var(--paper)}
 .menu-btn{display:none;background:none;border:0;color:var(--paper);cursor:pointer;padding:.4rem;font-family:var(--display);font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase}
 @media (max-width:880px){
   .nav{position:fixed;inset:0;background:var(--forest-deep);flex-direction:column;justify-content:center;gap:1.6rem;transform:translateY(-100%);transition:transform .5s var(--ease);z-index:99}
