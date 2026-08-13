@@ -96,10 +96,22 @@ h1,h2,h3,h4,.ui{font-family:var(--display);font-weight:600;letter-spacing:-.02em
 .nav a:hover,.nav a.current{color:var(--paper)}
 .nav a.current{text-decoration:underline;text-decoration-color:var(--sage);text-underline-offset:6px;text-decoration-thickness:2px}
 .nav .cta{
+  position:relative;
   font-family:var(--display);font-weight:600;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--ink);background:var(--sage);padding:.6rem 1rem;transition:background .25s var(--ease)
+  color:var(--ink);background:var(--sage);padding:.62rem 1.1rem;
+  border-radius:1.1rem 1.1rem 1.1rem .25rem;
+  transition:background .25s var(--ease),transform .25s var(--ease)
 }
-.nav .cta:hover{background:var(--paper);color:var(--ink)}
+/* speech bubble tail */
+.nav .cta::after{
+  content:"";position:absolute;left:.1rem;bottom:-.34rem;
+  width:0;height:0;
+  border-top:.42rem solid var(--sage);
+  border-right:.5rem solid transparent;
+  transition:border-top-color .25s var(--ease);
+}
+.nav .cta:hover{background:var(--paper);transform:translateY(-1px)}
+.nav .cta:hover::after{border-top-color:var(--paper)}
 .menu-btn{display:none;background:none;border:0;color:var(--paper);cursor:pointer;padding:.4rem;font-family:var(--display);font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase}
 @media (max-width:880px){
   .nav{position:fixed;inset:0;background:var(--forest-deep);flex-direction:column;justify-content:center;gap:1.6rem;transform:translateY(-100%);transition:transform .5s var(--ease);z-index:99}
@@ -375,39 +387,37 @@ a.svc{color:inherit}
     <div class="packs">
       <div class="pack r">
         <h2>Social media packages</h2>
-        <p class="cat-note">Kept active and on brand, without you doing it.</p>
+        <p class="cat-note">Best for a business that keeps meaning to post and never quite gets to it.</p>
         <div class="tier">
-          <div class="ln"><span class="nm">Starter</span><span class="dots"></span><span class="price"><span class="from">From</span><span class="amt">&pound;180<small>/mo</small></span></span></div>
+          <div class="ln"><span class="nm">Starter</span><span class="dots"></span><span class="price"><span class="from">From</span><span class="amt">&pound;95<small>/mo</small></span></span></div>
+          <p>Four posts a month, written, designed and scheduled for you.</p>
+        </div>
+        <div class="tier">
+          <div class="ln"><span class="nm">Standard</span><span class="dots"></span><span class="price"><span class="from">From</span><span class="amt">&pound;180<small>/mo</small></span></span></div>
           <p>Eight posts a month, written, designed and scheduled for you.</p>
         </div>
         <div class="tier">
           <div class="ln"><span class="nm">Managed</span><span class="dots"></span><span class="price"><span class="from">From</span><span class="amt">&pound;320<small>/mo</small></span></span></div>
           <p>A fuller calendar, stories, and community replies handled.</p>
         </div>
-        <p class="pack-note">Best for a business that keeps meaning to post and never quite gets to it.</p>
       </div>
 
       <div class="pack hi r r-d1">
         <h2>Website packages</h2>
-        <p class="cat-note">Designed around your customers, built and launched.</p>
+        <p class="cat-note">Our most requested package, and usually the first thing worth fixing.</p>
         <div class="tier">
           <div class="ln"><span class="nm">One page site</span><span class="dots"></span><span class="price"><span class="from">From</span><span class="amt">&pound;550</span></span></div>
           <p>A credible presence quickly, ideal for a new business.</p>
         </div>
         <div class="tier">
           <div class="ln"><span class="nm">Full website</span><span class="dots"></span><span class="price"><span class="from">From</span><span class="amt">&pound;900</span></span></div>
-          <p>Multiple pages, built around what your customers look for.</p>
+          <p>Multiple pages (up to 8 pages), built around what your customers look for.</p>
         </div>
-        <div class="tier">
-          <div class="ln"><span class="nm">Online shop</span><span class="dots"></span><span class="price"><span class="from">From</span><span class="amt">&pound;1,400</span></span></div>
-          <p>Products, payments and stock, set up and properly explained.</p>
-        </div>
-        <p class="pack-note">Our most requested package, and usually the first thing worth fixing.</p>
       </div>
 
       <div class="pack r r-d2">
         <h2>Brand identity</h2>
-        <p class="cat-note">The look that makes a small business feel established.</p>
+        <p class="cat-note">Best for a new business, or one that has outgrown a logo made in a hurry.</p>
         <div class="tier">
           <div class="ln"><span class="nm">Logo and colours</span><span class="dots"></span><span class="price"><span class="from">From</span><span class="amt">&pound;450</span></span></div>
           <p>The essentials done properly, in every file format you need.</p>
@@ -416,7 +426,6 @@ a.svc{color:inherit}
           <div class="ln"><span class="nm">Full identity</span><span class="dots"></span><span class="price"><span class="from">From</span><span class="amt">&pound;850</span></span></div>
           <p>Logo, palette, type and the simple rules that hold it together.</p>
         </div>
-        <p class="pack-note">Best for a new business, or one that has outgrown a logo made in a hurry.</p>
       </div>
     </div>
 
