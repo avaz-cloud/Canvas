@@ -354,10 +354,12 @@ a.svc{color:inherit}
         <p>Prefer to write instead? Send us a note and we'll come straight back to you.</p>
         <a class="mail" href="mailto:hello@canvas.gg">hello@canvas.gg</a>
       </div>
-      <form class="form r r-d2" id="contactForm" novalidate>
+      <form class="form r r-d2" id="contactForm" method="POST"
+            action="https://api.web3forms.com/submit">
         <!-- Live Web3Forms key. Enquiries are delivered to canvasmediagg@gmail.com.
              The destination is set by this key, not by the page. -->
         <input type="hidden" name="access_key" value="8a884b84-3524-40f6-81b1-384613d0e968">
+        <input type="hidden" name="redirect" value="https://web3forms.com/success">
         <input type="hidden" name="subject" value="New enquiry from the Canvas website">
         <input type="hidden" name="from_name" value="Canvas website">
         <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
