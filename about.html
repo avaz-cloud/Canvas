@@ -285,7 +285,8 @@ a.svc{color:inherit}
 
 /* ============ meet the team ============ */
 .team{background:var(--sage-tint)}
-.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,270px));gap:clamp(1.8rem,4vw,3rem)}
+.team-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1.6rem,4vw,3.2rem)}
+@media (max-width:680px){.team-grid{grid-template-columns:1fr}}
 .member figure{position:relative;margin:0}
 .member figure::after{
   content:"";position:absolute;left:12px;top:12px;
@@ -300,7 +301,7 @@ a.svc{color:inherit}
 }
 .member:hover img{transform:translate(4px,4px)}
 .member:hover figure::after{transform:translate(-4px,-4px)}
-.member .nm{font-family:var(--display);font-weight:600;font-size:1.18rem;letter-spacing:-.02em;margin-top:1.15rem}
+.member .nm{font-family:var(--display);font-weight:600;font-size:1.32rem;letter-spacing:-.02em;margin-top:1.25rem}
 .member .role{
   font-family:var(--display);font-weight:600;font-size:.7rem;letter-spacing:.16em;
   text-transform:uppercase;color:var(--forest);margin-top:.4rem;
@@ -369,8 +370,8 @@ a.svc{color:inherit}
 <section class="sec team">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="r"><span class="eyebrow">Meet the team</span>The person behind Canvas.</h2>
-      <p class="lede r r-d1">Canvas is small on purpose. You deal directly with the person doing the work, from the first conversation to launch day.</p>
+      <h2 class="r"><span class="eyebrow">Meet the team</span>The people behind Canvas.</h2>
+      <p class="lede r r-d1">Canvas is small on purpose. You deal directly with the people doing the work, from the first conversation to launch day.</p>
     </div>
     <div class="team-grid">
       <div class="member r r-d1">
@@ -379,6 +380,13 @@ a.svc{color:inherit}
         </figure>
         <p class="nm">Ava Zunino</p>
         <p class="role">Founder</p>
+      </div>
+      <div class="member r r-d2">
+        <figure>
+          <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20720%20900'><rect%20width='720'%20height='900'%20fill='#DEE9E4'/><g%20fill='none'%20stroke='#355E4B'%20stroke-width='9'%20stroke-linecap='round'%20stroke-linejoin='round'%20opacity='.55'><circle%20cx='360'%20cy='372'%20r='104'/><path%20d='M188%20700c0-95%2077-172%20172-172s172%2077%20172%20172'/></g><g%20fill='none'%20stroke='#A8B8A5'%20stroke-width='7'%20stroke-linecap='round'%20opacity='.8'><path%20d='M120%20812q54-30%20108-6'/><path%20d='M520%20190q34-26%2062-8'/></g><circle%20cx='566'%20cy='300'%20r='19'%20fill='#A8B8A5'%20opacity='.75'/><circle%20cx='150'%20cy='250'%20r='12'%20fill='#A8B8A5'%20opacity='.6'/></svg>" alt="Caleb Zunino, studio assistant at Canvas" width="720" height="900" loading="lazy" decoding="async">
+        </figure>
+        <p class="nm">Caleb Zunino</p>
+        <p class="role">Studio Assistant</p>
       </div>
     </div>
   </div>
