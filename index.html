@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Web Design &amp; Branding in Guernsey | Canvas Media</title>
 <meta name="description" content="Canvas Media is a Guernsey studio offering affordable branding, websites, social media and photography for small and medium businesses.">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#355E4B">
 <link rel="canonical" href="https://canvasmedia.gg/">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Canvas Media">
@@ -29,7 +35,7 @@
   "name": "Canvas Media",
   "description": "A Guernsey studio offering affordable branding, websites, social media and photography for small and medium businesses.",
   "url": "https://canvasmedia.gg",
-  "email": "canvasmediagg@gmail.com",
+  "email": "hello@canvasmedia.gg",
   "image": "https://canvasmedia.gg/banner.jpg",
   "priceRange": "££",
   "address": {
@@ -458,12 +464,12 @@ fieldset{border:0}
     <div class="contact-grid">
       <div class="contact-aside r r-d1">
         <p>Prefer to write instead? Send us a note and we'll come straight back to you.</p>
-        <a class="mail" href="mailto:canvasmediagg@gmail.com">canvasmediagg@gmail.com</a>
+        <a class="mail" href="mailto:hello@canvasmedia.gg">hello@canvasmedia.gg</a>
       </div>
       <form class="form r r-d2" id="contactForm" method="POST"
             action="https://api.web3forms.com/submit">
-        <!-- Live Web3Forms key. Enquiries are delivered to canvasmediagg@gmail.com.
-             The destination is set by this key, not by the page. -->
+        <!-- Live Web3Forms key. Enquiries are delivered to the canvasmediagg@gmail.com inbox,
+             which hello@canvasmedia.gg reroutes to. The destination is set by this key, not by the page. -->
         <input type="hidden" name="access_key" value="8a884b84-3524-40f6-81b1-384613d0e968">
         <input type="hidden" name="redirect" value="https://web3forms.com/success">
         <input type="hidden" name="subject" value="New enquiry from the Canvas website">
@@ -628,7 +634,7 @@ fieldset{border:0}
   var submitBtn = form.querySelector('button[type="submit"]');
   var submitLabel = submitBtn ? submitBtn.querySelector('span') : null;
   var SENT_OK = "Thank you. Your message is on its way. We'll be in touch within two working days.";
-  var SENT_ERR = "Something went wrong sending your message. Please email canvasmediagg@gmail.com directly and we'll get right back to you.";
+  var SENT_ERR = "Something went wrong sending your message. Please email hello@canvasmedia.gg directly and we'll get right back to you.";
 
   form.addEventListener('submit', function(e){
     e.preventDefault();
