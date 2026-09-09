@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Client Briefing | Canvas Media</title>
+<meta name="description" content="A short briefing form for Canvas Media clients.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#355E4B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F7F5F2;
+  --paper-raised:#FBFAF8;
+  --ink:#1F1F1F;
+  --ink-soft:#4c4a46;
+  --forest:#355E4B;
+  --forest-deep:#24402F;
+  --sage:#A8B8A5;
+  --sage-tint:#E4E9E2;
+  --mint:#E9F1E7;
+  --mist:#DEE9E4;
+  --sand:#F3EDE2;
+  --rule:rgba(31,31,31,.16);
+  --rule-light:rgba(247,245,242,.26);
+  --display:'Bricolage Grotesque','Helvetica Neue',sans-serif;
+  --body:'Newsreader',Georgia,serif;
+  --gutter:clamp(1.25rem,4vw,4rem);
+  --max:960px;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --dur:.66s;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:var(--body);font-size:1.08rem;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:clip;
+}
+svg{display:block;max-width:100%}
+a{color:inherit}
+::selection{background:var(--sage);color:var(--ink)}
+:focus-visible{outline:2px solid var(--forest);outline-offset:3px}
+.wrap{max-width:var(--max);margin-left:auto;margin-right:auto;padding-left:1.5rem;padding-right:1.5rem;padding-inline:var(--gutter)}
+h1,h2,h3,legend,.ui{font-family:var(--display);letter-spacing:-.02em;line-height:1.05}
+
+.r{opacity:0;transform:translateY(18px);transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease)}
+.r.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .r{opacity:1;transform:none;transition:none}
+  *{animation-duration:.01ms !important;transition-duration:.01ms !important}
+}
+
+/* ---------- header: logo only, deliberately no navigation ---------- */
+.hdr{position:sticky;top:0;z-index:100;background:var(--forest);color:var(--paper);border-bottom:1.5px solid var(--forest-deep)}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding-block:.85rem}
+.logo-mark{height:26px;width:auto;overflow:visible}
+.hdr .tag{font-family:var(--display);font-weight:600;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sage)}
+
+/* progress rail sits directly under the header */
+.rail{position:sticky;top:56px;z-index:99;background:var(--sage-tint);border-bottom:1px solid var(--rule)}
+.rail .wrap{display:flex;align-items:center;gap:1rem;padding-block:.55rem}
+.rail-track{flex:1;height:4px;background:rgba(31,31,31,.12)}
+.rail-fill{display:block;height:100%;width:0;background:var(--forest);transition:width .45s var(--ease)}
+.rail-txt{font-family:var(--display);font-weight:600;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--forest);white-space:nowrap}
+
+/* ---------- intro ---------- */
+.intro{background:var(--mint);padding-block:clamp(2.4rem,5.5vw,3.8rem) clamp(2rem,4.5vw,3rem)}
+.eyebrow{font-family:var(--display);font-weight:700;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--forest);display:block;margin-bottom:.9rem}
+.intro h1{font-size:clamp(2rem,5.4vw,3.4rem);font-weight:700;letter-spacing:-.038em;max-width:20rem}
+.intro p{font-size:1.1rem;color:var(--ink-soft);max-width:34rem;margin-top:clamp(1.1rem,2.4vw,1.6rem)}
+.intro .meta{display:flex;flex-wrap:wrap;gap:.6rem 1.8rem;margin-top:1.6rem;font-family:var(--display);font-weight:500;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--forest)}
+
+/* ---------- sections ---------- */
+.sec{padding-block:clamp(2.4rem,5vw,3.6rem);border-top:1.5px solid var(--rule)}
+.sec:first-of-type{border-top:0}
+.sec-head{display:flex;align-items:baseline;gap:1rem;margin-bottom:clamp(1.6rem,3vw,2.2rem)}
+.sec-no{font-family:var(--display);font-weight:800;font-size:.8rem;letter-spacing:.14em;color:var(--forest);flex:0 0 auto;padding-top:.25rem}
+.sec-head h2{font-size:clamp(1.4rem,3vw,2rem);font-weight:600}
+.sec-head p{font-size:1rem;color:var(--ink-soft);margin-top:.4rem;max-width:34rem}
+
+/* ---------- fields ---------- */
+.q{margin-bottom:clamp(1.6rem,3vw,2.1rem)}
+.q > label,.q legend,.q .qlabel{
+  display:block;font-family:var(--display);font-weight:600;font-size:1.04rem;
+  letter-spacing:-.01em;line-height:1.35;margin-bottom:.35rem;
+}
+.hint{display:block;font-size:.95rem;color:var(--ink-soft);margin-bottom:.7rem;max-width:38rem}
+.req{
+  display:inline-block;margin-left:.5rem;vertical-align:.12em;
+  font-family:var(--display);font-weight:600;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--forest);background:var(--sage-tint);border:1px solid var(--sage);padding:.15rem .4rem;
+}
+input[type=text],input[type=email],input[type=url],textarea{
+  width:100%;font-family:var(--body);font-size:1.05rem;color:var(--ink);
+  background:var(--paper-raised);border:1.5px solid var(--rule);
+  padding:.85rem .95rem;transition:border-color .25s var(--ease),box-shadow .25s var(--ease),background .25s var(--ease);
+}
+textarea{min-height:112px;resize:vertical;line-height:1.55}
+input[type=text]:hover,input[type=email]:hover,input[type=url]:hover,textarea:hover{border-color:rgba(31,31,31,.34)}
+input[type=text]:focus,input[type=email]:focus,input[type=url]:focus,textarea:focus{
+  outline:none;border-color:var(--forest);background:var(--paper-raised);box-shadow:4px 4px 0 var(--sage);
+}
+input:invalid:not(:placeholder-shown){border-color:#9c3b3b}
+.err{display:none;margin-top:.45rem;font-size:.93rem;color:#9c3b3b}
+.q.bad .err{display:block}
+.q.bad input,.q.bad textarea{border-color:#9c3b3b}
+
+/* choice grids */
+fieldset{border:0}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,14rem),1fr));gap:.7rem}
+.opts.narrow{grid-template-columns:repeat(auto-fit,minmax(min(100%,10rem),1fr))}
+.opt{
+  position:relative;display:flex;align-items:center;gap:.75rem;cursor:pointer;
+  background:var(--paper-raised);border:1.5px solid var(--rule);padding:.8rem .9rem;
+  font-size:1rem;line-height:1.35;
+  transition:border-color .22s var(--ease),background .22s var(--ease),transform .22s var(--ease);
+}
+.opt:hover{border-color:var(--forest)}
+.opt input{position:absolute;width:1px;height:1px;opacity:0}
+.opt .box{
+  flex:0 0 auto;width:20px;height:20px;border:1.5px solid var(--rule);
+  display:grid;place-items:center;transition:background .22s var(--ease),border-color .22s var(--ease);
+}
+.opt .box.round{border-radius:50%}
+.opt .box svg{width:11px;height:11px;fill:none;stroke:var(--paper);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:18;stroke-dashoffset:18;transition:stroke-dashoffset .25s var(--ease)}
+.opt .box .dot{width:8px;height:8px;border-radius:50%;background:var(--paper);transform:scale(0);transition:transform .22s var(--ease)}
+.opt input:checked + .box{background:var(--forest);border-color:var(--forest)}
+.opt input:checked + .box svg{stroke-dashoffset:0}
+.opt input:checked + .box .dot{transform:scale(1)}
+.opt:has(input:checked){border-color:var(--forest);background:var(--mint)}
+.opt input:focus-visible + .box{outline:2px solid var(--forest);outline-offset:2px}
+
+/* the one question we give extra weight to */
+.spotlight{background:var(--sand);border:1.5px solid var(--ink);box-shadow:8px 8px 0 var(--sage);padding:clamp(1.4rem,3vw,2rem)}
+.spotlight .qlabel{font-size:clamp(1.1rem,2.2vw,1.35rem);margin-bottom:.4rem}
+
+/* conditional blocks */
+.cond{display:none}
+.cond.on{display:block;animation:condIn .45s var(--ease) both}
+@keyframes condIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.cond-head{
+  display:flex;align-items:baseline;gap:.7rem;margin-bottom:1.3rem;padding-bottom:.7rem;
+  border-bottom:1.5px solid var(--rule);
+}
+.cond-head h3{font-size:1.15rem;font-weight:600}
+.cond-head .pill{
+  font-family:var(--display);font-weight:600;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--forest);background:var(--mint);border:1px solid var(--sage);padding:.2rem .5rem;
+}
+.cond-wrap{border-left:2px solid var(--sage);padding-left:clamp(1rem,2.6vw,1.6rem);margin-bottom:2rem}
+
+/* submit */
+.send{padding-block:clamp(2rem,4vw,3rem);border-top:1.5px solid var(--rule)}
+.btn{
+  display:inline-flex;align-items:center;gap:.7rem;font-family:var(--display);font-weight:600;font-size:.86rem;
+  letter-spacing:.1em;text-transform:uppercase;background:var(--forest);color:var(--paper);
+  padding:1.1rem 1.8rem;border:1.5px solid var(--forest);box-shadow:6px 6px 0 var(--sage);cursor:pointer;
+  transition:transform .18s var(--ease),box-shadow .18s var(--ease),background .3s var(--ease);
+}
+.btn:hover{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--sage);background:var(--forest-deep)}
+.btn:active{transform:translate(6px,6px);box-shadow:0 0 0 var(--sage)}
+.btn[disabled]{opacity:.6;cursor:default;transform:none;box-shadow:6px 6px 0 var(--sage)}
+.send p{font-size:.98rem;color:var(--ink-soft);margin-top:1.1rem;max-width:34rem}
+.form-err{display:none;margin-top:1rem;border-left:3px solid #9c3b3b;padding:.7rem .9rem;color:#9c3b3b;font-size:1rem}
+.form-err.on{display:block}
+
+/* success */
+.done{display:none;padding-block:clamp(3rem,7vw,5.5rem)}
+.done.on{display:block}
+.done-card{background:var(--mint);border:1.5px solid var(--ink);box-shadow:10px 10px 0 var(--sage);padding:clamp(1.8rem,4vw,3rem);max-width:38rem}
+.done-card h2{font-size:clamp(1.6rem,3.6vw,2.4rem);font-weight:700;letter-spacing:-.03em;margin-bottom:.8rem}
+.done-card p{color:var(--ink-soft);max-width:30rem}
+.done-card p + p{margin-top:.7rem}
+.done-card .back{
+  display:inline-flex;align-items:center;gap:.5rem;margin-top:1.6rem;
+  font-family:var(--display);font-weight:600;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--forest);border-bottom:2px solid var(--sage);padding-bottom:.2rem;text-decoration:none;
+}
+
+/* footer: intentionally minimal, no site navigation */
+.ftr{background:var(--ink);color:var(--paper);padding-block:2rem 1.4rem;margin-top:auto}
+.ftr .wrap{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:center;justify-content:space-between}
+.ftr .logo-mark{height:26px}
+.ftr span{font-family:var(--display);font-weight:400;font-size:.82rem;color:rgba(247,245,242,.6)}
+
+@media (max-width:620px){
+  .rail{top:52px}
+  .rail-txt{font-size:.62rem}
+  .opts{grid-template-columns:1fr}
+  .cond-wrap{padding-left:.9rem}
+  input[type=text],input[type=email],input[type=url],textarea{font-size:16px}
+  .btn{width:100%;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="wrap">
+    <a href="/" aria-label="Canvas Media, home"><svg class="logo-mark" viewBox="36 70.2 88 29.6" role="img" aria-label="Canvas Media">
+<path fill="#FFFFFF" d="M47.98,76.56c-.09-.15-.23-.36-.42-.58-.58-.7-1.27-1.17-1.77-1.4-2.14-1-4.59.5-4.76.61-.49.31-1.17.84-1.73,1.7-.82,1.27-.91,2.55-.89,3.25.01.52.09,2.21,1.38,3.6,1.57,1.68,3.74,1.65,4.58,1.63.62-.01,1.49-.04,2.4-.58.78-.47,1.23-1.1,1.45-1.47l1.92,1.59c-.6.74-1.33,1.33-2.21,1.77-.87.44-1.92.66-3.13.66-1.14,0-2.17-.19-3.09-.55-.92-.37-1.71-.89-2.35-1.55-.65-.66-1.15-1.44-1.51-2.34-.36-.9-.54-1.88-.54-2.94s.18-2.04.54-2.94c.36-.9.86-1.68,1.51-2.34.65-.66,1.44-1.17,2.35-1.55.92-.37,1.95-.55,3.09-.55.94,0,1.89.21,2.86.61.97.41,1.75,1.02,2.35,1.81-.68.52-1.35,1.04-2.03,1.56Z"/>
+  <path fill="#FFFFFF" d="M70.29,73.11c.04.38.07.8.09,1.26.02.46.03.84.03,1.14h.06c.4-.82,1.05-1.48,1.95-1.99.9-.51,1.85-.77,2.85-.77,1.78,0,3.12.53,4,1.59.89,1.06,1.34,2.46,1.34,4.2v8.61h-2.04v-7.77c-.03-.45-.04-.81-.04-1.06-.02-.89,0-1.21-.1-1.78-.06-.36-.09-.53-.19-.77-.26-.63-.73-.98-1-1.18-1.01-.75-2.12-.78-2.45-.77-.29,0-1.01.02-1.78.44-.65.35-1.02.8-1.23,1.07-1.27,1.6-1.27,4.01-1.26,4.52,0,2.44-.01,4.87-.02,7.31h-2.04c.12-3.6.24-7.2.35-10.8-.03-.52-.09-1.07-.17-1.67-.08-.57-.19-1.09-.3-1.58h1.95Z"/>
+  <path fill="#FFFFFF" d="M85.03,73.26c.14.93.34,1.9.59,2.91.91,3.58,2.34,6.5,3.72,8.74h0c.85-1.48,1.74-3.26,2.54-5.31.91-2.34,1.48-4.5,1.85-6.35.63.22,1.26.44,1.9.66-.61,1.98-1.35,4.08-2.24,6.29-.94,2.35-1.93,4.5-2.92,6.45h-2.25c-1.25-2.19-2.53-4.81-3.64-7.82-.62-1.69-1.12-3.31-1.52-4.83"/>
+  <path fill="#FFFFFF" d="M106.29,77.87c.02-.2.23-2.14-1.13-3.27-.75-.62-1.63-.69-1.97-.72-1.15-.09-2.04.36-2.99.84-.82.42-1.43.87-1.83,1.2l-1.14-1.35c.58-.58,1.34-1.06,2.29-1.44.95-.38,2.02-.57,3.22-.57.76,0,1.47.1,2.13.31.66.21,1.24.52,1.74.94s.89.95,1.17,1.59.42,1.39.42,2.25v6.15c0,.54.02,1.1.06,1.68.04.58.1,1.07.18,1.47h-1.83c-.06-.34-.11-.71-.15-1.11-.04-.4-.06-.79-.06-1.17h-.06c-.45.44-1.15,1.04-2.11,1.58-.78.44-1.7.95-2.99,1.06-.49.04-1.75.13-3.07-.57-.54-.29-2.12-1.12-2.47-2.93-.3-1.52.42-2.95,1.31-3.73.54-.47,1.16-.66,2.4-1.03,1.29-.39,2.31-.54,3.17-.6,1.19-.09,2.42-.14,3.71-.14v-.45ZM105.22,79.28c-1.11.02-2.01.16-2.64.29-.86.18-1.44.3-2.15.69-.5.28-1.24.71-1.66,1.57-.26.54-.28,1.01-.28,1.13,0,.5.09.92.29,1.26.19.34.44.61.76.83.32.21.67.36,1.07.45.39.09.78.14,1.18.14.72,0,1.36-.12,1.92-.38.16-.07.82-.38,1.41-1.02,1.14-1.24,1.18-2.82,1.17-3.26v-1.78c-.36.02-.71.05-1.07.07Z"/>
+  <path fill="#FFFFFF" d="M118.81,76.15c-.28-.41-.71-.94-1.37-1.42-.35-.26-1.42-1.02-2.94-1.1-.48-.02-1.14-.05-1.85.31-.32.16-.95.48-1.24,1.21-.09.22-.26.78-.04,1.35.18.49.6.84,1.83,1.38,1.13.49,2.02.73,2.55.88,2.31.65,3.46.98,4.32,1.67.53.42,1.5,1.19,1.64,2.44.15,1.33-.72,2.34-.91,2.55-.61.67-1.35.94-1.96,1.17-.41.15-.81.24-1.6.41-.42.09-.79.16-1.23.2-.23.02-.45.03-.68.03-1.06,0-2.09-.22-3.09-.66-1-.44-1.82-1.13-2.46-2.07l1.62-1.2c.36.62.89,1.14,1.59,1.56.7.42,1.47.63,2.31.63.44,0,.86-.04,1.26-.12.4-.08.75-.22,1.05-.42.3-.2.54-.45.72-.77.18-.31.27-.69.27-1.15,0-.74-.36-1.29-1.07-1.67s-1.73-.71-3.07-1.04c-.42-.1-.87-.23-1.33-.38-.47-.15-.91-.37-1.31-.66-.4-.29-.73-.65-.99-1.09-.26-.44-.39-.99-.39-1.65,0-.72.14-1.33.42-1.85.28-.51.66-.93,1.12-1.26.47-.33,1-.57,1.61-.74.6-.16,1.22-.24,1.86-.24.98,0,1.93.22,2.85.66.92.44,1.61,1.06,2.07,1.86l-1.56,1.17Z"/>
+  <path fill="#FFFFFF" d="M63.48,77.76c0-1.21-.32-2.11-.96-2.71-.64-.6-1.57-.89-2.79-.89-.84,0-1.62.15-2.34.45-.72.3-1.33.7-1.83,1.2l-1.14-1.35c.58-.58,1.34-1.06,2.29-1.44.95-.38,2.02-.57,3.22-.57.76,0,1.47.1,2.13.31.66.21,1.24.52,1.74.94s.89.95,1.17,1.59.42,1.39.42,2.25v6.15c0,.54.02,1.1.06,1.68.04.58.1,1.07.18,1.47h-1.83c-.06-.34-.11-.71-.15-1.11-.04-.4-.06-.79-.06-1.17h-.06c-.45.44-1.15,1.04-2.11,1.58-.78.44-1.7.95-2.99,1.06-.49.04-1.75.13-3.07-.57-.54-.29-2.12-1.12-2.47-2.93-.3-1.52.42-2.95,1.31-3.73.54-.47,1.16-.66,2.4-1.03,1.29-.39,2.31-.54,3.17-.6,1.19-.09,2.42-.14,3.71-.14v-.45ZM62.41,79.18c-1.11.02-2.01.16-2.64.29-.86.18-1.44.3-2.15.69-.5.28-1.24.71-1.66,1.57-.26.54-.28,1.01-.28,1.13,0,.5.09.92.29,1.26.19.34.44.61.76.83.32.21.67.36,1.07.45.39.09.78.14,1.18.14.72,0,1.36-.12,1.92-.38.16-.07.82-.38,1.41-1.02,1.14-1.24,1.18-2.82,1.17-3.26v-1.78c-.36.02-.71.05-1.07.07Z"/>
+  <path fill="#A8B8A5" d="M71.26,73.42c-.03-.07.94-.7,2.25-1.08.65-.19,1.94-.55,3.55-.27,2.45.43,3.99,2.07,3.94,2.14-.04.06-1.17-.82-3.21-1.4-.44-.13-1.01-.29-1.7-.36-2.66-.27-4.79,1.08-4.83.98Z"/>
+  <path fill="#A8B8A5" d="M92.42,85.81s-.27.45-.75.85c-.24.19-.71.57-1.44.74-1.1.26-2.03-.13-2.02-.17,0-.03.63.13,1.59,0,.21-.03.47-.06.77-.16,1.16-.36,1.81-1.3,1.85-1.26Z"/>
+  <path fill="#A8B8A5" d="M40.23,83.87s-.4-.63-.7-1.55c-.15-.46-.44-1.36-.49-2.52-.07-1.77.47-2.95.51-2.92.03.02-.23.88-.27,2.37,0,.32-.02.74.02,1.23.16,1.91.97,3.36.93,3.4Z"/>
+  <path fill="#A8B8A5" d="M122.69,82.6c.07.03-.03,1.04-.5,2.11-.23.53-.71,1.56-1.84,2.34-1.72,1.2-3.81,1.02-3.84.94-.02-.06,1.27-.15,2.88-1,.34-.18.79-.42,1.24-.79,1.73-1.43,1.96-3.64,2.06-3.6Z"/>
+  <g>
+    <text font-family="Avenir Next, AvenirNext-DemiBold, Avenir, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF" transform="translate(96.05 97.97)"><tspan x="0" y="0">e</tspan></text>
+    <text font-family="Avenir Next, AvenirNext-DemiBold, Avenir, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF" transform="translate(84.73 97.97)"><tspan x="0" y="0">m</tspan></text>
+    <text font-family="Avenir Next, AvenirNext-DemiBold, Avenir, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF" transform="translate(103.32 97.97)"><tspan x="0" y="0">d</tspan></text>
+    <text font-family="Avenir Next, AvenirNext-DemiBold, Avenir, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF" transform="translate(111.1 98.06)"><tspan x="0" y="0">i</tspan></text>
+    <text font-family="Avenir Next, AvenirNext-DemiBold, Avenir, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF" transform="translate(114.45 98.06)"><tspan x="0" y="0">a</tspan></text>
+  </g>
+  <path fill="#A8B8A5" d="M118.13,91.81s.39-.13.81-.08c.21.02.62.08.98.43.55.53.61,1.39.59,1.41-.02.02-.13-.49-.55-1.02-.09-.11-.2-.26-.37-.39-.64-.5-1.48-.3-1.47-.35Z"/>
+  <path fill="#355E4B" d="M87.11,92.46s.2-.21.52-.39c.16-.09.47-.26.9-.33.66-.1,1.15.12,1.14.14,0,.01-.35-.08-.91-.04-.12,0-.28.02-.46.06-.7.15-1.18.58-1.19.57Z"/>
+  <path fill="#A8B8A5" d="M87.11,92.46s.2-.21.52-.39c.16-.09.47-.26.9-.33.66-.1,1.15.12,1.14.14,0,.01-.35-.08-.91-.04-.12,0-.28.02-.46.06-.7.15-1.18.58-1.19.57Z"/>
+</svg></a>
+    <span class="tag">Client briefing</span>
+  </div>
+</header>
+
+<div class="rail" id="rail">
+  <div class="wrap">
+    <span class="rail-track"><span class="rail-fill" id="railFill"></span></span>
+    <span class="rail-txt" id="railTxt">Needed answers</span>
+  </div>
+</div>
+
+<main id="main">
+
+<section class="intro">
+  <div class="wrap">
+    <span class="eyebrow r">Client briefing</span>
+    <h1 class="r">A bit more about your business.</h1>
+    <p class="r">Now that we have spoken, this helps us understand where you are, what is getting in the way, and what you want to get out of working together. Answer what you can. Most of it is optional, and there are no wrong answers.</p>
+    <div class="meta r">
+      <span>Around 10 minutes</span>
+      <span>Only <span id="reqCount">a few</span> answers needed</span>
+    </div>
+  </div>
+</section>
+
+<form id="brief" method="POST" action="https://api.web3forms.com/submit">
+  <input type="hidden" name="access_key" value="8a884b84-3524-40f6-81b1-384613d0e968">
+  <input type="hidden" name="subject" value="Client briefing form from the Canvas website">
+  <input type="hidden" name="from_name" value="Canvas client briefing">
+  <input type="hidden" name="redirect" value="https://web3forms.com/success">
+  <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
+
+  <div class="wrap">
+
+    <!-- 01 -->
+    <section class="sec">
+      <div class="sec-head">
+        <span class="sec-no">01</span>
+        <div>
+          <h2>Your project</h2>
+          <p>Tell us what you are after, and we will only ask about the parts that apply to you.</p>
+        </div>
+      </div>
+
+      <fieldset class="q" id="svcField">
+        <legend>Which Canvas services are you interested in? <span class="req">Required</span></legend>
+        <span class="hint">Choose as many as you like.</span>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="services" value="Social Media" data-svc="social"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Social Media</span></label>
+          <label class="opt"><input type="checkbox" name="services" value="Website Design" data-svc="web"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Website Design</span></label>
+          <label class="opt"><input type="checkbox" name="services" value="Branding" data-svc="brand"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Branding</span></label>
+          <label class="opt"><input type="checkbox" name="services" value="Graphic Design" data-svc="graphic"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Graphic Design</span></label>
+          <label class="opt"><input type="checkbox" name="services" value="Video / Content" data-svc="video"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Video / Content</span></label>
+          <label class="opt"><input type="checkbox" name="services" value="Advertising" data-svc="ads"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Advertising</span></label>
+          <label class="opt"><input type="checkbox" name="services" value="Other" data-svc="other"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Something else</span></label>
+        </div>
+        <p class="err">Please choose at least one service.</p>
+      </fieldset>
+
+      <div class="q cond" data-cond="other">
+        <label for="svc-other">What else did you have in mind?</label>
+        <input type="text" id="svc-other" name="service_other" placeholder=" ">
+      </div>
+    </section>
+
+    <!-- 02 -->
+    <section class="sec">
+      <div class="sec-head">
+        <span class="sec-no">02</span>
+        <div><h2>About your business</h2></div>
+      </div>
+
+      <div class="q">
+        <label for="biz-name">Business name <span class="req">Required</span></label>
+        <input type="text" id="biz-name" name="business_name" required placeholder=" ">
+        <p class="err">Please tell us your business name.</p>
+      </div>
+
+      <div class="q">
+        <label for="biz-does">What does your business do? <span class="req">Required</span></label>
+        <textarea id="biz-does" name="business_does" required placeholder=" "></textarea>
+        <p class="err">A sentence or two is plenty.</p>
+      </div>
+
+      <div class="q">
+        <label for="biz-customers">Who are your main customers? <span class="req">Required</span></label>
+        <span class="hint">Locals, visitors, other businesses, a particular age group, anyone at all.</span>
+        <textarea id="biz-customers" name="customers" required placeholder=" "></textarea>
+        <p class="err">Even a rough answer helps.</p>
+      </div>
+
+      <div class="q">
+        <label for="biz-different">What makes you different from your competitors?</label>
+        <textarea id="biz-different" name="different" placeholder=" "></textarea>
+      </div>
+
+      <div class="q">
+        <label for="biz-focus">Any products or services you would like us to focus on?</label>
+        <textarea id="biz-focus" name="focus" placeholder=" "></textarea>
+      </div>
+    </section>
+
+    <!-- 03 -->
+    <section class="sec">
+      <div class="sec-head">
+        <span class="sec-no">03</span>
+        <div><h2>Where things are now</h2></div>
+      </div>
+
+      <fieldset class="q">
+        <legend>What marketing are you doing at the moment?</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="current_marketing" value="Social media"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Social media</span></label>
+          <label class="opt"><input type="checkbox" name="current_marketing" value="Website"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Website</span></label>
+          <label class="opt"><input type="checkbox" name="current_marketing" value="Paid advertising"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Paid advertising</span></label>
+          <label class="opt"><input type="checkbox" name="current_marketing" value="Email marketing"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Email marketing</span></label>
+          <label class="opt"><input type="checkbox" name="current_marketing" value="Print marketing"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Print marketing</span></label>
+          <label class="opt"><input type="checkbox" name="current_marketing" value="Networking"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Networking</span></label>
+          <label class="opt"><input type="checkbox" name="current_marketing" value="Other" data-other="mk-other"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Something else</span></label>
+        </div>
+      </fieldset>
+
+      <div class="q cond" id="mk-other">
+        <label for="mk-other-txt">What else are you doing?</label>
+        <input type="text" id="mk-other-txt" name="current_marketing_other" placeholder=" ">
+      </div>
+
+      <fieldset class="q">
+        <legend>Which social platforms does your business use?</legend>
+        <div class="opts narrow">
+          <label class="opt"><input type="checkbox" name="platforms_now" value="Facebook"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Facebook</span></label>
+          <label class="opt"><input type="checkbox" name="platforms_now" value="Instagram"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Instagram</span></label>
+          <label class="opt"><input type="checkbox" name="platforms_now" value="LinkedIn"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>LinkedIn</span></label>
+          <label class="opt"><input type="checkbox" name="platforms_now" value="TikTok"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>TikTok</span></label>
+          <label class="opt"><input type="checkbox" name="platforms_now" value="YouTube"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>YouTube</span></label>
+          <label class="opt"><input type="checkbox" name="platforms_now" value="None"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>None yet</span></label>
+        </div>
+      </fieldset>
+
+      <div class="q">
+        <label for="mk-like">What do you like about your marketing at the moment?</label>
+        <textarea id="mk-like" name="marketing_like" placeholder=" "></textarea>
+      </div>
+
+      <div class="q">
+        <label for="mk-missing">What feels like it is missing?</label>
+        <textarea id="mk-missing" name="marketing_missing" placeholder=" "></textarea>
+      </div>
+    </section>
+
+    <!-- 04 -->
+    <section class="sec">
+      <div class="sec-head">
+        <span class="sec-no">04</span>
+        <div>
+          <h2>What is not working</h2>
+          <p>Be as honest as you like here. This is usually the most useful part for us.</p>
+        </div>
+      </div>
+
+      <div class="q">
+        <label for="hard">What do you find hardest about marketing your business? <span class="req">Required</span></label>
+        <textarea id="hard" name="hardest" required placeholder=" "></textarea>
+        <p class="err">Even one line helps us a lot.</p>
+      </div>
+
+      <div class="q">
+        <label for="unhappy">Anything about your branding, website or social you are unhappy with?</label>
+        <textarea id="unhappy" name="unhappy" placeholder=" "></textarea>
+      </div>
+
+      <div class="q">
+        <label for="tried">Have you tried anything before that did not really work?</label>
+        <textarea id="tried" name="tried_before" placeholder=" "></textarea>
+      </div>
+
+      <div class="q spotlight">
+        <label class="qlabel" for="onething">If we could fix one thing right now, what would it be? <span class="req">Required</span></label>
+        <span class="hint">The single thing that would make the biggest difference to you.</span>
+        <textarea id="onething" name="one_thing" required placeholder=" "></textarea>
+        <p class="err">This one really helps us prioritise.</p>
+      </div>
+    </section>
+
+    <!-- 05 -->
+    <section class="sec">
+      <div class="sec-head">
+        <span class="sec-no">05</span>
+        <div><h2>Where you want to go</h2></div>
+      </div>
+
+      <fieldset class="q" id="goalsField">
+        <legend>What would you most like us to help you achieve? <span class="req">Required</span></legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="goals" value="Attract more customers"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Attract more customers</span></label>
+          <label class="opt"><input type="checkbox" name="goals" value="Generate more enquiries"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Generate more enquiries</span></label>
+          <label class="opt"><input type="checkbox" name="goals" value="Increase brand awareness"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Increase brand awareness</span></label>
+          <label class="opt"><input type="checkbox" name="goals" value="Improve my social media"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Improve my social media</span></label>
+          <label class="opt"><input type="checkbox" name="goals" value="Improve my website"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Improve my website</span></label>
+          <label class="opt"><input type="checkbox" name="goals" value="Improve my branding"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Improve my branding</span></label>
+          <label class="opt"><input type="checkbox" name="goals" value="Save time"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Save time</span></label>
+          <label class="opt"><input type="checkbox" name="goals" value="Promote a product or service"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Promote a product or service</span></label>
+          <label class="opt"><input type="checkbox" name="goals" value="Launch something new"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Launch something new</span></label>
+          <label class="opt"><input type="checkbox" name="goals" value="Look more professional online"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Look more professional online</span></label>
+          <label class="opt"><input type="checkbox" name="goals" value="Something else" data-other="goal-other"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Something else</span></label>
+        </div>
+        <p class="err">Please choose at least one.</p>
+      </fieldset>
+
+      <div class="q cond" id="goal-other">
+        <label for="goal-other-txt">What would you add?</label>
+        <input type="text" id="goal-other-txt" name="goals_other" placeholder=" ">
+      </div>
+
+      <div class="q">
+        <label for="success">What would success look like for your business? <span class="req">Required</span></label>
+        <span class="hint">However you would measure it. Busier weekends, more enquiries, fewer late nights.</span>
+        <textarea id="success" name="success_looks_like" required placeholder=" "></textarea>
+        <p class="err">Tell us what a good outcome looks like to you.</p>
+      </div>
+
+      <div class="q">
+        <label for="reach">Who would you most like to reach?</label>
+        <textarea id="reach" name="reach" placeholder=" "></textarea>
+      </div>
+
+      <div class="q">
+        <label for="deadlines">Any goals, events or launches to work towards?</label>
+        <span class="hint">Leave this blank if there is nothing specific.</span>
+        <textarea id="deadlines" name="goals_events" placeholder=" "></textarea>
+      </div>
+    </section>
+
+    <!-- 06 -->
+    <section class="sec">
+      <div class="sec-head">
+        <span class="sec-no">06</span>
+        <div><h2>Style and preferences</h2></div>
+      </div>
+
+      <fieldset class="q">
+        <legend>How would you like your marketing to look and feel?</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="style" value="Minimal and modern"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Minimal and modern</span></label>
+          <label class="opt"><input type="checkbox" name="style" value="Professional and polished"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Professional and polished</span></label>
+          <label class="opt"><input type="checkbox" name="style" value="Friendly and approachable"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Friendly and approachable</span></label>
+          <label class="opt"><input type="checkbox" name="style" value="Fun and colourful"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Fun and colourful</span></label>
+          <label class="opt"><input type="checkbox" name="style" value="Luxury and premium"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Luxury and premium</span></label>
+          <label class="opt"><input type="checkbox" name="style" value="Bold and attention grabbing"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Bold and attention grabbing</span></label>
+          <label class="opt"><input type="checkbox" name="style" value="Natural and understated"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Natural and understated</span></label>
+          <label class="opt"><input type="checkbox" name="style" value="Other" data-other="style-other"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Something else</span></label>
+        </div>
+      </fieldset>
+
+      <div class="q cond" id="style-other">
+        <label for="style-other-txt">How would you describe it?</label>
+        <input type="text" id="style-other-txt" name="style_other" placeholder=" ">
+      </div>
+
+      <div class="q">
+        <label for="admire">Any brands or businesses whose marketing you like?</label>
+        <span class="hint">Names are enough, and what it is you like about them if you can say.</span>
+        <textarea id="admire" name="brands_admired" placeholder=" "></textarea>
+      </div>
+
+      <div class="q">
+        <label for="avoid">Anything you definitely do not want?</label>
+        <span class="hint">Styles, colours, fonts, anything that is a no from you.</span>
+        <textarea id="avoid" name="avoid" placeholder=" "></textarea>
+      </div>
+
+      <div class="q">
+        <label for="comeacross">How would you like to come across to customers?</label>
+        <textarea id="comeacross" name="come_across" placeholder=" "></textarea>
+      </div>
+    </section>
+
+    <!-- 07 conditional -->
+    <section class="sec cond" id="detailSec">
+      <div class="sec-head">
+        <span class="sec-no">07</span>
+        <div>
+          <h2>A little more detail</h2>
+          <p>These questions are based on what you picked at the start.</p>
+        </div>
+      </div>
+
+      <!-- SOCIAL -->
+      <div class="cond" data-cond="social">
+        <div class="cond-wrap">
+          <div class="cond-head"><h3>Social media</h3><span class="pill">Your pick</span></div>
+          <div class="q">
+            <label for="s-platforms">Which platforms would you like us to focus on?</label>
+            <input type="text" id="s-platforms" name="social_platforms_focus" placeholder=" ">
+          </div>
+          <div class="q">
+            <label for="s-achieve">What would you like your social media to achieve?</label>
+            <textarea id="s-achieve" name="social_achieve" placeholder=" "></textarea>
+          </div>
+          <div class="q">
+            <label for="s-post">What would you like to post more about?</label>
+            <textarea id="s-post" name="social_post_more" placeholder=" "></textarea>
+          </div>
+          <fieldset class="q">
+            <legend>Do you have photos or videos we can use?</legend>
+            <div class="opts narrow">
+              <label class="opt"><input type="radio" name="social_assets" value="Yes"><span class="box round"><span class="dot"></span></span><span>Yes</span></label>
+              <label class="opt"><input type="radio" name="social_assets" value="Some, but not enough"><span class="box round"><span class="dot"></span></span><span>Some, not enough</span></label>
+              <label class="opt"><input type="radio" name="social_assets" value="No"><span class="box round"><span class="dot"></span></span><span>No</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="q">
+            <legend>Are you happy to appear in photos or videos?</legend>
+            <span class="hint">You or your team. It is fine either way.</span>
+            <div class="opts narrow">
+              <label class="opt"><input type="radio" name="social_on_camera" value="Yes"><span class="box round"><span class="dot"></span></span><span>Yes</span></label>
+              <label class="opt"><input type="radio" name="social_on_camera" value="Possibly"><span class="box round"><span class="dot"></span></span><span>Possibly</span></label>
+              <label class="opt"><input type="radio" name="social_on_camera" value="No"><span class="box round"><span class="dot"></span></span><span>No</span></label>
+            </div>
+          </fieldset>
+          <div class="q">
+            <label for="s-dates">Any promotions, events or dates coming up?</label>
+            <textarea id="s-dates" name="social_dates" placeholder=" "></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- WEBSITE -->
+      <div class="cond" data-cond="web">
+        <div class="cond-wrap">
+          <div class="cond-head"><h3>Website design</h3><span class="pill">Your pick</span></div>
+          <div class="q">
+            <label for="w-achieve">What do you want your website to do for you?</label>
+            <textarea id="w-achieve" name="web_achieve" placeholder=" "></textarea>
+          </div>
+          <fieldset class="q">
+            <legend>Do you have a website at the moment?</legend>
+            <div class="opts narrow">
+              <label class="opt"><input type="radio" name="web_has_site" value="Yes" data-show="hasSite"><span class="box round"><span class="dot"></span></span><span>Yes</span></label>
+              <label class="opt"><input type="radio" name="web_has_site" value="No" data-hide="hasSite"><span class="box round"><span class="dot"></span></span><span>Not yet</span></label>
+            </div>
+          </fieldset>
+          <div class="q cond" id="hasSite">
+            <label for="w-current">What do you like and dislike about it?</label>
+            <textarea id="w-current" name="web_current_thoughts" placeholder=" "></textarea>
+          </div>
+          <div class="q">
+            <label for="w-likes">Any websites you really like?</label>
+            <span class="hint">Links are ideal, along with what it is you like about them.</span>
+            <textarea id="w-likes" name="web_likes" placeholder=" "></textarea>
+          </div>
+          <div class="q">
+            <label for="w-pages">What pages or information will it need?</label>
+            <textarea id="w-pages" name="web_pages" placeholder=" "></textarea>
+          </div>
+          <fieldset class="q">
+            <legend>Do you have the words and images ready?</legend>
+            <div class="opts narrow">
+              <label class="opt"><input type="radio" name="web_content" value="Yes"><span class="box round"><span class="dot"></span></span><span>Yes</span></label>
+              <label class="opt"><input type="radio" name="web_content" value="Some"><span class="box round"><span class="dot"></span></span><span>Some</span></label>
+              <label class="opt"><input type="radio" name="web_content" value="No"><span class="box round"><span class="dot"></span></span><span>No</span></label>
+            </div>
+          </fieldset>
+          <div class="q">
+            <label for="w-features">Any particular features you need?</label>
+            <span class="hint">Contact forms, booking, an online shop, a gallery, a portfolio.</span>
+            <textarea id="w-features" name="web_features" placeholder=" "></textarea>
+          </div>
+          <div class="q">
+            <label for="w-action">What is the main thing you want visitors to do?</label>
+            <textarea id="w-action" name="web_main_action" placeholder=" "></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- BRANDING -->
+      <div class="cond" data-cond="brand">
+        <div class="cond-wrap">
+          <div class="cond-head"><h3>Branding</h3><span class="pill">Your pick</span></div>
+          <div class="q">
+            <label for="b-communicate">What do you want your branding to say about you?</label>
+            <textarea id="b-communicate" name="brand_communicate" placeholder=" "></textarea>
+          </div>
+          <div class="q">
+            <label for="b-like">Is there anything about your current branding you like?</label>
+            <textarea id="b-like" name="brand_like" placeholder=" "></textarea>
+          </div>
+          <div class="q">
+            <label for="b-change">What would you change?</label>
+            <textarea id="b-change" name="brand_change" placeholder=" "></textarea>
+          </div>
+          <div class="q">
+            <label for="b-colours">Any colours you want to use, or avoid?</label>
+            <textarea id="b-colours" name="brand_colours" placeholder=" "></textarea>
+          </div>
+          <div class="q">
+            <label for="b-admire">Any brands whose look you admire?</label>
+            <textarea id="b-admire" name="brand_admire" placeholder=" "></textarea>
+          </div>
+          <fieldset class="q">
+            <legend>Where will the branding be used?</legend>
+            <div class="opts narrow">
+              <label class="opt"><input type="checkbox" name="brand_used" value="Website"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Website</span></label>
+              <label class="opt"><input type="checkbox" name="brand_used" value="Social media"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Social media</span></label>
+              <label class="opt"><input type="checkbox" name="brand_used" value="Print"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Print</span></label>
+              <label class="opt"><input type="checkbox" name="brand_used" value="Signage"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Signage</span></label>
+              <label class="opt"><input type="checkbox" name="brand_used" value="Packaging"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Packaging</span></label>
+              <label class="opt"><input type="checkbox" name="brand_used" value="Clothing or uniforms"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Clothing</span></label>
+              <label class="opt"><input type="checkbox" name="brand_used" value="Other"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Somewhere else</span></label>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+
+      <!-- GRAPHIC -->
+      <div class="cond" data-cond="graphic">
+        <div class="cond-wrap">
+          <div class="cond-head"><h3>Graphic design</h3><span class="pill">Your pick</span></div>
+          <fieldset class="q">
+            <legend>What kind of graphics do you need?</legend>
+            <div class="opts">
+              <label class="opt"><input type="checkbox" name="graphic_types" value="Social media graphics"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Social media graphics</span></label>
+              <label class="opt"><input type="checkbox" name="graphic_types" value="Advertisements"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Advertisements</span></label>
+              <label class="opt"><input type="checkbox" name="graphic_types" value="Flyers"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Flyers</span></label>
+              <label class="opt"><input type="checkbox" name="graphic_types" value="Posters"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Posters</span></label>
+              <label class="opt"><input type="checkbox" name="graphic_types" value="Business cards"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Business cards</span></label>
+              <label class="opt"><input type="checkbox" name="graphic_types" value="Presentations"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Presentations</span></label>
+              <label class="opt"><input type="checkbox" name="graphic_types" value="Promotional materials"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Promotional materials</span></label>
+              <label class="opt"><input type="checkbox" name="graphic_types" value="Other"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Something else</span></label>
+            </div>
+          </fieldset>
+          <div class="q">
+            <label for="g-achieve">What are the graphics for?</label>
+            <textarea id="g-achieve" name="graphic_achieve" placeholder=" "></textarea>
+          </div>
+          <fieldset class="q">
+            <legend>Do you have brand guidelines or existing designs for us to work from?</legend>
+            <div class="opts narrow">
+              <label class="opt"><input type="radio" name="graphic_guidelines" value="Yes"><span class="box round"><span class="dot"></span></span><span>Yes</span></label>
+              <label class="opt"><input type="radio" name="graphic_guidelines" value="Some"><span class="box round"><span class="dot"></span></span><span>Some</span></label>
+              <label class="opt"><input type="radio" name="graphic_guidelines" value="No"><span class="box round"><span class="dot"></span></span><span>No</span></label>
+            </div>
+          </fieldset>
+          <div class="q">
+            <label for="g-examples">Any designs you particularly like?</label>
+            <textarea id="g-examples" name="graphic_examples" placeholder=" "></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIDEO -->
+      <div class="cond" data-cond="video">
+        <div class="cond-wrap">
+          <div class="cond-head"><h3>Video and content</h3><span class="pill">Your pick</span></div>
+          <fieldset class="q">
+            <legend>What kind of content are you after?</legend>
+            <div class="opts">
+              <label class="opt"><input type="checkbox" name="video_types" value="Social media videos"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Social media videos</span></label>
+              <label class="opt"><input type="checkbox" name="video_types" value="Promotional videos"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Promotional videos</span></label>
+              <label class="opt"><input type="checkbox" name="video_types" value="Reels and short form"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Reels, short form</span></label>
+              <label class="opt"><input type="checkbox" name="video_types" value="Business videos"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Business videos</span></label>
+              <label class="opt"><input type="checkbox" name="video_types" value="Event content"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Event content</span></label>
+              <label class="opt"><input type="checkbox" name="video_types" value="Other"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Something else</span></label>
+            </div>
+          </fieldset>
+          <div class="q">
+            <label for="v-achieve">What would you like the content to achieve?</label>
+            <textarea id="v-achieve" name="video_achieve" placeholder=" "></textarea>
+          </div>
+          <fieldset class="q">
+            <legend>Do you have footage we can work with?</legend>
+            <div class="opts narrow">
+              <label class="opt"><input type="radio" name="video_footage" value="Yes"><span class="box round"><span class="dot"></span></span><span>Yes</span></label>
+              <label class="opt"><input type="radio" name="video_footage" value="Some"><span class="box round"><span class="dot"></span></span><span>Some</span></label>
+              <label class="opt"><input type="radio" name="video_footage" value="No"><span class="box round"><span class="dot"></span></span><span>No</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="q">
+            <legend>Are you happy to appear on camera?</legend>
+            <span class="hint">You, your team or your customers.</span>
+            <div class="opts narrow">
+              <label class="opt"><input type="radio" name="video_on_camera" value="Yes"><span class="box round"><span class="dot"></span></span><span>Yes</span></label>
+              <label class="opt"><input type="radio" name="video_on_camera" value="Possibly"><span class="box round"><span class="dot"></span></span><span>Possibly</span></label>
+              <label class="opt"><input type="radio" name="video_on_camera" value="No"><span class="box round"><span class="dot"></span></span><span>No</span></label>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+
+      <!-- ADS -->
+      <div class="cond" data-cond="ads">
+        <div class="cond-wrap">
+          <div class="cond-head"><h3>Advertising</h3><span class="pill">Your pick</span></div>
+          <div class="q">
+            <label for="a-what">What would you like to advertise?</label>
+            <textarea id="a-what" name="ads_what" placeholder=" "></textarea>
+          </div>
+          <fieldset class="q">
+            <legend>What should the advertising achieve?</legend>
+            <div class="opts">
+              <label class="opt"><input type="checkbox" name="ads_goals" value="More website visits"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>More website visits</span></label>
+              <label class="opt"><input type="checkbox" name="ads_goals" value="More enquiries"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>More enquiries</span></label>
+              <label class="opt"><input type="checkbox" name="ads_goals" value="More customers"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>More customers</span></label>
+              <label class="opt"><input type="checkbox" name="ads_goals" value="Product or service awareness"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Awareness</span></label>
+              <label class="opt"><input type="checkbox" name="ads_goals" value="Event promotion"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Event promotion</span></label>
+              <label class="opt"><input type="checkbox" name="ads_goals" value="Launching something new"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Launching something</span></label>
+              <label class="opt"><input type="checkbox" name="ads_goals" value="Other"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Something else</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="q">
+            <legend>Have you run paid advertising before?</legend>
+            <div class="opts narrow">
+              <label class="opt"><input type="radio" name="ads_before" value="Yes" data-show="adsYes"><span class="box round"><span class="dot"></span></span><span>Yes</span></label>
+              <label class="opt"><input type="radio" name="ads_before" value="No" data-hide="adsYes"><span class="box round"><span class="dot"></span></span><span>No</span></label>
+            </div>
+          </fieldset>
+          <div class="cond" id="adsYes">
+            <div class="q">
+              <label for="a-platforms">Where did you advertise?</label>
+              <input type="text" id="a-platforms" name="ads_platforms" placeholder=" ">
+            </div>
+            <div class="q">
+              <label for="a-worked">What worked, and what did not?</label>
+              <textarea id="a-worked" name="ads_worked" placeholder=" "></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 -->
+    <section class="sec">
+      <div class="sec-head">
+        <span class="sec-no">08</span>
+        <div><h2>Final details</h2></div>
+      </div>
+
+      <div class="q">
+        <label for="your-name">Your name <span class="req">Required</span></label>
+        <input type="text" id="your-name" name="name" required autocomplete="name" placeholder=" ">
+        <p class="err">So we know who we are talking to.</p>
+      </div>
+
+      <div class="q">
+        <label for="your-email">Your email <span class="req">Required</span></label>
+        <input type="email" id="your-email" name="email" required autocomplete="email" placeholder=" ">
+        <p class="err">We need a valid email to reply to you.</p>
+      </div>
+
+      <div class="q">
+        <label for="approvers">Who else will be reviewing and approving the work?</label>
+        <span class="hint">Just you is a perfectly good answer.</span>
+        <input type="text" id="approvers" name="approvers" placeholder=" ">
+      </div>
+
+      <fieldset class="q">
+        <legend>What is your ideal timeframe?</legend>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="timeframe" value="As soon as possible"><span class="box round"><span class="dot"></span></span><span>As soon as possible</span></label>
+          <label class="opt"><input type="radio" name="timeframe" value="Within the next month"><span class="box round"><span class="dot"></span></span><span>Within the next month</span></label>
+          <label class="opt"><input type="radio" name="timeframe" value="Within 1 to 3 months"><span class="box round"><span class="dot"></span></span><span>Within 1 to 3 months</span></label>
+          <label class="opt"><input type="radio" name="timeframe" value="I am flexible"><span class="box round"><span class="dot"></span></span><span>I am flexible</span></label>
+        </div>
+      </fieldset>
+
+      <div class="q">
+        <label for="deadline">Is there a specific deadline?</label>
+        <span class="hint">A date, a season, or leave it blank.</span>
+        <input type="text" id="deadline" name="deadline" placeholder=" ">
+      </div>
+
+      <div class="q">
+        <label for="anything">Anything else we should know before we start?</label>
+        <textarea id="anything" name="anything_else" style="min-height:150px" placeholder=" "></textarea>
+      </div>
+    </section>
+
+    <section class="send">
+      <button class="btn" type="submit" id="sendBtn"><span id="sendTxt">Send my briefing</span><span aria-hidden="true">&rarr;</span></button>
+      <p>We will read through it properly and come back to you with next steps. Nothing here is set in stone, so do not worry about getting every answer perfect.</p>
+      <p class="form-err" id="formErr" role="alert"></p>
+    </section>
+
+  </div>
+</form>
+
+<section class="done" id="done">
+  <div class="wrap">
+    <div class="done-card">
+      <h2>Thanks, we have got what we need.</h2>
+      <p>Your answers are with us. We will go through them properly and use them to prepare for the next stage of working together.</p>
+      <p>If anything comes to mind afterwards, just reply to our last email and we will add it to your brief.</p>
+      <a class="back" href="/">Back to canvasmedia.gg <span aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <svg class="logo-mark" viewBox="36 70.2 88 29.6" role="img" aria-label="Canvas Media">
+<path fill="#FFFFFF" d="M47.98,76.56c-.09-.15-.23-.36-.42-.58-.58-.7-1.27-1.17-1.77-1.4-2.14-1-4.59.5-4.76.61-.49.31-1.17.84-1.73,1.7-.82,1.27-.91,2.55-.89,3.25.01.52.09,2.21,1.38,3.6,1.57,1.68,3.74,1.65,4.58,1.63.62-.01,1.49-.04,2.4-.58.78-.47,1.23-1.1,1.45-1.47l1.92,1.59c-.6.74-1.33,1.33-2.21,1.77-.87.44-1.92.66-3.13.66-1.14,0-2.17-.19-3.09-.55-.92-.37-1.71-.89-2.35-1.55-.65-.66-1.15-1.44-1.51-2.34-.36-.9-.54-1.88-.54-2.94s.18-2.04.54-2.94c.36-.9.86-1.68,1.51-2.34.65-.66,1.44-1.17,2.35-1.55.92-.37,1.95-.55,3.09-.55.94,0,1.89.21,2.86.61.97.41,1.75,1.02,2.35,1.81-.68.52-1.35,1.04-2.03,1.56Z"/>
+  <path fill="#FFFFFF" d="M70.29,73.11c.04.38.07.8.09,1.26.02.46.03.84.03,1.14h.06c.4-.82,1.05-1.48,1.95-1.99.9-.51,1.85-.77,2.85-.77,1.78,0,3.12.53,4,1.59.89,1.06,1.34,2.46,1.34,4.2v8.61h-2.04v-7.77c-.03-.45-.04-.81-.04-1.06-.02-.89,0-1.21-.1-1.78-.06-.36-.09-.53-.19-.77-.26-.63-.73-.98-1-1.18-1.01-.75-2.12-.78-2.45-.77-.29,0-1.01.02-1.78.44-.65.35-1.02.8-1.23,1.07-1.27,1.6-1.27,4.01-1.26,4.52,0,2.44-.01,4.87-.02,7.31h-2.04c.12-3.6.24-7.2.35-10.8-.03-.52-.09-1.07-.17-1.67-.08-.57-.19-1.09-.3-1.58h1.95Z"/>
+  <path fill="#FFFFFF" d="M85.03,73.26c.14.93.34,1.9.59,2.91.91,3.58,2.34,6.5,3.72,8.74h0c.85-1.48,1.74-3.26,2.54-5.31.91-2.34,1.48-4.5,1.85-6.35.63.22,1.26.44,1.9.66-.61,1.98-1.35,4.08-2.24,6.29-.94,2.35-1.93,4.5-2.92,6.45h-2.25c-1.25-2.19-2.53-4.81-3.64-7.82-.62-1.69-1.12-3.31-1.52-4.83"/>
+  <path fill="#FFFFFF" d="M106.29,77.87c.02-.2.23-2.14-1.13-3.27-.75-.62-1.63-.69-1.97-.72-1.15-.09-2.04.36-2.99.84-.82.42-1.43.87-1.83,1.2l-1.14-1.35c.58-.58,1.34-1.06,2.29-1.44.95-.38,2.02-.57,3.22-.57.76,0,1.47.1,2.13.31.66.21,1.24.52,1.74.94s.89.95,1.17,1.59.42,1.39.42,2.25v6.15c0,.54.02,1.1.06,1.68.04.58.1,1.07.18,1.47h-1.83c-.06-.34-.11-.71-.15-1.11-.04-.4-.06-.79-.06-1.17h-.06c-.45.44-1.15,1.04-2.11,1.58-.78.44-1.7.95-2.99,1.06-.49.04-1.75.13-3.07-.57-.54-.29-2.12-1.12-2.47-2.93-.3-1.52.42-2.95,1.31-3.73.54-.47,1.16-.66,2.4-1.03,1.29-.39,2.31-.54,3.17-.6,1.19-.09,2.42-.14,3.71-.14v-.45ZM105.22,79.28c-1.11.02-2.01.16-2.64.29-.86.18-1.44.3-2.15.69-.5.28-1.24.71-1.66,1.57-.26.54-.28,1.01-.28,1.13,0,.5.09.92.29,1.26.19.34.44.61.76.83.32.21.67.36,1.07.45.39.09.78.14,1.18.14.72,0,1.36-.12,1.92-.38.16-.07.82-.38,1.41-1.02,1.14-1.24,1.18-2.82,1.17-3.26v-1.78c-.36.02-.71.05-1.07.07Z"/>
+  <path fill="#FFFFFF" d="M118.81,76.15c-.28-.41-.71-.94-1.37-1.42-.35-.26-1.42-1.02-2.94-1.1-.48-.02-1.14-.05-1.85.31-.32.16-.95.48-1.24,1.21-.09.22-.26.78-.04,1.35.18.49.6.84,1.83,1.38,1.13.49,2.02.73,2.55.88,2.31.65,3.46.98,4.32,1.67.53.42,1.5,1.19,1.64,2.44.15,1.33-.72,2.34-.91,2.55-.61.67-1.35.94-1.96,1.17-.41.15-.81.24-1.6.41-.42.09-.79.16-1.23.2-.23.02-.45.03-.68.03-1.06,0-2.09-.22-3.09-.66-1-.44-1.82-1.13-2.46-2.07l1.62-1.2c.36.62.89,1.14,1.59,1.56.7.42,1.47.63,2.31.63.44,0,.86-.04,1.26-.12.4-.08.75-.22,1.05-.42.3-.2.54-.45.72-.77.18-.31.27-.69.27-1.15,0-.74-.36-1.29-1.07-1.67s-1.73-.71-3.07-1.04c-.42-.1-.87-.23-1.33-.38-.47-.15-.91-.37-1.31-.66-.4-.29-.73-.65-.99-1.09-.26-.44-.39-.99-.39-1.65,0-.72.14-1.33.42-1.85.28-.51.66-.93,1.12-1.26.47-.33,1-.57,1.61-.74.6-.16,1.22-.24,1.86-.24.98,0,1.93.22,2.85.66.92.44,1.61,1.06,2.07,1.86l-1.56,1.17Z"/>
+  <path fill="#FFFFFF" d="M63.48,77.76c0-1.21-.32-2.11-.96-2.71-.64-.6-1.57-.89-2.79-.89-.84,0-1.62.15-2.34.45-.72.3-1.33.7-1.83,1.2l-1.14-1.35c.58-.58,1.34-1.06,2.29-1.44.95-.38,2.02-.57,3.22-.57.76,0,1.47.1,2.13.31.66.21,1.24.52,1.74.94s.89.95,1.17,1.59.42,1.39.42,2.25v6.15c0,.54.02,1.1.06,1.68.04.58.1,1.07.18,1.47h-1.83c-.06-.34-.11-.71-.15-1.11-.04-.4-.06-.79-.06-1.17h-.06c-.45.44-1.15,1.04-2.11,1.58-.78.44-1.7.95-2.99,1.06-.49.04-1.75.13-3.07-.57-.54-.29-2.12-1.12-2.47-2.93-.3-1.52.42-2.95,1.31-3.73.54-.47,1.16-.66,2.4-1.03,1.29-.39,2.31-.54,3.17-.6,1.19-.09,2.42-.14,3.71-.14v-.45ZM62.41,79.18c-1.11.02-2.01.16-2.64.29-.86.18-1.44.3-2.15.69-.5.28-1.24.71-1.66,1.57-.26.54-.28,1.01-.28,1.13,0,.5.09.92.29,1.26.19.34.44.61.76.83.32.21.67.36,1.07.45.39.09.78.14,1.18.14.72,0,1.36-.12,1.92-.38.16-.07.82-.38,1.41-1.02,1.14-1.24,1.18-2.82,1.17-3.26v-1.78c-.36.02-.71.05-1.07.07Z"/>
+  <path fill="#A8B8A5" d="M71.26,73.42c-.03-.07.94-.7,2.25-1.08.65-.19,1.94-.55,3.55-.27,2.45.43,3.99,2.07,3.94,2.14-.04.06-1.17-.82-3.21-1.4-.44-.13-1.01-.29-1.7-.36-2.66-.27-4.79,1.08-4.83.98Z"/>
+  <path fill="#A8B8A5" d="M92.42,85.81s-.27.45-.75.85c-.24.19-.71.57-1.44.74-1.1.26-2.03-.13-2.02-.17,0-.03.63.13,1.59,0,.21-.03.47-.06.77-.16,1.16-.36,1.81-1.3,1.85-1.26Z"/>
+  <path fill="#A8B8A5" d="M40.23,83.87s-.4-.63-.7-1.55c-.15-.46-.44-1.36-.49-2.52-.07-1.77.47-2.95.51-2.92.03.02-.23.88-.27,2.37,0,.32-.02.74.02,1.23.16,1.91.97,3.36.93,3.4Z"/>
+  <path fill="#A8B8A5" d="M122.69,82.6c.07.03-.03,1.04-.5,2.11-.23.53-.71,1.56-1.84,2.34-1.72,1.2-3.81,1.02-3.84.94-.02-.06,1.27-.15,2.88-1,.34-.18.79-.42,1.24-.79,1.73-1.43,1.96-3.64,2.06-3.6Z"/>
+  <g>
+    <text font-family="Avenir Next, AvenirNext-DemiBold, Avenir, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF" transform="translate(96.05 97.97)"><tspan x="0" y="0">e</tspan></text>
+    <text font-family="Avenir Next, AvenirNext-DemiBold, Avenir, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF" transform="translate(84.73 97.97)"><tspan x="0" y="0">m</tspan></text>
+    <text font-family="Avenir Next, AvenirNext-DemiBold, Avenir, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF" transform="translate(103.32 97.97)"><tspan x="0" y="0">d</tspan></text>
+    <text font-family="Avenir Next, AvenirNext-DemiBold, Avenir, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF" transform="translate(111.1 98.06)"><tspan x="0" y="0">i</tspan></text>
+    <text font-family="Avenir Next, AvenirNext-DemiBold, Avenir, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF" transform="translate(114.45 98.06)"><tspan x="0" y="0">a</tspan></text>
+  </g>
+  <path fill="#A8B8A5" d="M118.13,91.81s.39-.13.81-.08c.21.02.62.08.98.43.55.53.61,1.39.59,1.41-.02.02-.13-.49-.55-1.02-.09-.11-.2-.26-.37-.39-.64-.5-1.48-.3-1.47-.35Z"/>
+  <path fill="#355E4B" d="M87.11,92.46s.2-.21.52-.39c.16-.09.47-.26.9-.33.66-.1,1.15.12,1.14.14,0,.01-.35-.08-.91-.04-.12,0-.28.02-.46.06-.7.15-1.18.58-1.19.57Z"/>
+  <path fill="#A8B8A5" d="M87.11,92.46s.2-.21.52-.39c.16-.09.47-.26.9-.33.66-.1,1.15.12,1.14.14,0,.01-.35-.08-.91-.04-.12,0-.28.02-.46.06-.7.15-1.18.58-1.19.57Z"/>
+</svg>
+    <span>&copy; <span id="yr">2026</span> Canvas Media. Guernsey, Channel Islands.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var yr = document.getElementById('yr');
+  if (yr) yr.textContent = new Date().getFullYear();
+
+  var form = document.getElementById('brief');
+  if (!form) return;
+
+  /* ---------- reveals ---------- */
+  var revealables = document.querySelectorAll('.r');
+  if (prefersReduced || !('IntersectionObserver' in window)) {
+    revealables.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold:.12 });
+    revealables.forEach(function(el){ io.observe(el); });
+  }
+
+  /* ---------- conditional service blocks ---------- */
+  var svcBoxes = form.querySelectorAll('input[data-svc]');
+  var detailSec = document.getElementById('detailSec');
+
+  function syncServices(){
+    var any = false;
+    svcBoxes.forEach(function(box){
+      var key = box.getAttribute('data-svc');
+      var block = form.querySelector('.cond[data-cond="' + key + '"]');
+      if (!block) return;
+      if (box.checked) { block.classList.add('on'); if (key !== 'other') any = true; }
+      else { block.classList.remove('on'); clearInside(block); }
+    });
+    if (detailSec) detailSec.classList.toggle('on', any);
+  }
+
+  /* ---------- generic "other" reveals ---------- */
+  form.querySelectorAll('input[data-other]').forEach(function(box){
+    box.addEventListener('change', function(){
+      var t = document.getElementById(box.getAttribute('data-other'));
+      if (!t) return;
+      t.classList.toggle('on', box.checked);
+      if (!box.checked) clearInside(t);
+      updateProgress();
+    });
+  });
+
+  /* ---------- yes/no reveals ---------- */
+  form.querySelectorAll('input[data-show],input[data-hide]').forEach(function(radio){
+    radio.addEventListener('change', function(){
+      var showId = radio.getAttribute('data-show');
+      var hideId = radio.getAttribute('data-hide');
+      var id = showId || hideId;
+      var t = document.getElementById(id);
+      if (!t) return;
+      if (showId) t.classList.add('on');
+      else { t.classList.remove('on'); clearInside(t); }
+      updateProgress();
+    });
+  });
+
+  function clearInside(node){
+    node.querySelectorAll('input[type=text],input[type=email],input[type=url],textarea').forEach(function(f){ f.value=''; });
+    node.querySelectorAll('input[type=checkbox],input[type=radio]').forEach(function(f){ f.checked=false; });
+  }
+
+  svcBoxes.forEach(function(b){ b.addEventListener('change', function(){ syncServices(); updateProgress(); }); });
+
+  /* ---------- progress: counts the answers we actually need ---------- */
+  var requiredFields = Array.prototype.slice.call(form.querySelectorAll('[required]'));
+  var groups = [
+    { el: document.getElementById('svcField'), name: 'services' },
+    { el: document.getElementById('goalsField'), name: 'goals' }
+  ];
+  var total = requiredFields.length + groups.length;
+  var fill = document.getElementById('railFill');
+  var txt = document.getElementById('railTxt');
+  var reqCount = document.getElementById('reqCount');
+  if (reqCount) reqCount.textContent = total;
+
+  function groupDone(g){ return form.querySelectorAll('input[name="' + g.name + '"]:checked').length > 0; }
+
+  function updateProgress(){
+    var done = 0;
+    requiredFields.forEach(function(f){ if (f.value.trim() !== '') done++; });
+    groups.forEach(function(g){ if (groupDone(g)) done++; });
+    var pct = Math.round(done / total * 100);
+    if (fill) fill.style.width = pct + '%';
+    if (txt) txt.textContent = done + ' of ' + total + ' needed answers';
+  }
+
+  form.addEventListener('input', updateProgress);
+  form.addEventListener('change', updateProgress);
+
+  /* ---------- validation ---------- */
+  function markBad(el, on){
+    var q = el.closest('.q') || el.closest('fieldset');
+    if (q) q.classList.toggle('bad', on);
+  }
+  requiredFields.forEach(function(f){
+    f.addEventListener('blur', function(){ markBad(f, !f.checkValidity()); });
+    f.addEventListener('input', function(){ if (f.checkValidity()) markBad(f, false); });
+  });
+
+  function firstProblem(){
+    for (var i=0;i<requiredFields.length;i++){
+      if (!requiredFields[i].checkValidity()) return requiredFields[i];
+    }
+    for (var j=0;j<groups.length;j++){
+      if (!groupDone(groups[j])) return groups[j].el;
+    }
+    return null;
+  }
+
+  /* ---------- submit ---------- */
+  var btn = document.getElementById('sendBtn');
+  var sendTxt = document.getElementById('sendTxt');
+  var formErr = document.getElementById('formErr');
+  var done = document.getElementById('done');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    formErr.classList.remove('on');
+
+    var bad = firstProblem();
+    if (bad){
+      requiredFields.forEach(function(f){ markBad(f, !f.checkValidity()); });
+      groups.forEach(function(g){ if (g.el) g.el.classList.toggle('bad', !groupDone(g)); });
+      formErr.textContent = 'A few answers are still needed. We have highlighted them for you.';
+      formErr.classList.add('on');
+      var target = bad.focus ? bad : bad.querySelector('input');
+      (bad.scrollIntoView ? bad : target).scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block:'center' });
+      if (target && target.focus) target.focus({ preventScroll:true });
+      return;
+    }
+
+    var fd = new FormData(form);
+    var payload = {};
+    fd.forEach(function(v,k){
+      if (payload[k] === undefined) payload[k] = v;
+      else payload[k] = payload[k] + ', ' + v;   // keep multi-selects readable in the email
+    });
+    if (payload.email) payload.replyto = payload.email;
+
+    btn.disabled = true;
+    if (sendTxt) sendTxt.textContent = 'Sending...';
+
+    fetch('https://api.web3forms.com/submit', {
+      method:'POST',
+      headers:{ 'Content-Type':'application/json', 'Accept':'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function(res){ return res.json().then(function(j){ return { ok:res.ok, j:j }; }); })
+    .then(function(r){
+      if (r.ok && r.j && r.j.success){
+        form.style.display = 'none';
+        document.querySelector('.intro').style.display = 'none';
+        var rail = document.getElementById('rail');
+        if (rail) rail.style.display = 'none';
+        done.classList.add('on');
+        window.scrollTo({ top:0, behavior: prefersReduced ? 'auto' : 'smooth' });
+      } else { throw new Error('failed'); }
+    })
+    .catch(function(){
+      formErr.textContent = "Something went wrong sending your answers. Please email hello@canvasmedia.gg and we will sort it out.";
+      formErr.classList.add('on');
+    })
+    .then(function(){
+      btn.disabled = false;
+      if (sendTxt) sendTxt.textContent = 'Send my briefing';
+    });
+  });
+
+  syncServices();
+  updateProgress();
+})();
+</script>
+</body>
+</html>
