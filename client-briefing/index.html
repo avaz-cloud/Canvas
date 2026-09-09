@@ -172,7 +172,8 @@ fieldset{border:0}
 .form-err.on{display:block}
 
 /* success */
-.done{display:none;padding-block:clamp(3rem,7vw,5.5rem)}
+.done{display:none;padding-block:clamp(2.4rem,6vw,4.5rem);scroll-margin-top:5rem}
+.done h2:focus{outline:none}
 .done.on{display:block}
 .done-card{background:var(--mint);border:1.5px solid var(--ink);box-shadow:10px 10px 0 var(--sage);padding:clamp(1.8rem,4vw,3rem);max-width:38rem}
 .done-card h2{font-size:clamp(1.6rem,3.6vw,2.4rem);font-weight:700;letter-spacing:-.03em;margin-bottom:.8rem}
@@ -815,7 +816,7 @@ fieldset{border:0}
 <section class="done" id="done">
   <div class="wrap">
     <div class="done-card">
-      <h2>Thanks, we have got what we need.</h2>
+      <h2 tabindex="-1">Thanks, we have got what we need.</h2>
       <p>Your answers are with us. We will go through them properly and use them to prepare for the next stage of working together.</p>
       <p>If anything comes to mind afterwards, just reply to our last email and we will add it to your brief.</p>
       <a class="back" href="/">Back to canvasmedia.gg <span aria-hidden="true">&rarr;</span></a>
@@ -1009,12 +1010,19 @@ fieldset{border:0}
     .then(function(res){ return res.json().then(function(j){ return { ok:res.ok, j:j }; }); })
     .then(function(r){
       if (r.ok && r.j && r.j.success){
-        form.style.display = 'none';
-        document.querySelector('.intro').style.display = 'none';
+        var main = document.getElementById('main');
+        var intro = document.querySelector('.intro');
         var rail = document.getElementById('rail');
+        if (intro) intro.style.display = 'none';
         if (rail) rail.style.display = 'none';
+        form.style.display = 'none';
+        // put the message first in the page so it cannot end up below the fold
         done.classList.add('on');
-        window.scrollTo({ top:0, behavior: prefersReduced ? 'auto' : 'smooth' });
+        if (main && main.firstChild !== done) main.insertBefore(done, main.firstChild);
+        // jump instantly, then let the card settle into view
+        window.scrollTo(0, 0);
+        var head = done.querySelector('h2');
+        if (head && head.focus) head.focus({ preventScroll:true });
       } else { throw new Error('failed'); }
     })
     .catch(function(){
