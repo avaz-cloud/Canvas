@@ -246,16 +246,55 @@ fieldset{border:0}
 
 /* ============ PROCESS (outline numerals) ============ */
 .process{background:var(--sage-tint)}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1.4rem,3vw,2.6rem)}
-.step .fig{
-  font-family:var(--display);font-weight:800;font-size:clamp(3.4rem,7vw,5.6rem);line-height:.8;
-  color:transparent;-webkit-text-stroke:1.6px var(--forest);margin-bottom:1rem;
+
+
+/* ============ how we work: set like a printed spread ============ */
+.run{display:block}
+
+/* each stage opens with a ruled marker, the way a print section does */
+.stage{padding-block:clamp(2rem,4.6vw,3.4rem)}
+.stage-rule{display:flex;align-items:center;gap:1.1rem;margin-bottom:clamp(1rem,2.4vw,1.6rem)}
+.stage-rule .what{
+  font-family:var(--display);font-weight:700;font-size:.7rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--forest);white-space:nowrap;
 }
-.step h3{font-size:1.18rem;font-weight:600;margin-bottom:.55rem}
-.step .verb{display:block;font-family:var(--display);font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--forest);margin-top:.3rem}
-.step p{font-size:1rem;color:var(--ink-soft)}
-@media (max-width:980px){.steps{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.steps{grid-template-columns:1fr;gap:2rem}}
+.stage-rule .line{flex:1;height:1.5px;background:var(--ink);opacity:.5}
+.stage h2{
+  font-family:var(--display);font-weight:700;letter-spacing:-.045em;line-height:.94;
+  margin-bottom:clamp(.9rem,2vw,1.4rem);
+}
+.stage h2 em{font-style:normal;color:var(--forest)}
+.stage p{font-size:clamp(1.02rem,1.55vw,1.14rem);color:var(--ink-soft)}
+
+/* sizes and indents vary per stage, so the page reads as set by hand
+   rather than poured into a repeating grid */
+.stage:nth-of-type(1) h2{font-size:clamp(2.5rem,7vw,5rem);max-width:11ch}
+.stage:nth-of-type(1) p{max-width:27rem;margin-left:clamp(0rem,34%,22rem)}
+
+.stage:nth-of-type(2) h2{font-size:clamp(2rem,4.6vw,3.2rem);margin-left:clamp(0rem,14%,9rem);max-width:13ch}
+.stage:nth-of-type(2) p{max-width:30rem;margin-left:clamp(0rem,14%,9rem)}
+
+.stage:nth-of-type(3) h2{font-size:clamp(2.3rem,6vw,4.3rem);margin-left:clamp(0rem,30%,19rem);max-width:9ch}
+.stage:nth-of-type(3) p{max-width:28rem;margin-left:clamp(0rem,6%,4rem)}
+
+.stage:nth-of-type(4) h2{font-size:clamp(2.1rem,5.2vw,3.7rem);margin-left:clamp(0rem,5%,3rem);max-width:12ch}
+.stage:nth-of-type(4) p{max-width:29rem;margin-left:clamp(0rem,40%,26rem)}
+
+/* the brushstroke appears once, on the closing word, not on every stage */
+.stroke{position:relative;display:inline-block}
+.stroke svg{
+  position:absolute;left:-4%;right:-4%;bottom:-.04em;width:108%;height:.24em;
+  fill:none;stroke:var(--sage);stroke-width:9;stroke-linecap:round;z-index:-1;
+}
+.run{position:relative;z-index:1}
+
+@media (max-width:760px){
+  .stage{padding-block:1.6rem;border-top:1.5px solid var(--rule)}
+  .stage:first-of-type{border-top:0}
+  .stage-rule{margin-bottom:.9rem}
+  .stage h2,.stage p{margin-left:0 !important;max-width:none}
+  .stage:nth-of-type(n) h2{font-size:clamp(1.9rem,8.4vw,2.6rem)}
+}
 
 /* ============ ABOUT ============ */
 .about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(2rem,5vw,5rem);align-items:start}
@@ -358,11 +397,27 @@ a.svc{color:inherit}
 
 <section class="sec process" id="process" style="padding-top:clamp(1.8rem,4vw,3rem)">
   <div class="wrap">
-    <div class="steps">
-      <div class="step r"><div class="fig">01</div><h3>Discover<span class="verb">listen first</span></h3><p>We start with questions, not answers. A proper conversation about your business, your customers and what success looks like for you.</p></div>
-      <div class="step r r-d1"><div class="fig">02</div><h3>Design<span class="verb">make it yours</span></h3><p>Strategy becomes something you can see. Identity, layouts and prototypes, shared early and shaped with you, so the result always feels like your business.</p></div>
-      <div class="step r r-d2"><div class="fig">03</div><h3>Build<span class="verb">work smart</span></h3><p>Websites, artwork and campaigns produced to a high standard. We use modern tools and AI to build faster and pass the saving on to you.</p></div>
-      <div class="step r r-d3"><div class="fig">04</div><h3>Launch<span class="verb">then keep going</span></h3><p>We stay close after launch, tracking what matters and refining as we go, helping your business grow without a heavy monthly retainer.</p></div>
+    <div class="run">
+      <div class="stage r">
+        <div class="stage-rule"><span class="what">Discover</span><span class="line"></span></div>
+        <h2>Listen <em>first</em></h2>
+        <p>We start with questions, not answers. A proper conversation about your business, your customers and what success looks like for you.</p>
+      </div>
+      <div class="stage r">
+        <div class="stage-rule"><span class="what">Design</span><span class="line"></span></div>
+        <h2>Make it <em>yours</em></h2>
+        <p>Strategy becomes something you can see. Identity, layouts and prototypes, shared early and shaped with you, so the result always feels like your business.</p>
+      </div>
+      <div class="stage r">
+        <div class="stage-rule"><span class="what">Build</span><span class="line"></span></div>
+        <h2>Work <em>smart</em></h2>
+        <p>Websites, artwork and campaigns produced to a high standard. We use modern tools and AI to build faster and pass the saving on to you.</p>
+      </div>
+      <div class="stage r">
+        <div class="stage-rule"><span class="what">Launch</span><span class="line"></span></div>
+        <h2>Then keep <em class="stroke">going<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M5 13 C 60 4, 130 18, 190 9 S 285 5, 296 11"/></svg></em></h2>
+        <p>We stay close after launch, tracking what matters and refining as we go, helping your business grow without a heavy monthly retainer.</p>
+      </div>
     </div>
   </div>
 </section>
