@@ -266,19 +266,18 @@ fieldset{border:0}
 .stage h2 em{font-style:normal;color:var(--forest)}
 .stage p{font-size:clamp(1.02rem,1.55vw,1.14rem);color:var(--ink-soft)}
 
-/* sizes and indents vary per stage, so the page reads as set by hand
-   rather than poured into a repeating grid */
-.stage:nth-of-type(1) h2{font-size:clamp(2.5rem,7vw,5rem);max-width:11ch}
-.stage:nth-of-type(1) p{max-width:27rem;margin-left:clamp(0rem,34%,22rem)}
-
-.stage:nth-of-type(2) h2{font-size:clamp(2rem,4.6vw,3.2rem);margin-left:clamp(0rem,14%,9rem);max-width:13ch}
-.stage:nth-of-type(2) p{max-width:30rem;margin-left:clamp(0rem,14%,9rem)}
-
-.stage:nth-of-type(3) h2{font-size:clamp(2.3rem,6vw,4.3rem);margin-left:clamp(0rem,30%,19rem);max-width:9ch}
-.stage:nth-of-type(3) p{max-width:28rem;margin-left:clamp(0rem,6%,4rem)}
-
-.stage:nth-of-type(4) h2{font-size:clamp(2.1rem,5.2vw,3.7rem);margin-left:clamp(0rem,5%,3rem);max-width:12ch}
-.stage:nth-of-type(4) p{max-width:29rem;margin-left:clamp(0rem,40%,26rem)}
+/* one consistent left edge, with the paragraph held in a second column.
+   the only variation is scale: the opening stage leads, the rest settle. */
+.stage-in{
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  gap:clamp(1.2rem,4vw,3.6rem);align-items:start;
+}
+.stage h2{max-width:13ch}
+.stage p{max-width:30rem}
+.stage:nth-of-type(1) h2{font-size:clamp(2.4rem,5.4vw,4rem)}
+.stage:nth-of-type(n+2) h2{font-size:clamp(2rem,4.2vw,3.1rem)}
+/* the body copy sits a little lower than the heading, as it would in print */
+.stage p{padding-top:clamp(0rem,.9vw,.7rem)}
 
 /* the brushstroke appears once, on the closing word, not on every stage */
 .stroke{position:relative;display:inline-block}
@@ -292,8 +291,10 @@ fieldset{border:0}
   .stage{padding-block:1.6rem;border-top:1.5px solid var(--rule)}
   .stage:first-of-type{border-top:0}
   .stage-rule{margin-bottom:.9rem}
-  .stage h2,.stage p{margin-left:0 !important;max-width:none}
+  .stage-in{grid-template-columns:1fr;gap:.8rem}
+  .stage h2,.stage p{max-width:none}
   .stage:nth-of-type(n) h2{font-size:clamp(1.9rem,8.4vw,2.6rem)}
+  .stage p{padding-top:0}
 }
 
 /* ============ ABOUT ============ */
@@ -400,23 +401,31 @@ a.svc{color:inherit}
     <div class="run">
       <div class="stage r">
         <div class="stage-rule"><span class="what">Discover</span><span class="line"></span></div>
-        <h2>Listen <em>first</em></h2>
-        <p>We start with questions, not answers. A proper conversation about your business, your customers and what success looks like for you.</p>
+        <div class="stage-in">
+          <h2>We start by <em>listening</em></h2>
+          <p>We start with questions, not answers. A proper conversation about your business, your customers and what success looks like for you.</p>
+        </div>
       </div>
       <div class="stage r">
         <div class="stage-rule"><span class="what">Design</span><span class="line"></span></div>
-        <h2>Make it <em>yours</em></h2>
-        <p>Strategy becomes something you can see. Identity, layouts and prototypes, shared early and shaped with you, so the result always feels like your business.</p>
+        <div class="stage-in">
+          <h2>Shaped around <em>you</em></h2>
+          <p>Strategy becomes something you can see. Identity, layouts and prototypes, shared early and shaped with you, so the result always feels like your business.</p>
+        </div>
       </div>
       <div class="stage r">
         <div class="stage-rule"><span class="what">Build</span><span class="line"></span></div>
-        <h2>Work <em>smart</em></h2>
-        <p>Websites, artwork and campaigns produced to a high standard. We use modern tools and AI to build faster and pass the saving on to you.</p>
+        <div class="stage-in">
+          <h2>Built well, and <em>quickly</em></h2>
+          <p>Websites, artwork and campaigns produced to a high standard. We use modern tools and AI to build faster and pass the saving on to you.</p>
+        </div>
       </div>
       <div class="stage r">
         <div class="stage-rule"><span class="what">Launch</span><span class="line"></span></div>
-        <h2>Then keep <em class="stroke">going<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M5 13 C 60 4, 130 18, 190 9 S 285 5, 296 11"/></svg></em></h2>
-        <p>We stay close after launch, tracking what matters and refining as we go, helping your business grow without a heavy monthly retainer.</p>
+        <div class="stage-in">
+          <h2>And we <em class="stroke">stay close<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M5 13 C 60 4, 130 18, 190 9 S 285 5, 296 11"/></svg></em></h2>
+          <p>We stay close after launch, tracking what matters and refining as we go, helping your business grow without a heavy monthly retainer.</p>
+        </div>
       </div>
     </div>
   </div>
