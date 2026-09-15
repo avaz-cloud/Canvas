@@ -388,9 +388,32 @@ fieldset{border:0}
       </div>
 
       <div class="q">
-        <label for="hard">What do you find hardest about marketing your business? <span class="req">Required</span></label>
+        <label for="hard">What do you find hardest about marketing your business, or about working with whoever currently handles it? <span class="req">Required</span></label>
+        <span class="hint">Whether you do it yourself or someone else does it for you.</span>
         <textarea id="hard" name="hardest" required placeholder=" "></textarea>
         <p class="err">Even one line helps us a lot.</p>
+      </div>
+
+      <fieldset class="q">
+        <legend>If someone else handles your marketing, what is not working?</legend>
+        <span class="hint">Select all that apply, or skip this if you handle it yourself.</span>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="third_party_issues" value="Not consistent or active enough"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Not consistent or active enough</span></label>
+          <label class="opt"><input type="checkbox" name="third_party_issues" value="Too slow to respond or deliver"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Too slow to respond or deliver</span></label>
+          <label class="opt"><input type="checkbox" name="third_party_issues" value="Not creative enough"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Not creative enough</span></label>
+          <label class="opt"><input type="checkbox" name="third_party_issues" value="Does not understand our brand or audience"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Does not understand our brand or audience</span></label>
+          <label class="opt"><input type="checkbox" name="third_party_issues" value="Does not fulfil briefs properly"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Does not fulfil briefs properly</span></label>
+          <label class="opt"><input type="checkbox" name="third_party_issues" value="Does not bring enough ideas"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Does not bring enough ideas</span></label>
+          <label class="opt"><input type="checkbox" name="third_party_issues" value="Communication could be better"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Communication could be better</span></label>
+          <label class="opt"><input type="checkbox" name="third_party_issues" value="Not getting the results we want"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Not getting the results we want</span></label>
+          <label class="opt"><input type="checkbox" name="third_party_issues" value="Too expensive"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Too expensive</span></label>
+          <label class="opt"><input type="checkbox" name="third_party_issues" value="Other" data-other="tp-other"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Something else</span></label>
+        </div>
+      </fieldset>
+
+      <div class="q cond" id="tp-other">
+        <label for="tp-other-txt">What else has not worked?</label>
+        <input type="text" id="tp-other-txt" name="third_party_issues_other" placeholder=" ">
       </div>
 
       <div class="q">
