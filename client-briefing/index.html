@@ -944,7 +944,7 @@ fieldset{border:0}
     node.querySelectorAll('input[type=checkbox],input[type=radio]').forEach(function(f){ f.checked=false; });
   }
 
-  svcBoxes.forEach(function(b){ b.addEventListener('change', function(){ syncServices(); updateProgress(); }); });
+  svcBoxes.forEach(function(b){ b.addEventListener('change', function(){ syncServices(); renumber(); updateProgress(); }); });
 
   /* ---------- progress: counts the answers we actually need ---------- */
   var requiredFields = Array.prototype.slice.call(form.querySelectorAll('[required]'));
@@ -959,6 +959,20 @@ fieldset{border:0}
   if (reqCount) reqCount.textContent = total;
 
   function groupDone(g){ return form.querySelectorAll('input[name="' + g.name + '"]:checked').length > 0; }
+
+  /* section numbers follow what is visible: the conditional section is
+     skipped entirely until a service is chosen, so no number is missed */
+  var numbered = Array.prototype.slice.call(document.querySelectorAll('.sec .sec-no'));
+  function renumber(){
+    var n = 0;
+    numbered.forEach(function(tag){
+      var sec = tag.closest('.sec');
+      var hidden = sec.classList.contains('cond') && !sec.classList.contains('on');
+      if (hidden) { tag.textContent = ''; return; }
+      n++;
+      tag.textContent = (n < 10 ? '0' : '') + n;
+    });
+  }
 
   function updateProgress(){
     var done = 0;
@@ -1059,6 +1073,7 @@ fieldset{border:0}
   });
 
   syncServices();
+  renumber();
   updateProgress();
 })();
 </script>
