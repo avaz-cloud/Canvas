@@ -366,13 +366,37 @@ fieldset{border:0}
         </div>
       </fieldset>
 
+      <fieldset class="q">
+        <legend>If you have a website already, what can it do?</legend>
+        <span class="hint">Select all that apply, or skip this if you do not have one yet.</span>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="website_features_now" value="Online shop (e-commerce)"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Online shop (e-commerce)</span></label>
+          <label class="opt"><input type="checkbox" name="website_features_now" value="Online payments or deposits"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Online payments or deposits</span></label>
+          <label class="opt"><input type="checkbox" name="website_features_now" value="Booking or enquiry form"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Booking or enquiry form</span></label>
+          <label class="opt"><input type="checkbox" name="website_features_now" value="Availability calendar"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Availability calendar</span></label>
+          <label class="opt"><input type="checkbox" name="website_features_now" value="Contact form"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Contact form</span></label>
+          <label class="opt"><input type="checkbox" name="website_features_now" value="Customer logins or accounts"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Customer logins or accounts</span></label>
+          <label class="opt"><input type="checkbox" name="website_features_now" value="Photo gallery or portfolio"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Photo gallery or portfolio</span></label>
+          <label class="opt"><input type="checkbox" name="website_features_now" value="Blog or news page"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Blog or news page</span></label>
+          <label class="opt"><input type="checkbox" name="website_features_now" value="Newsletter signup"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Newsletter signup</span></label>
+          <label class="opt"><input type="checkbox" name="website_features_now" value="A system for editing pages"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>A system for editing pages</span></label>
+          <label class="opt"><input type="checkbox" name="website_features_now" value="None of these"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>None of these</span></label>
+          <label class="opt"><input type="checkbox" name="website_features_now" value="Other" data-other="wf-other"><span class="box"><svg viewBox="0 0 14 14"><path d="M2 7.5 L6 11 L12 3"/></svg></span><span>Something else</span></label>
+        </div>
+      </fieldset>
+
+      <div class="q cond" id="wf-other">
+        <label for="wf-other-txt">What else does it do?</label>
+        <input type="text" id="wf-other-txt" name="website_features_other" placeholder=" ">
+      </div>
+
       <div class="q">
         <label for="mk-like">What do you like about your marketing at the moment?</label>
         <textarea id="mk-like" name="marketing_like" placeholder=" "></textarea>
       </div>
 
       <div class="q">
-        <label for="mk-missing">What feels like it is missing?</label>
+        <label for="mk-missing">What does it feel like is missing?</label>
         <textarea id="mk-missing" name="marketing_missing" placeholder=" "></textarea>
       </div>
     </section>
@@ -618,6 +642,18 @@ fieldset{border:0}
             <span class="hint">Contact forms, booking, an online shop, a gallery, a portfolio.</span>
             <textarea id="w-features" name="web_features" placeholder=" "></textarea>
           </div>
+          <fieldset class="q">
+            <legend>Once it is live, how often will you need us to update things?</legend>
+            <span class="hint">Prices, opening times, new photos, that sort of thing. We look after these updates for you, so your site stays consistent and on brand. A rough idea of how often is all we need to price it.</span>
+            <div class="opts narrow">
+              <label class="opt"><input type="radio" name="web_update_frequency" value="Rarely, once or twice a year"><span class="box round"><span class="dot"></span></span><span>Rarely, once or twice a year</span></label>
+              <label class="opt"><input type="radio" name="web_update_frequency" value="A few times a year"><span class="box round"><span class="dot"></span></span><span>A few times a year</span></label>
+              <label class="opt"><input type="radio" name="web_update_frequency" value="Monthly"><span class="box round"><span class="dot"></span></span><span>Around once a month</span></label>
+              <label class="opt"><input type="radio" name="web_update_frequency" value="Every few weeks"><span class="box round"><span class="dot"></span></span><span>Every few weeks</span></label>
+              <label class="opt"><input type="radio" name="web_update_frequency" value="Weekly or more"><span class="box round"><span class="dot"></span></span><span>Weekly or more often</span></label>
+              <label class="opt"><input type="radio" name="web_update_frequency" value="Not sure yet"><span class="box round"><span class="dot"></span></span><span>Not sure yet</span></label>
+            </div>
+          </fieldset>
           <div class="q">
             <label for="w-action">What is the main thing you want visitors to do?</label>
             <textarea id="w-action" name="web_main_action" placeholder=" "></textarea>
