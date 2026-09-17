@@ -249,7 +249,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:-.02em;lin
       <a href="reviews.html" data-nav>Reviews</a>
       <a href="how-we-work.html" data-nav>How we work</a>
       <a href="about.html" data-nav>About</a>
-      <a href="index.html#contact" class="cta">Let's have a chat</a>
+      <a href="/contact" class="cta">Let's have a chat</a>
     </nav>
   </div>
 </header>
@@ -345,7 +345,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:-.02em;lin
           <p>Multiple pages (up to 8 pages), built around what your customers look for.</p>
         </div>
       </div>
-      <p class="foot-note"><span class="ast">*</span> Website prices do not include a domain name or hosting. We can arrange both for you at an additional cost, just ask.</p>
+      <p class="foot-note"><span class="ast">*</span> Website prices do not include a domain name or hosting, though we can arrange both for you at an additional cost. Pages are built as static pages rather than being content managed, so text and content are updated by us rather than edited on your side. We can look after those updates for you, either monthly or as and when you need them. Online shop and booking functionality are not included as standard, and are quoted separately.</p>
     </div>
   </div>
 </section>
@@ -413,7 +413,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:-.02em;lin
       <h2 class="r">Ready to talk it through?</h2>
       <p class="r r-d1">Tell us a little about your business and we'll arrange a video call at a time that suits you.</p>
     </div>
-    <a class="btn on-dark r r-d2" href="index.html#contact">Let's have a chat <span aria-hidden="true">&rarr;</span></a>
+    <a class="btn on-dark r r-d2" href="/contact">Let's have a chat <span aria-hidden="true">&rarr;</span></a>
   </div>
 </section>
 
@@ -454,7 +454,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:-.02em;lin
           <li><a href="reviews.html">Reviews</a></li>
           <li><a href="how-we-work.html">How we work</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="/contact">Contact</a></li>
         </ul>
       </div>
       <div>
@@ -517,7 +517,10 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:-.02em;lin
   var navLinks = document.querySelectorAll('.nav a[data-nav]');
   var sections = [];
   navLinks.forEach(function(link){
-    var el = document.querySelector(link.getAttribute('href'));
+    var href = link.getAttribute('href') || '';
+    // only in-page anchors can be observed; page URLs are not valid selectors
+    if (href.charAt(0) !== '#' || href.length < 2) return;
+    var el = document.querySelector(href);
     if (el) sections.push({ link:link, el:el });
   });
   if (sections.length && 'IntersectionObserver' in window) {
