@@ -197,46 +197,95 @@ h1,h2,h3,h4,.ui{font-family:var(--display);font-weight:600;letter-spacing:-.02em
   .hero-in{grid-template-columns:1fr;align-items:start;gap:2rem}
 }
 
-/* ---------- homepage directory: tabbed index cards ---------- */
-.dir{padding-top:0;padding-bottom:clamp(2.6rem,6vw,4.5rem)}
-.dir-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,225px),1fr));gap:clamp(1.5rem,3vw,2.2rem)}
-.dcard{
-  position:relative;display:block;color:inherit;
-  background:var(--paper-raised);border:1.5px solid var(--ink);
-  padding:1.6rem 1.3rem 1.4rem;margin-top:1.15rem;
-  box-shadow:7px 7px 0 var(--sage);
-  transition:transform .28s var(--ease),box-shadow .28s var(--ease),background .28s var(--ease);
+/* ---------- homepage: the word wall ----------
+   The six destinations set as one block of type, each line justified hard
+   to both edges so it reads as a printed poster rather than a menu.
+   Hovering a word swipes the sage marker from the hero headline behind it
+   and drops that page's line into the shared caption slot underneath. */
+.dir{
+  margin-top:clamp(.8rem,3vw,2.4rem);
+  padding-block:clamp(2.4rem,5vw,3.6rem) clamp(1.7rem,3vw,2.6rem);
+  background:var(--paper-raised);
+  border-top:1.5px solid var(--ink);
+  border-bottom:1.5px solid var(--ink);
 }
-/* the folder tab */
-.dcard::before{
-  content:attr(data-no);
-  position:absolute;left:-1.5px;top:-1.15rem;height:1.15rem;
-  display:flex;align-items:center;padding:0 .85rem;
-  background:var(--ink);color:var(--paper);
-  font-family:var(--display);font-weight:700;font-size:.64rem;letter-spacing:.16em;
-  border:1.5px solid var(--ink);border-bottom:0;
-  border-radius:.35rem .9rem 0 0;
+.dir-head{
+  display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+  padding-bottom:.7rem;margin-bottom:clamp(1.3rem,2.6vw,2rem);
+  border-bottom:1.5px solid var(--ink);
+  font-family:var(--display);font-weight:700;font-size:.7rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--forest);
 }
-.dcard:nth-child(1){background:var(--mint)}
-.dcard:nth-child(2){background:var(--mist)}
-.dcard:nth-child(3){background:var(--sand)}
-.dcard:nth-child(4){background:var(--sage-tint)}
-/* staggered so the row reads as placed by hand, not stamped out */
-.dcard:nth-child(even){transform:translateY(1.1rem)}
-.dcard h3{font-size:1.22rem;font-weight:600;margin-bottom:.45rem}
-.dcard p{font-size:.97rem;color:var(--ink-soft);line-height:1.5}
-.dcard .go{
-  display:inline-flex;align-items:center;gap:.45rem;margin-top:1rem;
-  font-family:var(--display);font-weight:600;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--forest);
+.dir-head h2{font:inherit;letter-spacing:inherit;color:inherit;margin:0}
+.dir-head .folio{color:var(--ink-soft);letter-spacing:.26em}
+
+.wall{position:relative;padding-bottom:clamp(3.6rem,7vw,4.8rem)}
+.wl{
+  font-family:var(--display);font-weight:600;
+  font-size:clamp(1.9rem,5.6vw,4.2rem);
+  line-height:.96;letter-spacing:-.035em;
+  white-space:nowrap;margin:0;
 }
-.dcard .go span{transition:transform .28s var(--ease)}
-.dcard:hover{transform:translateY(-4px);box-shadow:10px 10px 0 var(--forest)}
-.dcard:nth-child(even):hover{transform:translateY(.75rem)}
-.dcard:hover .go span{transform:translateX(5px)}
-@media (max-width:620px){
-  .dcard:nth-child(even){transform:none}
-  .dcard:nth-child(even):hover,.dcard:hover{transform:translateY(-3px)}
+.wl + .wl{margin-top:.03em}
+.wl-in{display:inline-block}
+.sep{color:var(--sage);padding-inline:.12em}
+
+.wd{position:static;display:inline-block;color:inherit}
+.wd .w{position:relative;isolation:isolate}
+/* the marker swipe, the same device as the hero headline */
+.wd .w::before{
+  content:"";position:absolute;z-index:-1;
+  left:-.06em;right:-.06em;top:.2em;bottom:.12em;
+  background:var(--sage);transform:rotate(var(--tilt,-.7deg));
+  clip-path:inset(0 100% 0 0);
+  transition:clip-path .42s cubic-bezier(.23,1,.32,1);
+}
+.wl:nth-of-type(1) .wd:nth-of-type(1){--tilt:-.7deg}
+.wl:nth-of-type(1) .wd:nth-of-type(2){--tilt:.55deg}
+.wl:nth-of-type(1) .wd:nth-of-type(3){--tilt:-.4deg}
+.wl:nth-of-type(2) .wd:nth-of-type(1){--tilt:.5deg}
+.wl:nth-of-type(2) .wd:nth-of-type(2){--tilt:-.6deg}
+.wl:nth-of-type(2) .wd:nth-of-type(3){--tilt:.45deg}
+@media (hover:hover) and (pointer:fine){
+  .wd:hover .w::before{clip-path:inset(0 0 0 0)}
+}
+.wd:focus-visible{outline:none}
+.wd:focus-visible .w::before{clip-path:inset(0 0 0 0)}
+.wd:focus-visible .w{text-decoration:underline;text-decoration-thickness:.035em;text-underline-offset:.08em}
+
+/* caption slot: one shared line underneath the whole block */
+.cap-def,.wd .d{
+  position:absolute;left:0;bottom:0;width:min(100%,58ch);
+  font-family:var(--body);font-weight:400;font-size:1.02rem;line-height:1.5;
+  letter-spacing:0;white-space:normal;margin:0;
+  padding-top:.85rem;border-top:1px solid var(--rule);
+  min-height:4.1rem;
+}
+.cap-def{color:var(--ink-soft);z-index:0}
+.wd .d{
+  z-index:1;background:var(--paper-raised);color:var(--ink);border-top-color:var(--ink);
+  opacity:0;pointer-events:none;transition:opacity .22s ease;
+}
+@media (hover:hover) and (pointer:fine){ .wd:hover .d{opacity:1} }
+.wd:focus-visible .d{opacity:1}
+
+@media (max-width:760px){
+  .wall{padding-bottom:0}
+  .wl{white-space:normal;font-size:clamp(2.1rem,10.5vw,3.4rem);margin:0}
+  .wl + .wl{margin-top:0}
+  .wl-in{display:block}
+  .sep,.cap-def{display:none}
+  .wd{display:block;padding-block:.6rem 1.15rem;border-top:1px solid var(--rule)}
+  .wl:first-of-type .wd:first-of-type{border-top:0}
+  .wd .d{
+    position:static;opacity:1;width:auto;padding-top:.4rem;border-top:0;min-height:0;
+    background:none;color:var(--ink-soft);font-size:.96rem;display:block;
+  }
+  /* there is no hover on touch, so the marker rests under every word */
+  .wd .w::before{clip-path:inset(0 0 0 0);top:.56em;bottom:.13em}
+}
+@media (prefers-reduced-motion:reduce){
+  .wd .w::before,.wd .d{transition:none}
 }
 
 /* ============ SECTION FURNITURE ============ */
@@ -426,28 +475,17 @@ fieldset{border:0}
   </div>
 </section>
 
-<section class="sec dir">
-  <div class="wrap dir-grid">
-    <a class="dcard r" data-no="01" href="services.html">
-      <h3>Services</h3>
-      <p>Branding, websites, social media, photography, print and marketing strategy.</p>
-      <span class="go">See services <span aria-hidden="true">&rarr;</span></span>
-    </a>
-    <a class="dcard r r-d1" data-no="02" href="pricing.html">
-      <h3>Pricing</h3>
-      <p>Clear starting prices for websites, social media, branding and more, tailored to you.</p>
-      <span class="go">See pricing <span aria-hidden="true">&rarr;</span></span>
-    </a>
-    <a class="dcard r r-d2" data-no="03" href="how-we-work.html">
-      <h3>How we work</h3>
-      <p>Four clear steps from the first conversation through to launch day and beyond.</p>
-      <span class="go">See the process <span aria-hidden="true">&rarr;</span></span>
-    </a>
-    <a class="dcard r r-d3" data-no="04" href="about.html">
-      <h3>About</h3>
-      <p>A new Guernsey studio built to help small businesses look and sound their best.</p>
-      <span class="go">About Canvas <span aria-hidden="true">&rarr;</span></span>
-    </a>
+<section class="dir" aria-labelledby="dir-h">
+  <div class="wrap">
+    <div class="dir-head">
+      <h2 id="dir-h">Have a look around</h2>
+      <span class="folio" aria-hidden="true">Six pages</span>
+    </div>
+    <div class="wall">
+      <p class="wl"><span class="wl-in"><a class="wd" href="services.html"><span class="w">Services</span><span class="d">Branding, websites, social media, photography, print and marketing strategy.</span></a><span class="sep" aria-hidden="true">&middot;</span><a class="wd" href="pricing.html"><span class="w">Pricing</span><span class="d">Clear starting prices for websites, social media, branding and more, tailored to you.</span></a><span class="sep" aria-hidden="true">&middot;</span><a class="wd" href="testimonials.html"><span class="w">Work</span><span class="d">Recent projects, including the Guernsey Junior Fishing League website.</span></a></span></p>
+      <p class="wl"><span class="wl-in"><a class="wd" href="reviews.html"><span class="w">Reviews</span><span class="d">What the people we have worked with say about working with Canvas.</span></a><span class="sep" aria-hidden="true">&middot;</span><a class="wd" href="how-we-work.html"><span class="w">How we work</span><span class="d">Four clear steps from the first conversation through to launch day and beyond.</span></a><span class="sep" aria-hidden="true">&middot;</span><a class="wd" href="about.html"><span class="w">About</span><span class="d">A new Guernsey studio built to help small businesses look and sound their best.</span></a></span></p>
+      <p class="cap-def">Branding, websites, social media and marketing, made in Guernsey for Guernsey businesses.</p>
+    </div>
   </div>
 </section>
 
@@ -589,6 +627,30 @@ fieldset{border:0}
         document.body.style.overflow = '';
       });
     });
+  }
+
+  /* justify each line of the word wall hard to both edges */
+  var wall = document.querySelector('.wall');
+  if (wall) {
+    var wlines = [].slice.call(wall.querySelectorAll('.wl'));
+    var fitWall = function(){
+      var stacked = window.matchMedia('(max-width:760px)').matches;
+      wlines.forEach(function(l){
+        var inner = l.querySelector('.wl-in');
+        if (stacked || !inner) { l.style.fontSize = ''; return; }
+        l.style.fontSize = '100px';
+        var natural = inner.getBoundingClientRect().width;
+        var avail = wall.clientWidth;
+        if (natural > 0 && avail > 0) l.style.fontSize = (100 * avail / natural).toFixed(3) + 'px';
+      });
+    };
+    fitWall();
+    var fitTimer;
+    window.addEventListener('resize', function(){
+      clearTimeout(fitTimer); fitTimer = setTimeout(fitWall, 90);
+    });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitWall);
+    window.addEventListener('load', fitWall);
   }
 
   /* reveals */
