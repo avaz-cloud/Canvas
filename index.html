@@ -197,21 +197,22 @@ h1,h2,h3,h4,.ui{font-family:var(--display);font-weight:600;letter-spacing:-.02em
   .hero-in{grid-template-columns:1fr;align-items:start;gap:2rem}
 }
 
-/* ---------- homepage: the word wall ----------
-   The six destinations set as one block of type, each line justified hard
-   to both edges so it reads as a printed poster rather than a menu.
-   Hovering a word swipes the sage marker from the hero headline behind it
-   and drops that page's line into the shared caption slot underneath. */
+/* ---------- homepage: the index ----------
+   Six destinations, one per row, separated by hairlines and given real air.
+   The page name is set large in the display face and the line that explains
+   it sits small in the serif on the same baseline, so each row is a piece of
+   typography rather than a tile. Hovering swipes the sage marker from the
+   hero headline behind the word. No numbers, no arrows, no boxes. */
 .dir{
   margin-top:clamp(.8rem,3vw,2.4rem);
-  padding-block:clamp(2.4rem,5vw,3.6rem) clamp(1.7rem,3vw,2.6rem);
+  padding-block:clamp(2.4rem,5vw,3.6rem) clamp(2.4rem,5vw,3.6rem);
   background:var(--paper-raised);
   border-top:1.5px solid var(--ink);
   border-bottom:1.5px solid var(--ink);
 }
 .dir-head{
   display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
-  padding-bottom:.7rem;margin-bottom:clamp(1.3rem,2.6vw,2rem);
+  padding-bottom:.7rem;
   border-bottom:1.5px solid var(--ink);
   font-family:var(--display);font-weight:700;font-size:.7rem;
   letter-spacing:.2em;text-transform:uppercase;color:var(--forest);
@@ -219,73 +220,55 @@ h1,h2,h3,h4,.ui{font-family:var(--display);font-weight:600;letter-spacing:-.02em
 .dir-head h2{font:inherit;letter-spacing:inherit;color:inherit;margin:0}
 .dir-head .folio{color:var(--ink-soft);letter-spacing:.26em}
 
-.wall{position:relative;padding-bottom:clamp(3.6rem,7vw,4.8rem)}
-.wl{
-  font-family:var(--display);font-weight:600;
-  font-size:clamp(1.9rem,5.6vw,4.2rem);
-  line-height:.96;letter-spacing:-.035em;
-  white-space:nowrap;margin:0;
+.wd{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,34rem);
+  column-gap:clamp(1.4rem,3vw,2.6rem);align-items:baseline;
+  padding-block:clamp(1.3rem,2.7vw,1.95rem);
+  border-bottom:1px solid var(--rule);
+  color:inherit;transition:border-color .3s ease;
 }
-.wl + .wl{margin-top:.03em}
-.wl-in{display:inline-block}
-.sep{color:var(--sage);padding-inline:.12em}
-
-.wd{position:static;display:inline-block;color:inherit}
-.wd .w{position:relative;isolation:isolate}
+.wd:last-of-type{border-bottom:0}
+.wd .w{
+  position:relative;isolation:isolate;justify-self:start;
+  font-family:var(--display);font-weight:600;line-height:1;
+  font-size:clamp(2.05rem,4.4vw,3.35rem);letter-spacing:-.032em;
+}
 /* the marker swipe, the same device as the hero headline */
 .wd .w::before{
   content:"";position:absolute;z-index:-1;
-  left:-.06em;right:-.06em;top:.2em;bottom:.12em;
+  left:-.07em;right:-.07em;top:.12em;bottom:-.01em;
   background:var(--sage);transform:rotate(var(--tilt,-.7deg));
   clip-path:inset(0 100% 0 0);
   transition:clip-path .42s cubic-bezier(.23,1,.32,1);
 }
-.wl:nth-of-type(1) .wd:nth-of-type(1){--tilt:-.7deg}
-.wl:nth-of-type(1) .wd:nth-of-type(2){--tilt:.55deg}
-.wl:nth-of-type(1) .wd:nth-of-type(3){--tilt:-.4deg}
-.wl:nth-of-type(2) .wd:nth-of-type(1){--tilt:.5deg}
-.wl:nth-of-type(2) .wd:nth-of-type(2){--tilt:-.6deg}
-.wl:nth-of-type(2) .wd:nth-of-type(3){--tilt:.45deg}
+.wd:nth-of-type(1) .w{--tilt:-.7deg}
+.wd:nth-of-type(2) .w{--tilt:.55deg}
+.wd:nth-of-type(3) .w{--tilt:-.45deg}
+.wd:nth-of-type(4) .w{--tilt:.5deg}
+.wd:nth-of-type(5) .w{--tilt:-.6deg}
+.wd:nth-of-type(6) .w{--tilt:.4deg}
+.wd .d{
+  font-family:var(--body);font-size:1.05rem;line-height:1.55;max-width:44ch;
+  color:var(--ink-soft);transition:color .3s ease;
+}
 @media (hover:hover) and (pointer:fine){
   .wd:hover .w::before{clip-path:inset(0 0 0 0)}
+  .wd:hover .d{color:var(--ink)}
+  .wd:hover{border-bottom-color:var(--ink)}
 }
-.wd:focus-visible{outline:none}
+.wd:focus-visible{outline:none;border-bottom-color:var(--ink)}
 .wd:focus-visible .w::before{clip-path:inset(0 0 0 0)}
-.wd:focus-visible .w{text-decoration:underline;text-decoration-thickness:.035em;text-underline-offset:.08em}
+.wd:focus-visible .d{color:var(--ink)}
 
-/* caption slot: one shared line underneath the whole block */
-.cap-def,.wd .d{
-  position:absolute;left:0;bottom:0;width:min(100%,58ch);
-  font-family:var(--body);font-weight:400;font-size:1.02rem;line-height:1.5;
-  letter-spacing:0;white-space:normal;margin:0;
-  padding-top:.85rem;border-top:1px solid var(--rule);
-  min-height:4.1rem;
-}
-.cap-def{color:var(--ink-soft);z-index:0}
-.wd .d{
-  z-index:1;background:var(--paper-raised);color:var(--ink);border-top-color:var(--ink);
-  opacity:0;pointer-events:none;transition:opacity .22s ease;
-}
-@media (hover:hover) and (pointer:fine){ .wd:hover .d{opacity:1} }
-.wd:focus-visible .d{opacity:1}
-
-@media (max-width:760px){
-  .wall{padding-bottom:0}
-  .wl{white-space:normal;font-size:clamp(2.1rem,10.5vw,3.4rem);margin:0}
-  .wl + .wl{margin-top:0}
-  .wl-in{display:block}
-  .sep,.cap-def{display:none}
-  .wd{display:block;padding-block:.6rem 1.15rem;border-top:1px solid var(--rule)}
-  .wl:first-of-type .wd:first-of-type{border-top:0}
-  .wd .d{
-    position:static;opacity:1;width:auto;padding-top:.4rem;border-top:0;min-height:0;
-    background:none;color:var(--ink-soft);font-size:.96rem;display:block;
-  }
+@media (max-width:860px){
+  .wd{grid-template-columns:1fr;row-gap:.65rem;padding-block:1.4rem 1.6rem}
+  .wd .w{font-size:clamp(2rem,8.4vw,2.9rem)}
+  .wd .d{font-size:.98rem;max-width:46ch}
   /* there is no hover on touch, so the marker rests under every word */
-  .wd .w::before{clip-path:inset(0 0 0 0);top:.56em;bottom:.13em}
+  .wd .w::before{clip-path:inset(0 0 0 0);top:auto;height:.3em;bottom:.04em}
 }
 @media (prefers-reduced-motion:reduce){
-  .wd .w::before,.wd .d{transition:none}
+  .wd,.wd .w::before,.wd .d{transition:none}
 }
 
 /* ============ SECTION FURNITURE ============ */
@@ -481,11 +464,12 @@ fieldset{border:0}
       <h2 id="dir-h">Have a look around</h2>
       <span class="folio" aria-hidden="true">Six pages</span>
     </div>
-    <div class="wall">
-      <p class="wl"><span class="wl-in"><a class="wd" href="services.html"><span class="w">Services</span><span class="d">Branding, websites, social media, photography, print and marketing strategy.</span></a><span class="sep" aria-hidden="true">&middot;</span><a class="wd" href="pricing.html"><span class="w">Pricing</span><span class="d">Clear starting prices for websites, social media, branding and more, tailored to you.</span></a><span class="sep" aria-hidden="true">&middot;</span><a class="wd" href="testimonials.html"><span class="w">Work</span><span class="d">Recent projects, including the Guernsey Junior Fishing League website.</span></a></span></p>
-      <p class="wl"><span class="wl-in"><a class="wd" href="reviews.html"><span class="w">Reviews</span><span class="d">What the people we have worked with say about working with Canvas.</span></a><span class="sep" aria-hidden="true">&middot;</span><a class="wd" href="how-we-work.html"><span class="w">How we work</span><span class="d">Four clear steps from the first conversation through to launch day and beyond.</span></a><span class="sep" aria-hidden="true">&middot;</span><a class="wd" href="about.html"><span class="w">About</span><span class="d">A new Guernsey studio built to help small businesses look and sound their best.</span></a></span></p>
-      <p class="cap-def">Branding, websites, social media and marketing, made in Guernsey for Guernsey businesses.</p>
-    </div>
+      <a class="wd" href="services.html"><span class="w">Services</span><span class="d">Branding, websites, social media, photography, print and marketing strategy.</span></a>
+      <a class="wd" href="pricing.html"><span class="w">Pricing</span><span class="d">Clear starting prices for websites, social media, branding and more, tailored to you.</span></a>
+      <a class="wd" href="testimonials.html"><span class="w">Work</span><span class="d">Recent projects, including the Guernsey Junior Fishing League website.</span></a>
+      <a class="wd" href="reviews.html"><span class="w">Reviews</span><span class="d">What the people we have worked with say about working with Canvas.</span></a>
+      <a class="wd" href="how-we-work.html"><span class="w">How we work</span><span class="d">Four clear steps from the first conversation through to launch day and beyond.</span></a>
+      <a class="wd" href="about.html"><span class="w">About</span><span class="d">A new Guernsey studio built to help small businesses look and sound their best.</span></a>
   </div>
 </section>
 
@@ -627,30 +611,6 @@ fieldset{border:0}
         document.body.style.overflow = '';
       });
     });
-  }
-
-  /* justify each line of the word wall hard to both edges */
-  var wall = document.querySelector('.wall');
-  if (wall) {
-    var wlines = [].slice.call(wall.querySelectorAll('.wl'));
-    var fitWall = function(){
-      var stacked = window.matchMedia('(max-width:760px)').matches;
-      wlines.forEach(function(l){
-        var inner = l.querySelector('.wl-in');
-        if (stacked || !inner) { l.style.fontSize = ''; return; }
-        l.style.fontSize = '100px';
-        var natural = inner.getBoundingClientRect().width;
-        var avail = wall.clientWidth;
-        if (natural > 0 && avail > 0) l.style.fontSize = (100 * avail / natural).toFixed(3) + 'px';
-      });
-    };
-    fitWall();
-    var fitTimer;
-    window.addEventListener('resize', function(){
-      clearTimeout(fitTimer); fitTimer = setTimeout(fitWall, 90);
-    });
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitWall);
-    window.addEventListener('load', fitWall);
   }
 
   /* reveals */
