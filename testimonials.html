@@ -365,6 +365,34 @@ a.svc{color:inherit}
 .project:hover .pj-go span{transform:translateX(5px)}
 
 /* slot kept open for the next project */
+/* ---------- case study: a document, with its stages hung in the margin ---------- */
+.cs{margin-top:clamp(2.2rem,4.5vw,3.4rem);border-top:1.5px solid var(--ink)}
+.cs-row{
+  display:grid;grid-template-columns:minmax(0,10.5rem) minmax(0,1fr);
+  gap:clamp(.9rem,3vw,2.6rem);
+  padding-block:clamp(1.3rem,2.7vw,2rem);
+  border-bottom:1px solid var(--rule);
+}
+.cs-row h3{
+  font-family:var(--display);font-weight:600;font-size:1.02rem;
+  color:var(--forest);margin:0;padding-top:.2rem;
+}
+.cs-body p{font-size:1.06rem;line-height:1.62;max-width:58ch;color:var(--ink-soft)}
+.cs-body p + p{margin-top:.95rem}
+.cs-q{
+  margin:clamp(1.8rem,3.6vw,2.8rem) 0 0;
+  border-left:2px solid var(--sage);padding-left:clamp(1.1rem,2.4vw,1.7rem);
+}
+.cs-q p{font-size:1.12rem;line-height:1.56;max-width:54ch}
+.cs-q cite{
+  display:block;margin-top:.95rem;font-style:normal;
+  font-family:var(--display);font-weight:600;font-size:.72rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);
+}
+@media (max-width:760px){
+  .cs-row{grid-template-columns:1fr;gap:.45rem}
+  .cs-row h3{padding-top:0}
+}
 .pj-next{
   border:1.5px dashed rgba(31,31,31,.32);background:var(--sand);
   padding:clamp(2rem,4vw,3rem);text-align:center;
@@ -438,7 +466,7 @@ a.svc{color:inherit}
   <div class="wrap">
     <span class="eyebrow r">Our work</span>
     <h1 class="r r-d1">Projects we have built.</h1>
-    <p class="lede r r-d2">A look at what we have made for businesses and organisations here in Guernsey. Click any project to visit the live site.</p>
+    <p class="lede r r-d2">A short list, because we are a new studio and every project on it is real. Here is one of them in full: what was asked for, what we decided, and why.</p>
   </div>
 </section>
 
@@ -456,6 +484,39 @@ a.svc{color:inherit}
       <p>A home for Guernsey's junior sea fishing competitions, built around a live leaderboard, clear joining information and sponsor listings. Designed to be easy for a volunteer run organisation to keep updated.</p>
       <span class="pj-go">Visit the site <span aria-hidden="true">&rarr;</span></span>
     </a>
+
+    <article class="cs r">
+      <div class="cs-row">
+        <h3>The brief</h3>
+        <div class="cs-body">
+          <p>The league runs free sea fishing competitions for under 16s around the island, organised by juniors themselves. It had a following and no website. It needed somewhere to send people who wanted to know what it was, when the next competition ran and how to take part.</p>
+        </div>
+      </div>
+      <div class="cs-row">
+        <h3>The challenge</h3>
+        <div class="cs-body">
+          <p>Three audiences, one page. Juniors want to know who is winning. Parents want to know that it is free, safe and how to sign their child up. Sponsors want to see that this is a real organisation worth backing. All three had to be answered without the site turning into three websites stapled together.</p>
+          <p>It also had to stay current. The competitions run live across the island over a weekend, so a results page that lags a week behind would have been worse than none.</p>
+        </div>
+      </div>
+      <div class="cs-row">
+        <h3>The approach</h3>
+        <div class="cs-body">
+          <p>We led with the thing people actually turn up for. The live leaderboard sits on the home page alongside the current competition, its dates and where it is running, so &ldquo;what is on&rdquo; is answered before anybody has to click anything.</p>
+          <p>Everything else, joining, how it works, winners, the photo wall and sponsors, sits one row away in the navigation and is written in plain language rather than committee language. The visual direction comes from the water rather than from sports clubs: deep green, open sea photography, and a serif that behaves more like a club poster than a league table.</p>
+        </div>
+      </div>
+      <div class="cs-row">
+        <h3>The result</h3>
+        <div class="cs-body">
+          <p>A site that matches how seriously the competitions are actually taken, and stays current without becoming a job in itself. It is live now, and the link above goes straight to it.</p>
+        </div>
+      </div>
+      <blockquote class="cs-q">
+        <p>Canvas Media designed our website for the Guernsey Junior Fishing League, and we couldn't be happier with the result. The communication and level of service throughout the project were amazing, with really quick response times and a great understanding of what we wanted. The website was completed to a high standard and was exactly what we asked for.</p>
+        <cite>Guernsey Junior Fishing League</cite>
+      </blockquote>
+    </article>
 
     <div class="pj-next r">
       <h3>More work on the way</h3>
@@ -501,7 +562,7 @@ a.svc{color:inherit}
   <path fill="#355E4B" d="M87.11,92.46s.2-.21.52-.39c.16-.09.47-.26.9-.33.66-.1,1.15.12,1.14.14,0,.01-.35-.08-.91-.04-.12,0-.28.02-.46.06-.7.15-1.18.58-1.19.57Z"/>
   <path fill="#A8B8A5" d="M87.11,92.46s.2-.21.52-.39c.16-.09.47-.26.9-.33.66-.1,1.15.12,1.14.14,0,.01-.35-.08-.91-.04-.12,0-.28.02-.46.06-.7.15-1.18.58-1.19.57Z"/>
 </svg>
-        <p>A Guernsey studio helping small and medium businesses build brands, websites and social media at a low price.</p>
+        <p>A small Guernsey studio. Branding, websites and social media for businesses that are better than they look online.</p>
       </div>
       <div>
         <h4>Explore</h4>
