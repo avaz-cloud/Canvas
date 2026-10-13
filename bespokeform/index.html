@@ -78,6 +78,20 @@
   .grand .gl{font-family:var(--display);font-weight:600;font-size:17px}
   .grand .gl small{display:block;font-weight:500;font-size:14px;color:var(--muted);margin-top:2px}
   .grand .gv{font-family:var(--display);font-weight:800;font-size:clamp(42px,8vw,56px);letter-spacing:-.04em;line-height:1}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+  .pay{background:#fff;border:1.5px solid var(--ink);padding:16px 18px}
+  .pay .label{margin-bottom:10px;color:var(--forest)}
+  .pay .amt{font-family:var(--display);font-weight:800;font-size:clamp(34px,7vw,44px);letter-spacing:-.04em;line-height:1}
+  .pay small{display:block;margin-top:10px;font-family:var(--display);font-size:14px;color:var(--muted);font-weight:500;line-height:1.4}
+  .pay.launch{background:var(--forest);color:var(--paper)}
+  .pay.launch .label{color:var(--sage)}
+  .pay.launch small{color:#D5DED7}
+  .after{margin:14px 0 0;font-family:var(--display);font-size:15px;font-weight:500}
+  .terms{background:#fff;border:1.5px solid var(--ink);max-height:300px;overflow-y:auto;padding:18px 20px 8px;font-size:15.5px;line-height:1.5}
+  .terms ol{margin:0;padding-left:22px}
+  .terms li{margin-bottom:10px}
+  .terms li b{font-family:var(--display);font-weight:600}
+  .terms-head{margin:26px 0 6px}
   .note{margin:0 0 52px;padding:16px 20px;border:1.5px solid var(--ink);background:var(--mint);font-size:16.5px}
 
   /* Approval */
@@ -115,13 +129,14 @@
   footer{background:var(--ink);color:var(--paper);padding:26px 0}
   footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-family:var(--display);font-size:14px}
   footer a{color:var(--paper)}
-  .print-sig{display:none}
+  .print-sig,.print-terms{display:none}
 
   @media (max-width:560px){
     body{font-size:17px}
     .opt{grid-template-columns:28px 1fr;gap:0 14px}
     .opt .price{grid-column:2;text-align:left;margin-top:10px}
     .fields{grid-template-columns:1fr}
+    .split{grid-template-columns:1fr}
     .totals,.approve,.done{padding:22px 18px}
   }
 
@@ -141,6 +156,9 @@
     .print-sig{display:block;border:1.5px solid var(--ink);padding:16px;break-inside:avoid}
     .print-sig img{height:90px;display:block;margin:6px 0;border-bottom:1px solid var(--ink)}
     .print-sig .pf{display:flex;gap:40px;font-family:var(--display);font-size:11pt}
+    .print-terms{display:block!important;margin-top:18px;font-size:9.5pt;line-height:1.4}
+    .print-terms ol{padding-left:18px}
+    .print-terms li{margin-bottom:4px}
   }
 </style>
 </head>
@@ -262,11 +280,11 @@
     <div class="row"><span>One-off project cost</span><span id="tOneoff">£750</span></div>
     <div class="row"><span>Ongoing monthly</span><span id="tMonthly">£0<small>/month</small></span></div>
     <div class="row" id="perChangeRow" style="display:none"><span>Website changes</span><span>£110<small> each, when needed</small></span></div>
-    <div class="row"><span>Deposit due before we start <small>(50% of website and branding)</small></span><span id="tDeposit">£375</span></div>
-    <div class="grand">
-      <div class="gl">First-month investment<small id="tBreak">£750 one-off + £0 first month</small></div>
-      <div class="gv" id="tFirst">£750</div>
+    <div class="split">
+      <div class="pay"><span class="label">Before we start</span><div class="amt" id="tBefore">£375</div><small id="tBeforeNote">50% of the one-off cost</small></div>
+      <div class="pay launch"><span class="label">At launch</span><div class="amt" id="tLaunch">£375</div><small id="tLaunchNote">Remaining 50% of the one-off cost</small></div>
     </div>
+    <p class="after" id="tAfter" style="display:none"></p>
   </div>
 
   <p class="note">Website prices do not include a domain name, hosting or ad spend, though we can arrange these for you at an additional cost.</p>
@@ -275,19 +293,43 @@
     <div class="label">Client approval · CMQ-2026-001</div>
     <img id="printSigImg" alt="Signature">
     <div class="pf"><span id="printName"></span><span id="printDate"></span></div>
+    <div class="print-terms" id="printTerms"></div>
   </div>
 
   <form class="approve" id="approveForm" novalidate>
     <h2>Client approval.</h2>
-    <p>Sign below to confirm the options you've ticked. We'll be in touch to agree the start date and anything still to settle.</p>
+    <p>Add your email, read the terms and sign below to confirm the options you've ticked. We'll email you a copy straight away.</p>
 
     <div class="fields">
       <div class="field"><label class="label" for="fName">Name</label><input id="fName" value="Martyn Bachelet" autocomplete="name" required></div>
+      <div class="field"><label class="label" for="fEmail">Email</label><input id="fEmail" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required></div>
       <div class="field"><label class="label" for="fDate">Date</label><input id="fDate" readonly></div>
     </div>
 
     <div class="sig-top"><span class="label">Signature</span><button type="button" id="clearSig">Clear</button></div>
     <div class="pad" id="pad"><canvas id="sig" aria-label="Draw your signature here"></canvas><div class="hint">Sign here with your finger, mouse or trackpad</div></div>
+
+    <div class="terms-head label">Terms and conditions</div>
+    <div class="terms" id="terms" tabindex="0">
+      <ol>
+        <li><b>Scope.</b> Prices are as shown on this form and based on quote CMQ-2026-001. Anything outside that scope is quoted separately before it starts.</li>
+        <li><b>Payments.</b> 50% of the one-off cost is due before work begins. The remaining 50%, plus the first month of any monthly services, is due at launch before the website goes live. Invoices are payable within 14 days.</li>
+        <li><b>Late payment.</b> If an invoice is overdue, we may pause work or monthly services until it is paid.</li>
+        <li><b>Deposit.</b> The deposit secures your place in our schedule and covers work started. It is not refundable once work has begun.</li>
+        <li><b>Your content.</b> You agree to provide information, notes and images in good time, and confirm you have the right to use anything you supply. Late content may move the launch date.</li>
+        <li><b>Revisions.</b> Each design stage includes two rounds of revisions. Further changes, or changes after sign-off, are charged at £40 an hour.</li>
+        <li><b>Third-party costs.</b> Domain names, hosting, ad spend, stock images, plugins and paid fonts are not included unless stated, and are billed at cost or paid by you directly.</li>
+        <li><b>Ownership.</b> Once everything is paid in full, you own the final logo, brand files and website design. We keep the right to reuse our own underlying code, tools and unused concepts.</li>
+        <li><b>Portfolio.</b> We may show the finished work in our portfolio and on social media, unless you ask us in writing not to.</li>
+        <li><b>Monthly services.</b> Monthly services run month to month, are billed in advance and can be cancelled with 30 days' written notice. Unused hours do not roll over.</li>
+        <li><b>Ads and social media.</b> Ad spend must be paid and confirmed before ads are published. We cannot guarantee specific results from ads or social media.</li>
+        <li><b>Cancellation.</b> If you cancel the project, you pay for work completed up to that point. If we cancel, we refund any payment for work not yet done.</li>
+        <li><b>Liability.</b> Our liability is limited to the fees you have paid for the work concerned. We are not responsible for losses caused by third-party services such as hosting providers or social platforms.</li>
+        <li><b>Confidentiality.</b> We keep any business information you share with us confidential.</li>
+        <li><b>Law.</b> These terms are governed by the laws of the Bailiwick of Guernsey.</li>
+      </ol>
+    </div>
+    <label class="agree"><input type="checkbox" id="agreeTerms"> <span>I have read and agree to the terms and conditions.</span></label>
 
     <label class="agree"><input type="checkbox" id="agree"> <span>I'd like Canvas Media to go ahead with the options ticked above, at the prices shown.</span></label>
 
@@ -298,7 +340,7 @@
 
   <div class="done" id="done">
     <h2>Thank you, Martyn.</h2>
-    <p>Your approval is with us. We'll be in touch shortly to agree a start date and the details still to settle.</p>
+    <p id="doneMsg">Your approval is with us. We'll be in touch shortly to agree a start date and the details still to settle.</p>
     <button type="button" onclick="window.print()">Save a signed copy</button>
   </div>
 
@@ -308,10 +350,17 @@
   <div class="wrap"><span>canvasmedia.gg · Guernsey, Channel Islands</span><a href="mailto:hello@canvasmedia.gg">hello@canvasmedia.gg</a></div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
 (function(){
   // Paste the Canvas Web3Forms access key here (the same one used on the contact form).
   var WEB3FORMS_KEY = "8a884b84-3524-40f6-81b1-384613d0e968";
+
+  // EmailJS sends Martyn his confirmation email. Fill these three in from emailjs.com.
+  var EMAILJS_PUBLIC_KEY  = "4eaXscvDaEzU1zNb_";
+  var EMAILJS_SERVICE_ID  = "service_nyuvsbm";
+  var EMAILJS_TEMPLATE_ID = "template_s71mqmr";
+  var emailjsReady = EMAILJS_PUBLIC_KEY.indexOf('PASTE') !== 0;
 
   var boxes = Array.prototype.slice.call(document.querySelectorAll('.opt input[type=checkbox]'));
   var hours = 2;
@@ -321,11 +370,11 @@
   function price(b){ return +b.dataset.price * (b.dataset.hourly !== undefined ? hours : 1); }
 
   function update(){
-    var oneoff = 0, monthly = 0, deposit = 0, perChange = false;
+    var oneoff = 0, monthly = 0, perChange = false;
     boxes.forEach(function(b){
       b.closest('.opt').classList.toggle('on', b.checked);
       if(!b.checked) return;
-      if(b.dataset.type === 'oneoff'){ oneoff += price(b); if(b.dataset.deposit !== undefined) deposit += price(b); }
+      if(b.dataset.type === 'oneoff') oneoff += price(b);
       if(b.dataset.type === 'monthly') monthly += price(b);
       if(b.dataset.type === 'perchange') perChange = true;
     });
@@ -333,11 +382,16 @@
     $('hours').textContent = hours;
     $('tOneoff').textContent = gbp(oneoff);
     $('tMonthly').innerHTML = gbp(monthly) + '<small>/month</small>';
-    $('tDeposit').textContent = gbp(deposit / 2);
     $('perChangeRow').style.display = perChange ? '' : 'none';
-    $('tFirst').textContent = gbp(oneoff + monthly);
-    $('tBreak').textContent = gbp(oneoff) + ' one-off + ' + gbp(monthly) + ' first month';
-    return {oneoff:oneoff, monthly:monthly, deposit:deposit/2, first:oneoff+monthly};
+    var half = oneoff / 2, launch = half + monthly;
+    $('tBefore').textContent = gbp(half);
+    $('tLaunch').textContent = gbp(launch);
+    $('tLaunchNote').textContent = monthly
+      ? gbp(half) + ' remaining 50% + ' + gbp(monthly) + ' first month'
+      : 'Remaining 50% of the one-off cost';
+    $('tAfter').style.display = monthly ? '' : 'none';
+    $('tAfter').textContent = 'Then ' + gbp(monthly) + ' a month from the second month after launch.';
+    return {oneoff:oneoff, monthly:monthly, half:half, launch:launch, perChange:perChange};
   }
 
   boxes.forEach(function(b){
@@ -388,10 +442,45 @@
   sizeCanvas();
 
   function checkReady(){
-    $('sendBtn').disabled = !(hasInk && $('agree').checked && $('fName').value.trim());
+    var em = $('fEmail').value.trim();
+    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em);
+    $('sendBtn').disabled = !(hasInk && emailOk && $('agree').checked && $('agreeTerms').checked && $('fName').value.trim());
   }
-  $('agree').addEventListener('change', checkReady);
-  $('fName').addEventListener('input', checkReady);
+  ['agree','agreeTerms'].forEach(function(id){ $(id).addEventListener('change', checkReady); });
+  ['fName','fEmail'].forEach(function(id){ $(id).addEventListener('input', checkReady); });
+
+  function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+  function confirmationHtml(name, chosen, t){
+    var f = "font-family:Helvetica,Arial,sans-serif;";
+    var rows = chosen.map(function(c){
+      return '<tr><td style="'+f+'padding:8px 0;border-bottom:1px solid #D9D6CF;font-size:15px;color:#1F1F1F">'+esc(c.name)+'</td><td style="'+f+'padding:8px 0;border-bottom:1px solid #D9D6CF;font-size:15px;color:#1F1F1F;text-align:right;white-space:nowrap">'+esc(c.price)+'</td></tr>';
+    }).join('');
+    var sched =
+      '<tr><td style="'+f+'padding:6px 0;font-size:15px">One-off project cost</td><td style="'+f+'padding:6px 0;font-size:15px;text-align:right"><b>'+gbp(t.oneoff)+'</b></td></tr>' +
+      '<tr><td style="'+f+'padding:6px 0;font-size:15px">Ongoing monthly</td><td style="'+f+'padding:6px 0;font-size:15px;text-align:right"><b>'+gbp(t.monthly)+'/month</b></td></tr>' +
+      '<tr><td style="'+f+'padding:6px 0;font-size:15px">Before we start (50% of the one-off cost)</td><td style="'+f+'padding:6px 0;font-size:15px;text-align:right"><b>'+gbp(t.half)+'</b></td></tr>' +
+      '<tr><td style="'+f+'padding:6px 0;font-size:15px">At launch ('+(t.monthly ? 'remaining 50% + first month' : 'remaining 50%')+')</td><td style="'+f+'padding:6px 0;font-size:15px;text-align:right"><b>'+gbp(t.launch)+'</b></td></tr>' +
+      (t.monthly ? '<tr><td style="'+f+'padding:6px 0;font-size:15px">Then each month</td><td style="'+f+'padding:6px 0;font-size:15px;text-align:right"><b>'+gbp(t.monthly)+'/month</b></td></tr>' : '') +
+      (t.perChange ? '<tr><td style="'+f+'padding:6px 0;font-size:15px">Website changes</td><td style="'+f+'padding:6px 0;font-size:15px;text-align:right"><b>£110 each, when needed</b></td></tr>' : '');
+    var terms = Array.prototype.map.call(document.querySelectorAll('#terms li'), function(li){
+      return '<li style="margin-bottom:8px">'+li.innerHTML+'</li>';
+    }).join('');
+    return '<div style="background:#F7F5F2;padding:24px 0"><table role="presentation" width="100%" style="max-width:600px;margin:0 auto;background:#ffffff;border:1.5px solid #1F1F1F;border-collapse:collapse"><tr><td style="background:#355E4B;padding:24px 28px;'+f+'color:#F7F5F2">' +
+      '<div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#A8B8A5">Canvas Media · CMQ-2026-001</div>' +
+      '<div style="font-size:26px;font-weight:bold;margin-top:8px">Thank you, '+esc(name.split(' ')[0])+'.</div></td></tr>' +
+      '<tr><td style="padding:24px 28px;'+f+'color:#1F1F1F;font-size:15px;line-height:1.55">' +
+      '<p style="margin:0 0 18px">This is your copy of the options you approved on '+esc(today)+'. We\'ll be in touch shortly to agree a start date and anything still to settle.</p>' +
+      '<div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#355E4B;margin:0 0 6px">Services you selected</div>' +
+      '<table role="presentation" width="100%" style="border-collapse:collapse;border-top:1.5px solid #1F1F1F">'+rows+'</table>' +
+      '<div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#355E4B;margin:24px 0 6px">When you pay</div>' +
+      '<table role="presentation" width="100%" style="border-collapse:collapse;background:#E4E9E2;padding:8px">'+sched+'</table>' +
+      '<p style="margin:14px 0 0;font-size:13px;color:#5B5F5A">Website prices do not include a domain name, hosting or ad spend.</p>' +
+      '<div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#355E4B;margin:24px 0 6px">Terms and conditions you agreed to</div>' +
+      '<ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.5;color:#1F1F1F">'+terms+'</ol>' +
+      '<p style="margin:22px 0 0">Signed by '+esc(name)+' on '+esc(today)+'.</p>' +
+      '</td></tr><tr><td style="background:#1F1F1F;padding:16px 28px;'+f+'font-size:13px;color:#F7F5F2">canvasmedia.gg · Guernsey, Channel Islands · hello@canvasmedia.gg</td></tr></table></div>';
+  }
 
   // Small, trimmed copy of the signature for the email and the saved copy
   function signatureImage(){
@@ -406,27 +495,32 @@
     if($('sendBtn').disabled) return;
     var t = update();
     var chosen = boxes.filter(function(b){ return b.checked; }).map(function(b){
-      var name = b.closest('.opt').querySelector('h3').textContent;
-      if(b.dataset.hourly !== undefined) return name + ': ' + hours + ' hrs a month, ' + gbp(price(b)) + '/month';
-      if(b.dataset.type === 'monthly') return name + ': ' + gbp(price(b)) + '/month';
-      if(b.dataset.type === 'perchange') return name + ': ' + gbp(price(b)) + ' per change';
-      return name + ': ' + gbp(price(b));
+      var n = b.closest('.opt').querySelector('h3').textContent, pr;
+      if(b.dataset.hourly !== undefined){ n += ' (' + hours + ' hrs a month)'; pr = gbp(price(b)) + '/month'; }
+      else if(b.dataset.type === 'monthly') pr = gbp(price(b)) + '/month';
+      else if(b.dataset.type === 'perchange') pr = gbp(price(b)) + ' per change';
+      else pr = gbp(price(b));
+      return {name:n, price:pr};
     });
     var sig = signatureImage();
     var name = $('fName').value.trim();
+    var email = $('fEmail').value.trim();
 
     var payload = {
       access_key: WEB3FORMS_KEY,
       subject: 'Quote approved: CMQ-2026-001, ' + name,
       from_name: 'Canvas quote page',
       name: name,
+      email: email,
+      replyto: email,
       date_signed: today,
       quote: 'CMQ-2026-001',
-      options_selected: chosen.join('\n'),
+      options_selected: chosen.map(function(c){ return c.name + ': ' + c.price; }).join('\n'),
       one_off_total: gbp(t.oneoff),
       monthly_total: gbp(t.monthly) + '/month',
-      deposit_due: gbp(t.deposit),
-      first_month_total: gbp(t.first),
+      due_before_start: gbp(t.half) + ' (50% of one-off)',
+      due_at_launch: gbp(t.launch) + (t.monthly ? ' (remaining 50% + first month)' : ' (remaining 50%)'),
+      terms_accepted: 'Yes, Canvas Media terms and conditions, October 2026',
       signature_image: sig,
       botcheck: ''
     };
@@ -439,6 +533,19 @@
       body: JSON.stringify(payload)
     }).then(function(r){ return r.json(); }).then(function(res){
       if(!res.success) throw new Error(res.message || 'Send failed');
+      $('printTerms').innerHTML = '<div class="label">Terms and conditions agreed</div>' + $('terms').innerHTML;
+      if(emailjsReady && window.emailjs){
+        return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+          to_email: email, to_name: name, reply_to: 'hello@canvasmedia.gg',
+          subject: 'Your Canvas Media approval, CMQ-2026-001',
+          message_html: confirmationHtml(name, chosen, t)
+        }, {publicKey: EMAILJS_PUBLIC_KEY}).then(function(){
+          $('doneMsg').textContent = 'Your approval is with us, and a copy of your selections and our terms is on its way to ' + email + '. We\'ll be in touch shortly to agree a start date.';
+        }, function(){
+          $('doneMsg').textContent = "Your approval is with us. Your confirmation email didn't send, so we'll email you a copy ourselves. We'll be in touch shortly to agree a start date.";
+        });
+      }
+    }).then(function(){
       $('printSigImg').src = sig;
       $('printName').textContent = name;
       $('printDate').textContent = today;
