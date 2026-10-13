@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Your quote · Canvas Media</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     SETUP: paste the Canvas Web3Forms access key below, in the
+     script at the bottom of this file (search WEB3FORMS_KEY).
+     ============================================================ */
+  :root{
+    --paper:#F7F5F2; --ink:#1F1F1F; --forest:#355E4B; --forest-deep:#24402F;
+    --sage:#A8B8A5; --sage-tint:#E4E9E2; --mint:#E9F1E7; --sand:#F3EDE2;
+    --muted:#5B5F5A; --rule:#D9D6CF;
+    --display:"Bricolage Grotesque", system-ui, sans-serif;
+    --body:"Newsreader", Georgia, serif;
+  }
+  *{box-sizing:border-box}
+  html{overflow-x:hidden;-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.55}
+  .wrap{max-width:760px;margin:0 auto;padding:0 16px}
+  .label{font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+
+  /* Header */
+  header.top{background:var(--forest);color:var(--paper);padding:28px 0 56px}
+  .bar{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+  .logo{font-family:var(--display);font-weight:500;line-height:.9;font-size:30px;letter-spacing:-.01em}
+  .logo span{display:block;font-size:14px;font-weight:600;text-align:right;letter-spacing:0}
+  .ref{text-align:right}
+  .ref .label{color:var(--sage);display:block;margin-bottom:4px}
+  .ref strong{font-family:var(--display);font-size:14px;font-weight:600}
+  h1{font-family:var(--display);font-weight:800;font-size:clamp(44px,9vw,72px);line-height:.95;letter-spacing:-.035em;margin:56px 0 18px}
+  .intro{font-size:19px;max-width:520px;margin:0;color:#E8EDE9}
+
+  /* Sections */
+  main.wrap{padding-top:48px;padding-bottom:72px}
+  section{margin-bottom:44px}
+  .sec-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1.5px solid var(--ink);padding-bottom:10px}
+  .sec-head .label{color:var(--forest)}
+  .sec-head .label:last-child{color:var(--ink)}
+
+  .opt{display:grid;grid-template-columns:32px 1fr auto;gap:0 16px;align-items:start;padding:20px 0;border-bottom:1px solid var(--rule);cursor:pointer}
+  .opt input[type=checkbox]{position:absolute;opacity:0;pointer-events:none}
+  .box{width:26px;height:26px;border:1.5px solid var(--ink);background:#fff;margin-top:2px;display:grid;place-items:center;transition:background .12s}
+  .box svg{width:16px;height:16px;opacity:0}
+  .opt input:checked + .box{background:var(--forest);border-color:var(--forest)}
+  .opt input:checked + .box svg{opacity:1}
+  .opt input:focus-visible + .box{outline:2px solid var(--forest);outline-offset:3px}
+  .opt.locked{cursor:default}
+  .opt h3{font-family:var(--display);font-size:21px;font-weight:600;letter-spacing:-.01em;margin:0 0 4px;line-height:1.2}
+  .opt p{margin:0;font-size:16.5px;color:var(--muted)}
+  .opt .or{display:inline-block;margin-top:8px;font-family:var(--display);font-size:14px;font-weight:600;color:var(--forest)}
+  .price{text-align:right;white-space:nowrap}
+  .price b{font-family:var(--display);font-size:22px;font-weight:700;letter-spacing:-.01em}
+  .price small{font-family:var(--display);font-size:13px;font-weight:500;color:var(--muted);margin-left:2px}
+  .tag{display:inline-block;margin-top:8px;padding:4px 10px;font-family:var(--display);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:var(--forest);color:var(--paper)}
+
+  .hours{display:none;align-items:center;gap:12px;margin-top:12px;font-family:var(--display);font-size:15px;font-weight:500}
+  .opt.on .hours{display:flex}
+  .step{display:flex;border:1.5px solid var(--ink);background:#fff}
+  .step button{width:38px;height:36px;border:0;background:none;font:600 20px var(--display);color:var(--ink);cursor:pointer}
+  .step button:hover{background:var(--sage-tint)}
+  .step output{min-width:40px;display:grid;place-items:center;border-left:1.5px solid var(--ink);border-right:1.5px solid var(--ink);font-weight:700}
+
+  /* Totals */
+  .totals{position:relative;margin:8px 8px 52px 0;background:var(--sage-tint);border:1.5px solid var(--ink);box-shadow:8px 8px 0 var(--sage);padding:26px 24px}
+  .totals .label{color:var(--forest);display:block;margin-bottom:14px}
+  .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid #C9D3C6;font-family:var(--display);font-size:17px;font-weight:500}
+  .row span:last-child{font-weight:700;font-size:20px;white-space:nowrap}
+  .row small{font-size:13px;color:var(--muted);font-weight:500}
+  .grand{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;padding-top:18px}
+  .grand .gl{font-family:var(--display);font-weight:600;font-size:17px}
+  .grand .gl small{display:block;font-weight:500;font-size:14px;color:var(--muted);margin-top:2px}
+  .grand .gv{font-family:var(--display);font-weight:800;font-size:clamp(42px,8vw,56px);letter-spacing:-.04em;line-height:1}
+  .note{margin:0 0 52px;padding:16px 20px;border:1.5px solid var(--ink);background:var(--mint);font-size:16.5px}
+
+  /* Approval */
+  .approve{border:1.5px solid var(--ink);background:var(--sand);box-shadow:8px 8px 0 var(--sage);padding:26px 24px;margin-right:8px}
+  .approve h2{font-family:var(--display);font-weight:700;font-size:28px;letter-spacing:-.02em;margin:0 0 6px}
+  .approve > p{margin:0 0 22px;font-size:17px}
+  .fields{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:22px}
+  .field label{display:block;margin-bottom:6px}
+  .field input{width:100%;font:500 18px var(--display);color:var(--ink);background:#fff;border:1.5px solid var(--ink);border-radius:0;padding:10px 12px}
+  .field input:focus{outline:2px solid var(--forest);outline-offset:2px}
+  .sig-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+  .sig-top button{border:0;background:none;font:600 14px var(--display);color:var(--forest);text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:4px 0}
+  .pad{position:relative;background:#fff;border:1.5px solid var(--ink);height:190px;touch-action:none}
+  .pad canvas{display:block;width:100%;height:100%;cursor:crosshair}
+  .pad .hint{position:absolute;left:18px;right:18px;bottom:44px;border-top:1px solid var(--rule);padding-top:6px;font-size:15px;font-style:italic;color:#9A9C97;pointer-events:none}
+  .pad.signed .hint{visibility:hidden}
+  .agree{display:flex;gap:12px;align-items:flex-start;margin:20px 0 22px;font-size:16.5px;cursor:pointer}
+  .agree input{width:22px;height:22px;margin:2px 0 0;accent-color:var(--forest);flex:none}
+  .send{width:100%;padding:18px;border:1.5px solid var(--ink);background:var(--forest);color:var(--paper);font:700 18px var(--display);cursor:pointer;transition:background .12s}
+  .send:hover:not(:disabled){background:var(--forest-deep)}
+  .send:disabled{background:#8FA397;cursor:not-allowed}
+  .status{margin:12px 0 0;font-family:var(--display);font-size:15px;font-weight:500;min-height:1.4em}
+  .status.err{color:#9B2C1F}
+
+  .done{display:none;border:1.5px solid var(--ink);background:var(--forest);color:var(--paper);box-shadow:8px 8px 0 var(--sage);padding:30px 24px;margin-right:8px}
+  .done h2{font-family:var(--display);font-weight:800;font-size:34px;letter-spacing:-.03em;margin:0 0 10px;line-height:1.05}
+  .done p{margin:0 0 20px;color:#E8EDE9}
+  .done button{padding:14px 20px;border:1.5px solid var(--paper);background:none;color:var(--paper);font:600 16px var(--display);cursor:pointer}
+  .done button:hover{background:var(--forest-deep)}
+  body.sent .approve{display:none}
+  body.sent .done{display:block}
+  body.sent .opt{pointer-events:none}
+  body.sent .step{display:none}
+
+  footer{background:var(--ink);color:var(--paper);padding:26px 0}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-family:var(--display);font-size:14px}
+  footer a{color:var(--paper)}
+  .print-sig{display:none}
+
+  @media (max-width:560px){
+    body{font-size:17px}
+    .opt{grid-template-columns:28px 1fr;gap:0 14px}
+    .opt .price{grid-column:2;text-align:left;margin-top:10px}
+    .fields{grid-template-columns:1fr}
+    .totals,.approve,.done{padding:22px 18px}
+  }
+
+  @media print{
+    @page{size:A4;margin:14mm}
+    body{background:#fff;font-size:12pt}
+    header.top{background:#fff;color:var(--ink);padding:0 0 10px;border-bottom:1.5px solid var(--ink)}
+    .ref .label{color:var(--muted)}
+    h1{font-size:30pt;margin:14px 0 6px}
+    .intro{display:none}
+    main.wrap{padding-top:16px;padding-bottom:16px}
+    .opt{padding:8px 0;break-inside:avoid}
+    .opt:not(.on){display:none}
+    .opt p,.opt .or,.hours .step{display:none}
+    .totals,.approve,.done{box-shadow:none;break-inside:avoid}
+    .approve,.done,footer,.note{display:none!important}
+    .print-sig{display:block;border:1.5px solid var(--ink);padding:16px;break-inside:avoid}
+    .print-sig img{height:90px;display:block;margin:6px 0;border-bottom:1px solid var(--ink)}
+    .print-sig .pf{display:flex;gap:40px;font-family:var(--display);font-size:11pt}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="bar">
+      <div class="logo">canvas<span>media</span></div>
+      <div class="ref"><span class="label">Quotation</span><strong>CMQ-2026-001</strong></div>
+    </div>
+    <h1>Choose what you'd like, Martyn.</h1>
+    <p class="intro">Tick the parts of your quote you'd like us to go ahead with. The total updates as you go. When you're happy, sign at the bottom and send it back to us.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section>
+    <div class="sec-head"><span class="label">One-off · paid once</span><span class="label">Price</span></div>
+
+    <label class="opt locked on">
+      <input type="checkbox" data-id="website" data-type="oneoff" data-price="750" data-deposit checked disabled>
+      <span class="box" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8" fill="none" stroke="#F7F5F2" stroke-width="2.2" stroke-linecap="square"/></svg></span>
+      <div>
+        <h3>Full website</h3>
+        <p>A website of up to eight pages. Domain and hosting not included.</p>
+      </div>
+      <div class="price"><b>£750</b><br><span class="tag">Confirmed</span></div>
+    </label>
+
+    <label class="opt">
+      <input type="checkbox" data-id="brand" data-type="oneoff" data-price="600" data-deposit data-group="brand">
+      <span class="box" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8" fill="none" stroke="#F7F5F2" stroke-width="2.2" stroke-linecap="square"/></svg></span>
+      <div>
+        <h3>Full brand identity</h3>
+        <p>Logo, colour palette, typography and brand rules, plus a branded business card, letterhead and quote template.</p>
+      </div>
+      <div class="price"><b>£600</b></div>
+    </label>
+
+    <label class="opt">
+      <input type="checkbox" data-id="logo" data-type="oneoff" data-price="150" data-deposit data-group="brand">
+      <span class="box" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8" fill="none" stroke="#F7F5F2" stroke-width="2.2" stroke-linecap="square"/></svg></span>
+      <div>
+        <h3>Logo refresh</h3>
+        <p>A refreshed version of your current logo, in place of the full brand identity. Doesn't include the business card, letterhead or quote template.</p>
+        <span class="or">Choose this or the full brand identity</span>
+      </div>
+      <div class="price"><b>£150</b></div>
+    </label>
+
+    <label class="opt">
+      <input type="checkbox" data-id="photo" data-type="oneoff" data-price="250">
+      <span class="box" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8" fill="none" stroke="#F7F5F2" stroke-width="2.2" stroke-linecap="square"/></svg></span>
+      <div>
+        <h3>Photography, half day</h3>
+        <p>If you'd like more images for the website than you already have. Any further visual content is agreed separately.</p>
+      </div>
+      <div class="price"><b>£250</b></div>
+    </label>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="label">Monthly · billed every month</span><span class="label">Per month</span></div>
+
+    <label class="opt">
+      <input type="checkbox" data-id="social" data-type="monthly" data-price="95">
+      <span class="box" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8" fill="none" stroke="#F7F5F2" stroke-width="2.2" stroke-linecap="square"/></svg></span>
+      <div>
+        <h3>Social media · Starter</h3>
+        <p>Four posts a month, written, designed and scheduled.</p>
+      </div>
+      <div class="price"><b>£95</b><small>/month</small></div>
+    </label>
+
+    <label class="opt">
+      <input type="checkbox" data-id="upkeep" data-type="monthly" data-price="100" data-group="upkeep">
+      <span class="box" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8" fill="none" stroke="#F7F5F2" stroke-width="2.2" stroke-linecap="square"/></svg></span>
+      <div>
+        <h3>Website upkeep</h3>
+        <p>General upkeep, including adding new copy as your business grows, adding simple pages, adding images and making basic changes.</p>
+      </div>
+      <div class="price"><b>£100</b><small>/month</small></div>
+    </label>
+
+    <label class="opt">
+      <input type="checkbox" data-id="changes" data-type="perchange" data-price="110" data-group="upkeep">
+      <span class="box" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8" fill="none" stroke="#F7F5F2" stroke-width="2.2" stroke-linecap="square"/></svg></span>
+      <div>
+        <h3>Website changes as needed</h3>
+        <p>Instead of a monthly upkeep charge, pay only when you need something updated.</p>
+        <span class="or">Choose this or monthly upkeep</span>
+      </div>
+      <div class="price"><b>£110</b><small>/change</small></div>
+    </label>
+
+    <label class="opt" id="adsOpt">
+      <input type="checkbox" data-id="ads" data-type="monthly" data-price="40" data-hourly>
+      <span class="box" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8" fill="none" stroke="#F7F5F2" stroke-width="2.2" stroke-linecap="square"/></svg></span>
+      <div>
+        <h3>Ad design</h3>
+        <p>Design time for your monthly social media ads, at £40 an hour. Separate from your social media posts. Ad spend not included.</p>
+        <div class="hours">
+          Hours each month
+          <div class="step">
+            <button type="button" id="hMinus" aria-label="Fewer hours">−</button>
+            <output id="hours">2</output>
+            <button type="button" id="hPlus" aria-label="More hours">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="price"><b id="adPrice">£80</b><small>/month</small></div>
+    </label>
+  </section>
+
+  <div class="totals" aria-live="polite">
+    <span class="label">Your total</span>
+    <div class="row"><span>One-off project cost</span><span id="tOneoff">£750</span></div>
+    <div class="row"><span>Ongoing monthly</span><span id="tMonthly">£0<small>/month</small></span></div>
+    <div class="row" id="perChangeRow" style="display:none"><span>Website changes</span><span>£110<small> each, when needed</small></span></div>
+    <div class="row"><span>Deposit due before we start <small>(50% of website and branding)</small></span><span id="tDeposit">£375</span></div>
+    <div class="grand">
+      <div class="gl">First-month investment<small id="tBreak">£750 one-off + £0 first month</small></div>
+      <div class="gv" id="tFirst">£750</div>
+    </div>
+  </div>
+
+  <p class="note">Website prices do not include a domain name, hosting or ad spend, though we can arrange these for you at an additional cost.</p>
+
+  <div class="print-sig" id="printSig">
+    <div class="label">Client approval · CMQ-2026-001</div>
+    <img id="printSigImg" alt="Signature">
+    <div class="pf"><span id="printName"></span><span id="printDate"></span></div>
+  </div>
+
+  <form class="approve" id="approveForm" novalidate>
+    <h2>Client approval.</h2>
+    <p>Sign below to confirm the options you've ticked. We'll be in touch to agree the start date and anything still to settle.</p>
+
+    <div class="fields">
+      <div class="field"><label class="label" for="fName">Name</label><input id="fName" value="Martyn Bachelet" autocomplete="name" required></div>
+      <div class="field"><label class="label" for="fDate">Date</label><input id="fDate" readonly></div>
+    </div>
+
+    <div class="sig-top"><span class="label">Signature</span><button type="button" id="clearSig">Clear</button></div>
+    <div class="pad" id="pad"><canvas id="sig" aria-label="Draw your signature here"></canvas><div class="hint">Sign here with your finger, mouse or trackpad</div></div>
+
+    <label class="agree"><input type="checkbox" id="agree"> <span>I'd like Canvas Media to go ahead with the options ticked above, at the prices shown.</span></label>
+
+    <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+    <button class="send" id="sendBtn" type="submit" disabled>Send my approval</button>
+    <p class="status" id="status" role="status"></p>
+  </form>
+
+  <div class="done" id="done">
+    <h2>Thank you, Martyn.</h2>
+    <p>Your approval is with us. We'll be in touch shortly to agree a start date and the details still to settle.</p>
+    <button type="button" onclick="window.print()">Save a signed copy</button>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap"><span>canvasmedia.gg · Guernsey, Channel Islands</span><a href="mailto:hello@canvasmedia.gg">hello@canvasmedia.gg</a></div>
+</footer>
+
+<script>
+(function(){
+  // Paste the Canvas Web3Forms access key here (the same one used on the contact form).
+  var WEB3FORMS_KEY = "8a884b84-3524-40f6-81b1-384613d0e968";
+
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.opt input[type=checkbox]'));
+  var hours = 2;
+  var gbp = function(n){ return '£' + n.toLocaleString('en-GB', {maximumFractionDigits:0}); };
+  var $ = function(id){ return document.getElementById(id); };
+
+  function price(b){ return +b.dataset.price * (b.dataset.hourly !== undefined ? hours : 1); }
+
+  function update(){
+    var oneoff = 0, monthly = 0, deposit = 0, perChange = false;
+    boxes.forEach(function(b){
+      b.closest('.opt').classList.toggle('on', b.checked);
+      if(!b.checked) return;
+      if(b.dataset.type === 'oneoff'){ oneoff += price(b); if(b.dataset.deposit !== undefined) deposit += price(b); }
+      if(b.dataset.type === 'monthly') monthly += price(b);
+      if(b.dataset.type === 'perchange') perChange = true;
+    });
+    $('adPrice').textContent = gbp(40 * hours);
+    $('hours').textContent = hours;
+    $('tOneoff').textContent = gbp(oneoff);
+    $('tMonthly').innerHTML = gbp(monthly) + '<small>/month</small>';
+    $('tDeposit').textContent = gbp(deposit / 2);
+    $('perChangeRow').style.display = perChange ? '' : 'none';
+    $('tFirst').textContent = gbp(oneoff + monthly);
+    $('tBreak').textContent = gbp(oneoff) + ' one-off + ' + gbp(monthly) + ' first month';
+    return {oneoff:oneoff, monthly:monthly, deposit:deposit/2, first:oneoff+monthly};
+  }
+
+  boxes.forEach(function(b){
+    b.addEventListener('change', function(){
+      if(b.checked && b.dataset.group){
+        boxes.forEach(function(o){ if(o !== b && o.dataset.group === b.dataset.group) o.checked = false; });
+      }
+      update();
+    });
+  });
+  $('hMinus').addEventListener('click', function(e){ e.preventDefault(); if(hours > 1){ hours--; update(); } });
+  $('hPlus').addEventListener('click', function(e){ e.preventDefault(); if(hours < 20){ hours++; update(); } });
+
+  // Date
+  var today = new Date().toLocaleDateString('en-GB', {day:'numeric', month:'long', year:'numeric'});
+  $('fDate').value = today;
+
+  // Signature pad
+  var canvas = $('sig'), ctx = canvas.getContext('2d'), pad = $('pad');
+  var drawing = false, hasInk = false, last = null;
+  function sizeCanvas(){
+    var r = canvas.getBoundingClientRect(), d = window.devicePixelRatio || 1;
+    if(canvas.width === Math.round(r.width * d) && canvas.height === Math.round(r.height * d)) return;
+    var keep = hasInk ? canvas.toDataURL() : null;
+    canvas.width = Math.round(r.width * d); canvas.height = Math.round(r.height * d);
+    ctx.setTransform(d,0,0,d,0,0);
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#1F1F1F'; ctx.lineWidth = 2.4;
+    if(keep){ var img = new Image(); img.onload = function(){ ctx.drawImage(img,0,0,r.width,r.height); }; img.src = keep; }
+  }
+  function pos(e){ var r = canvas.getBoundingClientRect(); return {x:e.clientX - r.left, y:e.clientY - r.top}; }
+  canvas.addEventListener('pointerdown', function(e){
+    if(document.body.classList.contains('sent')) return;
+    drawing = true; last = pos(e); canvas.setPointerCapture(e.pointerId);
+    ctx.beginPath(); ctx.arc(last.x, last.y, 1.1, 0, Math.PI*2); ctx.fillStyle = '#1F1F1F'; ctx.fill();
+  });
+  canvas.addEventListener('pointermove', function(e){
+    if(!drawing) return;
+    var p = pos(e);
+    ctx.beginPath(); ctx.moveTo(last.x, last.y); ctx.lineTo(p.x, p.y); ctx.stroke();
+    last = p;
+    if(!hasInk){ hasInk = true; pad.classList.add('signed'); checkReady(); }
+  });
+  ['pointerup','pointercancel','pointerleave'].forEach(function(t){ canvas.addEventListener(t, function(){ drawing = false; }); });
+  $('clearSig').addEventListener('click', function(){
+    ctx.clearRect(0,0,canvas.width,canvas.height); hasInk = false; pad.classList.remove('signed'); checkReady();
+  });
+  window.addEventListener('resize', sizeCanvas);
+  sizeCanvas();
+
+  function checkReady(){
+    $('sendBtn').disabled = !(hasInk && $('agree').checked && $('fName').value.trim());
+  }
+  $('agree').addEventListener('change', checkReady);
+  $('fName').addEventListener('input', checkReady);
+
+  // Small, trimmed copy of the signature for the email and the saved copy
+  function signatureImage(){
+    var w = 600, h = Math.round(w * canvas.height / canvas.width);
+    var c = document.createElement('canvas'); c.width = w; c.height = h;
+    var x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0,0,w,h); x.drawImage(canvas,0,0,w,h);
+    return c.toDataURL('image/png');
+  }
+
+  $('approveForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    if($('sendBtn').disabled) return;
+    var t = update();
+    var chosen = boxes.filter(function(b){ return b.checked; }).map(function(b){
+      var name = b.closest('.opt').querySelector('h3').textContent;
+      if(b.dataset.hourly !== undefined) return name + ': ' + hours + ' hrs a month, ' + gbp(price(b)) + '/month';
+      if(b.dataset.type === 'monthly') return name + ': ' + gbp(price(b)) + '/month';
+      if(b.dataset.type === 'perchange') return name + ': ' + gbp(price(b)) + ' per change';
+      return name + ': ' + gbp(price(b));
+    });
+    var sig = signatureImage();
+    var name = $('fName').value.trim();
+
+    var payload = {
+      access_key: WEB3FORMS_KEY,
+      subject: 'Quote approved: CMQ-2026-001, ' + name,
+      from_name: 'Canvas quote page',
+      name: name,
+      date_signed: today,
+      quote: 'CMQ-2026-001',
+      options_selected: chosen.join('\n'),
+      one_off_total: gbp(t.oneoff),
+      monthly_total: gbp(t.monthly) + '/month',
+      deposit_due: gbp(t.deposit),
+      first_month_total: gbp(t.first),
+      signature_image: sig,
+      botcheck: ''
+    };
+
+    $('sendBtn').disabled = true; $('sendBtn').textContent = 'Sending…';
+    $('status').className = 'status'; $('status').textContent = '';
+
+    fetch('https://api.web3forms.com/submit', {
+      method:'POST', headers:{'Content-Type':'application/json', 'Accept':'application/json'},
+      body: JSON.stringify(payload)
+    }).then(function(r){ return r.json(); }).then(function(res){
+      if(!res.success) throw new Error(res.message || 'Send failed');
+      $('printSigImg').src = sig;
+      $('printName').textContent = name;
+      $('printDate').textContent = today;
+      document.body.classList.add('sent');
+      window.scrollTo({top: $('done').getBoundingClientRect().top + window.scrollY - 40, behavior:'smooth'});
+    }).catch(function(){
+      $('status').className = 'status err';
+      $('status').textContent = "That didn't send. Please try again, or email hello@canvasmedia.gg.";
+      $('sendBtn').textContent = 'Send my approval'; checkReady();
+    });
+  });
+
+  update();
+})();
+</script>
+</body>
+</html>
